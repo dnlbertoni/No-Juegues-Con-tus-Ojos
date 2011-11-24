@@ -7,6 +7,9 @@
 class Inicio extends MY_Controller{
   function __construct() {
     parent::__construct();
+    if($this->session->userdata('status')==1){
+      Template::redirect('home');
+    }
   }
   function index(){
     $this->load->model('Programas_model');
