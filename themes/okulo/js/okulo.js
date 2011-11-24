@@ -15,11 +15,12 @@
     $("#botVol").button({icons:{primary:'ui-icon-person'}})
     $("#Volver").button({icons:{primary:'ui-icon-circle-arrow-w'}})
     $("#Pesq").button({icons:{primary:'ui-icon-document'}})
+    /*
     $("div [id^=bot]").click(function(e){
       e.preventDefault();
       var nombre = "Busqueda por " + $(this).text();
       LinkAjax($(this).attr('href'), nombre);
-    });
+    });*/
     $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false})
     $(".botEdit").click(function(e){
       e.preventDefault();
