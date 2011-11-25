@@ -5,6 +5,8 @@ class Auth extends MY_Controller{
     parent::__construct();
     $this->lang->load('tank_auth');
 //    $this->config->load('tank_auth');
+	$this->load->library('firephp');
+	$this->firephp->fb('asdfasd');
   }
   function index(){
     if ($message = $this->session->flashdata('message')) {
@@ -27,7 +29,7 @@ class Auth extends MY_Controller{
       }
     }
     if ($this->tank_auth->is_logged_in()) {									// logged in
-        redirect('');
+        redirect('home');
     }elseif($this->tank_auth->is_logged_in(FALSE)){						// logged in, not activated
             redirect('/auth/send_again/');
         }else{

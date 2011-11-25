@@ -18,9 +18,11 @@ class Home extends MY_Controller{
     $menu[] = array('link' =>'auth/unregister', 'nombre'=>'Desvincularse', 'extra'=>'id="Eliminarse"');
     $menu[] = array('link' =>'auth/logout', 'nombre'=>'Salir', 'extra'=>'id="Logout"');
     Template::set('linea', $menu);
+    
     Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu');    
     Template::set_block('lateral', '_lateral');
+    Template::set_block('menu', '_menu');    
+
   }
   function index(){
     $this->load->model('auth/users');
