@@ -23,7 +23,7 @@
   <!-- /header -->
   <div id="content">
     <ul id="nav">
-      <?php echo Template::block('menu','_menu')?>
+      <?php echo Template::block('menu')?>
     </ul>    
     <?php echo theme_view('_content'); ?>
     <div class="clearfix"></div>
