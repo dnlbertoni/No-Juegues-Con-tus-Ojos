@@ -54,7 +54,6 @@ $autoload['packages'] = array(APPPATH.'third_party');
 
 $autoload['libraries'] = array( 'template',
                                 'assets',
-                                'pdf',
                                 'session',
                                 'database',
                                 'form_validation',

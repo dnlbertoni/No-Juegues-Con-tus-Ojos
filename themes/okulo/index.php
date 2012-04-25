@@ -8,6 +8,7 @@
 	<?php echo Assets::js('jquery-1.5.min'); ?>	
 	<?php echo Assets::js('jquery-ui-1.8.12.min'); ?>	
 	<?php echo Assets::js('okulo'); ?>	
+	<?php echo Assets::js('forms'); ?>	
 </head>
 <body>
 <div id="wrap">
@@ -15,6 +16,7 @@
     <div id="logo">
       <h1>OKULO</h1>
       <div><?php echo CLUB_ROTARIO, "  ", $this->session->userdata('programa_nombre')?> </div>
+      <div><?php echo ($_SERVER['REMOTE_ADDR']) ?> </div>
     </div>
     <div class="quest">
       <?php echo anchor('home', 'Home', 'id="Home"')?>
@@ -23,7 +25,7 @@
   <!-- /header -->
   <div id="content">
     <ul id="nav">
-      <?php echo Template::block('menu','_menu')?>
+      <?php echo Template::block('menu')?>
     </ul>    
     <?php echo theme_view('_content'); ?>
     <div class="clearfix"></div>

@@ -41,6 +41,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
  */
 define('NOMBRE_PROYECTO',		'No Juegues con tus Ojos');
 define('CLUB_ROTARIO',		'Rotary Club Salto Grande Concordia');
+define('TXTFILES', BASEPATH .'../assets/txt/');
+define('IMGFILES', BASEPATH .'../assets/img/');
 define('PROGRAMA', 1);
 define('COPIAS', 1);
 /* End of file constants.php */

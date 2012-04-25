@@ -22,12 +22,11 @@ class Auth extends MY_Controller{
    *
    * @return void
    */
-  function login($programa_id=0){
-    if(!$this->input->post('programa_id')){
-      if($programa_id==0){
+  function login($programa_id=false){
+    $programa_id=($this->input->post('programa_id'))?$this->input->post('programa_id'):$programa_id;
+    if(!$programa_id ){
         Template::redirect('inicio');
-      }
-    }
+    };
     if ($this->tank_auth->is_logged_in()) {									// logged in
         redirect('home');
     }elseif($this->tank_auth->is_logged_in(FALSE)){						// logged in, not activated
@@ -63,8 +62,8 @@ class Auth extends MY_Controller{
                                   $this->form_validation->set_value('remember'),
                                   $data['login_by_username'],
                                   $data['login_by_email'])) {								// success
+                          $this->session->set_userdata('programa_id', $programa_id);
                           redirect('');
-
                   } else {
                           $errors = $this->tank_auth->get_error_message();
                           if (isset($errors['banned'])) {								// banned user

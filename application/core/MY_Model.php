@@ -185,6 +185,9 @@ class MY_Model extends CI_Model{
           $this->db->select($campoNombre);
           $this->db->from($this->getTable());
           $this->db->order_by($campoNombre);
+          if($this->session->userdata('programa_id')>0){
+            $this->db->where('programa_id', $this->session->userdata('programa_id'));
+          };          
           $query = $this->db->get();
           $datos = array();
           foreach($query->result() as $item){
@@ -197,6 +200,9 @@ class MY_Model extends CI_Model{
           $this->db->select($campoNombre);
           $this->db->select($campoRelacion);
           $this->db->from($this->getTable());
+          if($this->session->userdata('programa_id')>0){
+            $this->db->where('programa_id', $this->session->userdata('programa_id'));
+          };
           $this->db->order_by($campoRelacion);
           $this->db->order_by($campoNombre);
           $query = $this->db->get();
@@ -214,10 +220,14 @@ class MY_Model extends CI_Model{
     if($limite){
       $this->db->limit($limite);
     };
-	return $this->db->get()->result();
+    if($this->session->userdata('programa_id')>0){
+      $this->db->where('programa_id', $this->session->userdata('programa_id'));
+    };
+    return $this->db->get()->result();
   }
   public function borrar($id){
 	  $this->db->where($this->getPrimaryKey(),$id);
+      $this->db->where('programa_id', $this->session->userdata('programa_id'));
 	  $this->db->delete($this->getTable());
 	  return true;
   }

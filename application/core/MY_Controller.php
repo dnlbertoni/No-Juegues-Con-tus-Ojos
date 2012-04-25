@@ -6,9 +6,9 @@ require APPPATH."third_party/MX/Controller.php";
 class MY_Controller extends MX_Controller {
   function __construct() {
     parent::__construct();
-    $ipDebags=array('192.168.1.2','192.168.0.8','10.0.0.6');
+    $ipDebags=array('192.168.1.2','192.168.0.8');
     $this->output->enable_profiler(in_array($_SERVER['REMOTE_ADDR'],$ipDebags));
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     /*
     $modulos[] = array('link' => 'pesquiza', 'nombre'=>'Pesquiza','clase'=>'Bpesq');
     $modulos[] = array('link' => 'paper', 'nombre'=>'Papeleria','clase'=>'Bpaper');
@@ -19,5 +19,13 @@ class MY_Controller extends MX_Controller {
     Template::set('dataMenu',$data);
      * 
      */
+  }
+  function _formatFechaSave($fecha){
+    $fX=explode('/', $fecha);
+    return $fX[2]."-".$fX[1]."-".$fX[0];
+  }
+  function _formatFechaDisplay($fecha){
+    $fX=explode('-', $fecha);
+    return $fX[2]."/".$fX[1]."/".$fX[0];
   }
 }

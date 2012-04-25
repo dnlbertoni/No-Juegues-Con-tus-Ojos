@@ -2,19 +2,34 @@
     /***DEFINICION DE BOTONES DE MENU******/
     $("#Home").button({icons:{primary:'ui-icon-home'}, text:false});
     $("#Configuracion").button({icons:{primary:'ui-icon-wrench'}});
-    /***DEFINICION DE BOTONES DE MENU******/
-    
     $("#Bpesq").button({text:true,icons:{primary:'ui-icon-search'}});
     $("#Badmi").button({text:true,icons:{primary:'ui-icon-gear'}});
-    $("#Bpaper").button({text:true,icons:{primary:'ui-icon-document'}});
+    $("#Bpape").button({text:true,icons:{primary:'ui-icon-document'}});
     $("#Bdiag").button({text:true,icons:{primary:'ui-icon-bookmark'}});
     $("#Bentr").button({text:true,icons:{primary:'ui-icon-flag'}});
+    /***DEFINICION DE BOTONES DE MENU******/
     //
     $("#botEscuela").button({icons:{primary:'ui-icon-home'}})
+    $("#botEscuela").click(function(e){
+      e.preventDefault();
+      var nombre = $(this).text();
+      LinkAjax($(this).attr('href'), nombre);
+    });
+
     $("#botCurso").button({icons:{primary:'ui-icon-suitcase'}})
     $("#botVol").button({icons:{primary:'ui-icon-person'}})
-    $("#Volver").button({icons:{primary:'ui-icon-circle-arrow-w'}})
-    $("#Pesq").button({icons:{primary:'ui-icon-document'}})
+    $("#botVol").click(function(e){
+      e.preventDefault();
+      var nombre = $(this).text();
+      LinkAjax($(this).attr('href'), nombre);
+    });
+    $("#Volver").button({icons:{primary:'ui-icon-circle-arrow-w'}});
+    $("#Pesq").button({icons:{primary:'ui-icon-document'}});
+    $("#bplPesq").click(function(e){
+      e.preventDefault();
+      var nombre = $(this).text();
+      LinkAjax($(this).attr('href'), nombre);
+    });
     /*
     $("div [id^=bot]").click(function(e){
       e.preventDefault();
@@ -50,6 +65,8 @@
    var options = {
      autoOpen : false,
      modal:true,
+     height:400,
+     width:400,
      title: nombre
    };
    $("#ventanaAjax").dialog(options);

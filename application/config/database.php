@@ -38,13 +38,16 @@
 | the active record class
 */
 
-$active_group = 'default';
+$IPDEBUG=array('192.168.1.2','192.168.1.');
+$bas3=(in_array($_SERVER['REMOTE_ADDR'],$IPDEBUG))?'debug':'default';
+
+$active_group = $bas3;
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'okulo';
+$db['default']['database'] = 'okulo2012';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -56,6 +59,24 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+
+$db['debug']['hostname'] = 'localhost';
+$db['debug']['username'] = 'sistemas';
+$db['debug']['password'] = 'kaltidus';
+$db['debug']['database'] = 'okulo_2012';
+$db['debug']['dbdriver'] = 'mysql';
+$db['debug']['dbprefix'] = '';
+$db['debug']['pconnect'] = TRUE;
+$db['debug']['db_debug'] = TRUE;
+$db['debug']['cache_on'] = FALSE;
+$db['debug']['cachedir'] = '';
+$db['debug']['char_set'] = 'utf8';
+$db['debug']['dbcollat'] = 'utf8_general_ci';
+$db['debug']['swap_pre'] = '';
+$db['debug']['autoinit'] = TRUE;
+$db['debug']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
