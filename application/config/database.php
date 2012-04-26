@@ -38,7 +38,7 @@
 | the active record class
 */
 
-$IPDEBUG=array('192.168.1.2','192.168.1.');
+$IPDEBUG=array('192.168.2','192.168.1.');
 $bas3=(in_array($_SERVER['REMOTE_ADDR'],$IPDEBUG))?'debug':'default';
 
 $active_group = $bas3;
