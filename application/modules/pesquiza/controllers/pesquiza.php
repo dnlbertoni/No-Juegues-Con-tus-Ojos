@@ -54,6 +54,8 @@ class Pesquiza extends MY_Controller{
                       'grado'=>'',
                       'division'=>'',
                       'cant_alum'=>'',
+                      'tipo'     =>1,
+                      'turno'     =>'M',
                       'cant_pres'=>'',
                       'cant_prob'=>''
                      );
@@ -154,6 +156,8 @@ class Pesquiza extends MY_Controller{
                       'programa_id' => $this->session->userdata('programa_id'),
                       'escuela_id'  => $this->input->post('escuela'), 
                       'grado'       => $this->input->post('grado'), 
+                      'turno'       => 'M',
+                      'tipo'        => 1,
                       'division'    => $cursos[$i], 
                       'estado'      => 0
                     );

@@ -43,7 +43,8 @@ class Pesquizas_model extends MY_Model{
     $this->db->select('SUM(pesquizas.cant_alum) as cant_alum');
     $this->db->select('SUM(pesquizas.cant_pres) as cant_pres');
     $this->db->select('SUM(pesquizas.cant_prob) as cant_prob');
-    $this->db->select('if(AVG(pesquizas.estado)=0,0,IF(AVG(pesquizas.estado)=2,2,1))    as estado',false);
+    //$this->db->select('if(AVG(pesquizas.estado)=0,0,IF(AVG(pesquizas.estado)=2,2,1))    as estado',false);
+    $this->db->select('AVG(pesquizas.estado) DIV 1    as estado',false);
     $this->db->select('escuelas.observaciones   as observaciones');
     $this->db->from($this->getTable());
     $this->db->join('escuelas', 'escuelas.id=escuela_id', 'inner');

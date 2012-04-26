@@ -11,15 +11,17 @@
   </tr>
   <tr>
     <th>Escuela</th>
-    <td>
+    <td colspan="6">
         <div id="escuela">( <span id='codigo'><?php echo $pesq->escuela_id?></span> ) <span id='texto'><?php echo $escuelaNombre?></span></div>
       <?php //echo anchor('admin/escuelas/search/escuela', 'Buscar', 'id="buscarEsc"')?>
     </td>
+  </tr>
+  <tr>
     <th>Grado</th>
     <td><?php echo form_input('grado', $pesq->grado, 'size="2"')?></td>
     <th>Division</th>
     <td><?php echo form_input('division', $pesq->division, 'size="2"')?></td>
-    <td colspan="2">
+    <td colspan="3">
       <div id="turnos">
         <?php echo form_label('Turno Mañana', 'turnoM');?>
         <?php echo form_checkbox('turno', 'M', ($pesq->turno!='T')?true:false, 'id="turnoM"');?>
@@ -38,11 +40,26 @@
     <input type="hidden" name="escuela_id" id="escuela_id" value="" />
     <input type="hidden" name="voluntario_id" id="voluntario_id" value="" />
   </tr>
+  <tr>
+    <td colspan="8">
+      <div id="tipos">
+        <?php echo form_label('Normal', 'tipo1');?>
+        <?php echo form_checkbox('tipo', 1, ($pesq->tipo==1)?true:false, 'id="tipo1"');?>
+        <?php echo form_label('Excepcion', 'tipo2');?>
+        <?php echo form_checkbox('tipo', 2, ($pesq->tipo==2)?true:false, 'id="tipo2"');?>
+        <?php echo form_label('Otro Programa', 'tipo3');?>
+        <?php echo form_checkbox('tipo', 3, ($pesq->tipo==3)?true:false, 'id="tipo3"');?>
+      </div>      
+    </td>
+  </tr>
 </table>
-<div id="Cancelar">Cancelar</div>
-<div id="Guardar"><?php echo $textoBoton?></div>
-      <?php echo anchor('pesquiza/agregoAlumno/'.$pesq->id, 'Nuevo Derivado', 'id="botAlumno"');?>
-<div class="clearfix"></div>
+<div class="clearfix"><p>&nbsp;</p></div>
+<div align="center">
+  <div id="Cancelar">Cancelar</div>
+  <div id="Guardar"><?php echo $textoBoton?></div>
+  <?php echo anchor('pesquiza/agregoAlumno/'.$pesq->id, 'Nuevo Derivado', 'id="botAlumno"');?>
+</div>
+<div class="clearfix"><p>&nbsp;</p></div>
 <div id="alumnos"></div>
 <?php echo form_close();?>
 <div id="ventanaBusqueda"></div>
@@ -55,6 +72,7 @@ $(document).ready(function(){
   $("#Cancelar").button({icons:{primary:'ui-icon-circle-close'}});
   $("form").addClass('ui-widget');
   $("#turnos").buttonset();
+  $("#tipos").buttonset();
   $(".date").datepicker({
     autoSize : true,
     altFormat: 'dd-mm-yy',
@@ -107,6 +125,9 @@ $(document).ready(function(){
     e.preventDefault();
     buscoEscuela();
   });
+  $("#tipos").click(function(){
+    $(this).buttonset('refresh');
+  })
 });
 function buscoVoluntario(){
   url = $("#buscarVol").attr('href');
