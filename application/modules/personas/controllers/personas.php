@@ -19,5 +19,3 @@ class Personas extends MY_Controller{
     $this->load->view('personas/search-Form');
   }
 }
-
-?>
