@@ -1,6 +1,6 @@
 <h2>Finalizacion Pesquiza</h2>
-<table cellpadding="3" cellspacing="10">
 <?php echo form_open($accion, 'id="pesquiza-Form"', $ocultos)?>
+<table cellpadding="3" cellspacing="10">
   <tr>
     <th>Fecha</th>
     <td><?php echo form_input('fecha', $pesq->fecha,'class="date" size="8"');?></td>
@@ -24,9 +24,9 @@
     <td colspan="3">
       <div id="turnos">
         <?php echo form_label('Turno Mañana', 'turnoM');?>
-        <?php echo form_checkbox('turno', 'M', ($pesq->turno!='T')?true:false, 'id="turnoM"');?>
+        <?php echo form_radio('turno', 'M', ($pesq->turno!='T')?true:false, 'id="turnoM"');?>
         <?php echo form_label('Turno Tarde', 'turnoT');?>
-        <?php echo form_checkbox('turno', 'T', ($pesq->turno=='T')?true:false, 'id="turnoT"');?>
+        <?php echo form_radio('turno', 'T', ($pesq->turno=='T')?true:false, 'id="turnoT"');?>
       </div>
     </td>
   </tr>
@@ -43,13 +43,13 @@
   <tr>
     <td colspan="8">
       <div id="tipos">
-        <?php echo form_label('Normal', 'tipo1');?>
-        <?php echo form_checkbox('tipo', 1, ($pesq->tipo==1)?true:false, 'id="tipo1"');?>
-        <?php echo form_label('Excepcion', 'tipo2');?>
-        <?php echo form_checkbox('tipo', 2, ($pesq->tipo==2)?true:false, 'id="tipo2"');?>
-        <?php echo form_label('Otro Programa', 'tipo3');?>
-        <?php echo form_checkbox('tipo', 3, ($pesq->tipo==3)?true:false, 'id="tipo3"');?>
-      </div>      
+        <?php $c=1?>
+        <?php foreach($tipos as $dT):?>
+          <?php echo form_label($dT['label'], 't'.$c);?>
+          <?php echo form_radio('tipo', $dT['value'],$dT['valor'] , 'id="t'.$c.'"');?>
+          <?php $c++;?>
+        <?php endforeach;?>
+      </div>     
     </td>
   </tr>
 </table>
@@ -65,14 +65,14 @@
 <div id="ventanaBusqueda"></div>
 <script>
 $(document).ready(function(){
+  $("#turnos").buttonset();
+  $("#tipos").buttonset({ icons: { primary: 'ui-icon-triangle-1-ne'} });
   muestroDerivados();
   $("#Cancelar").button({icons:{primary:'ui-icon-circle-close'}});
   $("#Guardar").button({icons:{primary:'ui-icon-document'}});
   $("#botAlumno").button({icons:{primary:'ui-icon-person'}});
   $("#Cancelar").button({icons:{primary:'ui-icon-circle-close'}});
   $("form").addClass('ui-widget');
-  $("#turnos").buttonset();
-  $("#tipos").buttonset();
   $(".date").datepicker({
     autoSize : true,
     altFormat: 'dd-mm-yy',
@@ -125,9 +125,6 @@ $(document).ready(function(){
     e.preventDefault();
     buscoEscuela();
   });
-  $("#tipos").click(function(){
-    $(this).buttonset('refresh');
-  })
 });
 function buscoVoluntario(){
   url = $("#buscarVol").attr('href');

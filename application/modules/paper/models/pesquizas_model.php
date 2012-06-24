@@ -40,4 +40,59 @@ class Pesquizas_model extends MY_Model{
     //echo $this->db->_compile_select();
     return $this->db->get()->row();
   }
+  function mandeCarta($id){
+    $this->db->set('fecprncarta','NOW()', false);
+    $this->db->set('estado', PESQUIZA_CARTAS);
+    $this->db->where('programa_id', $this->session->userdata('programa_id'));
+    $this->db->where('id', $id);
+    $this->db->update($this->getTable());
+    return true;
+  }
+  function mandeTurno($id){
+    $this->db->set('fecprnturno', 'NOW()', false);
+    $this->db->where('programa_id', $this->session->userdata('programa_id'));
+    $this->db->where('id', $id);
+    $this->db->update($this->getTable());
+    return true;
+  }
+  function getPesquizas($idPesq){
+    $this->db->select('pesquizas.escuela_id  as escuela_id');
+    $this->db->select('escuelas.numero_estab as escuela_num');
+    $this->db->select('escuelas.nombre       as escuela_nom');
+    $this->db->select('escuelas.direccion    as escuela_dir');
+    $this->db->select('ciudades.nombre       as escuela_ciu');
+    $this->db->select('pesquizas.transporte  as transporte');
+    $this->db->select('pesquizas.cant_prob   as cant_prob');
+    $this->db->select('pesquizas.fechadiag   as fechadiag');
+    $this->db->select('pesquizas.horadiag    as horadiag');
+    $this->db->from($this->getTable());
+    $this->db->join('escuelas', 'escuelas.id=escuela_id', 'left');
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'left');
+    $this->db->where('pesquizas.id', $idPesq);
+    $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
+    //echo $this->db->_compile_select();
+    return $this->db->get()->row();
+  }    
+  function getEscuelaResumen($idPesq){
+    $pesquiza=$this->getById($idPesq);
+    $this->db->select('pesquizas.escuela_id  as escuela_id');
+    $this->db->select('escuelas.numero_estab as escuela_num');
+    $this->db->select('escuelas.nombre       as escuela_nom');
+    $this->db->select('escuelas.direccion    as escuela_dir');
+    $this->db->select('escuelas.lugarTransporte  as escuela_trans');
+    $this->db->select('ciudades.nombre       as escuela_ciu');
+    $this->db->select('pesquizas.transporte  as transporte');
+    $this->db->select('SUM(pesquizas.cant_prob)  as cant_prob');
+    $this->db->select('pesquizas.fechadiag   as fechadiag');
+    $this->db->select('pesquizas.horadiag    as horadiag');
+    $this->db->select('pesquizas.horaescuela as horaesc');    
+    $this->db->from($this->getTable());
+    $this->db->join('escuelas', 'escuelas.id=escuela_id', 'left');
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'left');
+    $this->db->where('pesquizas.escuela_id', $pesquiza->escuela_id);
+    $this->db->group_by('pesquizas.escuela_id');
+    $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
+    //echo $this->db->_compile_select();
+    return $this->db->get()->row();
+  }
 }

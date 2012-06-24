@@ -15,8 +15,9 @@
   <div id="header">
     <div id="logo">
       <h1>OKULO</h1>
-      <div><?php echo CLUB_ROTARIO, "  ", $this->session->userdata('programa_nombre')?> </div>
-      <div><?php echo ($_SERVER['REMOTE_ADDR']) ?> </div>
+      <h2><?php echo $nombrePrograma;?> </h2>
+      <h3><?php echo CLUB_ROTARIO;?> </h3>
+      <span class="ui-state-error"><?php echo $database ?> </span>
     </div>
     <div class="quest">
       <?php echo anchor('home', 'Home', 'id="Home"')?>

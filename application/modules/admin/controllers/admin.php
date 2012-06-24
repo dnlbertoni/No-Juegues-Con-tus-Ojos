@@ -23,7 +23,7 @@ class Admin extends MY_Controller{
     $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
     $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
     $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');
-    Template::set('linea', $menu);
+    //Template::set('linea', $menu);
     Template::set('dataMenu', $modulos);
     Template::set_block('menu', '_menu'); 
     Template::set_block('lateral', '_lateral'); 
@@ -102,6 +102,28 @@ class Admin extends MY_Controller{
     $nombreFile = TXTFILES . "cartadiagnosticoP3_".$this->session->userdata('programa_id').".txt";
     $archivo    = fopen($nombreFile, "w+");
     fwrite($archivo, $this->input->post('nota3'));
+    fclose($archivo);
+    redirect('paper/', 'location', 301);
+  }
+  function turnos(){
+    $nombreFile = TXTFILES . "turnos_".$this->session->userdata('programa_id').".txt";
+    if(file_exists($nombreFile)){
+      $archivo = fopen($nombreFile,FOPEN_READ);
+      $nota = fread($archivo,  filesize($nombreFile));
+      fclose($archivo);
+    }else{
+      $nota = "";
+    }
+    $this->load->model('programas_model');
+    $programa=$this->Programas_model->getOnline();
+    $data['texto']=$nota;
+    Template::set($data);
+    Template::render();
+  }
+  function turnosDo(){
+    $nombreFile = TXTFILES . "turnos_".$this->session->userdata('programa_id').".txt";
+    $archivo    = fopen($nombreFile, "w+");
+    fwrite($archivo, $this->input->post('texto'));
     fclose($archivo);
     redirect('paper/', 'location', 301);
   }

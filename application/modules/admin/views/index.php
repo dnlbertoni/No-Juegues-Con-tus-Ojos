@@ -4,7 +4,7 @@
 <br/>
 <?php echo anchor('admin/notaTutores', 'Modificar Nota Tutores', 'id="Tutores"');?>
 <?php echo anchor('admin/cartaDiagnostico', 'Modificar Carta Diagnosico', 'id="Diagnostico"');?>
-
+<div id="ventanaAjax"></div>
 <script>
 $(document).ready(function(){
     $("#Escuelas").button({icons:{primary:'ui-icon-home'}});

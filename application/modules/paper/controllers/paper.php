@@ -16,11 +16,6 @@ class Paper extends MY_Controller{
     $this->load->model('Pesquizas_model', '', true);  
     $idUser=$this->session->userdata('user_id');
     $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
-    $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
-    $menu[] = array('link' =>'admin/cursos/add', 'nombre'=>'Nuevo Curso', 'extra'=>'id="botCurso"');
-    $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
-    $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');
-    //Template::set('linea', $menu);
     Template::set('dataMenu', $modulos);
     Template::set_block('menu', '_menu'); 
     Template::set_block('lateral', '_lateral');     
@@ -74,5 +69,12 @@ class Paper extends MY_Controller{
     };
     $this->pdfauto->AutoPrint(true);
     $this->pdfauto->Output();
+  }
+  function derivadosEscuela(){
+    $data['accion']='paper/pdf/listadoPorEscuela';
+    $data['pageEscuelas']= '"'. base_url().'index.php/diagnostico/searchEscuelas"';
+    Template::set($data);
+    Template::set_view('paper/seleccionarEscuela');
+    Template::render();
   }
 }

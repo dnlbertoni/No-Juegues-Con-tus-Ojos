@@ -1,7 +1,7 @@
 <?php echo form_open($accion,'id="alumno-Form"',$ocultos)?>
-Apellido:<?php echo form_input('apellido', '', 'id="apellido"')?>
+Apellido:<?php echo form_input('apellido', '', 'id="apellido" class="texto"')?>
 <br />
-Nombre:<?php echo form_input('nombre', '', 'id="nombre"')?>
+Nombre:<?php echo form_input('nombre', '', 'id="nombre" class="texto"')?>
 <br />
 D.N.I:<?php echo form_input('dni', '', 'id="dni"')?>
 <br />
@@ -13,6 +13,10 @@ Ojo DER:<?php echo form_input('der', '', 'id="der"')?>
 
 <script>
   $(document).ready(function(){
+    $(".texto").keyup(function(){
+      valor=$(this).val().toUpperCase();
+      $(this).val(valor);
+    });
       var options = {
         //target:     '#divToUpdate',
         //url:        'comment.php',

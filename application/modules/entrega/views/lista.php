@@ -3,13 +3,15 @@
 <br/>
 <table width="95%" align="center">
   <thead>
-  <th>Caso</th>
-  <th>Nombre</th>
-  <th>Colegio</th>
-  <th>Grado</th>
-  <th>Division</th>
-  <th>Estado</th>
-  <th>Acciones</th>
+  <tr>
+	  <th>Caso</th>
+	  <th>Nombre</th>
+	  <th>Colegio</th>
+	  <th>Grado</th>
+	  <th>Division</th>
+	  <th>Estado</th>
+	  <th>Acciones</th>
+  </tr>
   </thead>
   <tbody>
 <?php foreach($casos as $caso):?>
@@ -21,7 +23,7 @@
     <td><?php echo $caso->division?></td>
     <td><?php $est = $caso->estado; echo $estado[$est]?></td>
     <td><?php echo anchor('entrega/casoLente/'.$caso->id,'Ver','class="boton"')?></td>
-  <tr>
+  </tr>
 <?php endforeach;?>
   </tbody>
 </table>

@@ -92,3 +92,9 @@ $captcha = array(
 </table>
 
 <?php echo form_close(); ?>
+
+<script>
+$(document).ready(function(){
+  $('td').css('border', 'none');
+});
+</script>

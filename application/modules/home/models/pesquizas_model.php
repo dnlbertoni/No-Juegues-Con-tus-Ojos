@@ -9,11 +9,14 @@ class Pesquizas_model extends MY_Model{
     parent::__construct();
     $this->setTable('pesquizas');
   }
-  function getTotalesAgrupados(){
+  function getTotalesAgrupados($tipo=false){
     $this->db->select('IFNULL(estado,"Total") as estado', false);    
     $this->db->select('COUNT(id) as cantidad', false);
     $this->db->from($this->getTable());
     $this->db->where('programa_id', $this->session->userdata('programa_id'));
+    if($tipo){
+      $this->db->where('tipo', $tipo);      
+    };
     $this->db->group_by('estado WITH ROLLUP', FALSE);
     return $this->db->get()->result();
   }

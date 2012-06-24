@@ -45,5 +45,16 @@ define('TXTFILES', BASEPATH .'../assets/txt/');
 define('IMGFILES', BASEPATH .'../assets/img/');
 define('PROGRAMA', 1);
 define('COPIAS', 1);
+define('DEVELOP', 'ALL'); // 0- nadie, 1 - por ip, ALL - todos
+/*
+ * ESTADOS DE PESQUIZAS
+ */
+define('PESQUIZA_PENDINETE',  0);
+define('PESQUIZA_REALIZADA',  1);
+define('PESQUIZA_FINALIZADA', 2);
+define('PESQUIZA_CARTAS',     3);
+define('PESQUIZA_TURNOS',     4);
+define('PESQUIZA_TERMINADA',  5);
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

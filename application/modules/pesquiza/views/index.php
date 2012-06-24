@@ -1,9 +1,10 @@
 <?php echo Assets::css('pesquizas', 'screen');?>
 <h2>Pesquizas</h2>
 <div style="clear: both">&nbsp;</div>
-<?php echo anchor('pesquiza/generarAuto', 'Generar Pesquiza Automatica', 'id=botGeneraAuto');?>
-<?php echo anchor('pesquiza/imprimirCartas', 'Imprimir Cartas para Diagnostico', 'id=botCartas');?>
-<?php echo anchor('pesquiza/imprimirTurnos', 'Imprimir Turnos para Diagnostico', 'id=botTurnos');?>
+<?php echo anchor('pesquiza/generarAuto', 'Generar Pesquiza', 'id=botGeneraAuto');?>
+<?php echo anchor('pesquiza/imprimirCartas', 'Imprimir Cartas Diagnostico', 'id=botCartas');?>
+<?php echo anchor('pesquiza/definirTurnos', 'Definir Turnos Diagnostico', 'id=botDefTurnos');?>
+<?php echo anchor('pesquiza/imprimirTurnos', 'Imprimir Turnos', 'id=botTurnos');?>
 <div style="clear: both">&nbsp;</div>
 <table cellpadding="3">
   <tbody>
@@ -19,8 +20,21 @@
       <td class="estados" ><?php echo $pesq->estado?></td>
       <td><?php echo anchor('pesquiza/observ/'.$pesq->escuela_id,'Observaciones','id="bo'.$pesq->escuela_id.'" class="botObservaciones"');?><span id="O<?php echo $pesq->escuela_id?>"><?php echo $pesq->observaciones?></span></td>
     </tr>
+    <tr id="D<?php echo $pesq->escuela_id?>">
+      <td>
+        <?php echo $pesq->direccion,' - ',$pesq->ciudad;?>
+      </td>
+      <td colspan="4">
+        <?php if($pesq->transporte==0):?>
+          <?php echo anchor('pesquiza/asignoTransporte/'.$pesq->escuela_id.'/1','Poner Transporte','id="boT'.$pesq->escuela_id.'" class="botTransporte"');?>
+        <?php else:?>
+          <?php echo anchor('pesquiza/asignoTransporte/'.$pesq->escuela_id.'/0','Quitar Transporte','id="boT'.$pesq->escuela_id.'" class="botTransporte"');?>
+        <?php endif;?>
+      </td>
+        <td id="T<?php echo $pesq->escuela_id?>"><?php echo ($pesq->transporte==0)?"Van a Facultad":"Van en Colectivo"?></td>      
+    </tr>
     <tr >
-      <td colspan="5">
+      <td colspan="6">
         <div id="F<?php echo $pesq->escuela_id?>"></div>
       </td>
     </tr>
@@ -39,7 +53,9 @@ $('.botReal').button({icons:{primary:'ui-icon-circle-check'}, text:false});
 $('.botDel').button({icons:{primary:'ui-icon-trash'}, text:false});
 $("#botCartas").button({icons:{primary:'ui-icon-document'}});
 $("#botTurnos").button({icons:{primary:'ui-icon-calendar'}});
+$("#botDefTurnos").button({icons:{primary:'ui-icon-calendar'}});
 $(".botObservaciones").button({icons:{primary:'ui-icon-document'}, text:false});
+$(".botTransporte").button({icons:{primary:'ui-icon-transferthick-e-w'}, text:true});
 $("#botGeneraAuto").button({icons:{primary:'ui-icon-video'}});
 $("#botGeneraAuto").click(function(e){
     e.preventDefault();
@@ -89,7 +105,16 @@ $(".botObservaciones").click(function(e){
     $("#ventanaAjax").dialog('open');
   });
 });
-$(".botMas").click(function(e){
+$(".botTransporte").click(function(e){
+  e.preventDefault();
+  url=$(this).attr('href');
+  $.ajax({
+            url:url,
+            success:function(){
+                    location.reload();
+            }           
+          });
+});$(".botMas").click(function(e){
   e.preventDefault();
   url=$(this).attr('href');
   id=$(this).attr('id');
@@ -105,46 +130,56 @@ $(".estados").each(function(){
   switch(estado){
     case 0:
       $(this).parent().addClass('bordePendiente');
+      $(this).parent().next().addClass('bordePendiente');
       $(this).addClass('estadoPendiente');
-      $(this).html('Pendiente');
+      $(this).html('Pend.');
       break;
     case 1:
       $(this).parent().addClass('bordeRealizada');
+      $(this).parent().next().addClass('bordeRealizada');
       $(this).addClass('estadoRealizada');
-      $(this).html('Realizada');
+      $(this).html('Real.');
       break;
     case 2:
       $(this).parent().addClass('bordeFinalizada');
+      $(this).parent().next().addClass('bordeFinalizada');
       $(this).addClass('estadoFinalizada');
-      $(this).html('Finalizada');
+      $(this).html('Final');
       break;
     case 3:
       $(this).parent().addClass('bordeCarta');
+      $(this).parent().next().addClass('bordeCarta');
       $(this).addClass('estadoCarta');
-      $(this).html('Cartas Enviadas');
+      $(this).html('Carta');
       break;
     case 4:
       $(this).parent().addClass('bordeTurno');
+      $(this).parent().next().addClass('bordeTurno');
       $(this).addClass('estadoTurno');
-      $(this).html('Turnos Enviados');
+      $(this).html('Turno');
       break;
     case 5:
       $(this).parent().addClass('bordeFinalizada');
+      $(this).parent().next().addClass('bordeFinalizada');
       $(this).addClass('estadoFinalizada');
-      $(this).html('Terminada');
+      $(this).html('Term.');
       break;
   };
 });
 function ocultoPesquizas(id){
   nombre= "#F"+id;
   nombre2= "#E"+id;
+  nombre3= "#D"+id;
   $(nombre2).removeClass('seleccionada');
+  $(nombre3).removeClass('seleccionada');
   $(nombre).html('');
 }
 function muestroPesquizas(id, pagina){
   nombre= "#F"+id;
   nombre2= "#E"+id;
+  nombre3= "#D"+id;
   $(nombre2).addClass('seleccionada');
+  $(nombre3).addClass('seleccionada');
   $.ajax({
       url: pagina,
       success: function(data) {

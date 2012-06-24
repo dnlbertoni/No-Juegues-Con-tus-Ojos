@@ -1,5 +1,5 @@
 <?php echo form_open($accion, 'id="datos-Form"')?>
-<table with="95%" align="center">
+<table width="95%" align="center">
   <tr>
     <td colspan="2"><?php echo form_hidden('id', $user->id)?></td>
   </tr>

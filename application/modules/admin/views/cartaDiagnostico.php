@@ -1,6 +1,6 @@
 <h2>Modificacion Nota Tutores</h2>
 <div><?php echo $fecha?></div>
-<div><?php echo $destinatarios?>
+<div><?php echo $destinatarios?></div>
 <?php echo form_open('admin/cartadiagnosticoDo','id="nota-Form"');?>
 Parrafo:<?php echo form_textarea('nota1', $nota1, 'id="nota1"');?>
 Parrafo:<?php echo form_textarea('nota2', $nota2, 'id="nota2"');?>
