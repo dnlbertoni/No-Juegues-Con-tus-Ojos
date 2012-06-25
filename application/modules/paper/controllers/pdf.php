@@ -143,7 +143,7 @@ class Pdf extends MY_Controller{
     $this->fpdf->Cell(15,10,"7", 1,0,'C');
     $this->fpdf->Cell(120,10,"Observacion de Nervio Optico", 1,0,'L');
     $this->fpdf->Cell(35,10,"", 1,1,'C');
-
+    $this->fpdf->AutoPrint(true);
     $this->fpdf->Output('hojaDeRuta', 'I');
   }
   function ordenEntregaLente($id){

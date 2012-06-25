@@ -1735,8 +1735,6 @@ function _enddoc()
 /*
  * Modificado para la autoimpresion
  */
-    var $javascript;
-    var $n_js;
     function IncludeJS($script) {
         $this->javascript=$script;
     }

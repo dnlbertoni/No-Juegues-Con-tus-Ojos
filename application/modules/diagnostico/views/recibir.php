@@ -35,7 +35,7 @@
     </td>
     <th>Fecha Nac.:</th>
     <td>
-      <?php echo form_input('fecnac', $caso->fecnac, 'id="fecnac" class=":required :date"')?>
+      <?php echo form_input('fecnac', $caso->fecnac, 'id="fecnac" class=":required "')?>
       <div class="botFec">Fecha</div>
     </td>
     <th>Edad:</th>
@@ -125,9 +125,11 @@ $(document).ready(function(){
   $("#hoja-Form").ajaxForm(optionForms);
   $("#sexo").buttonset();
   $("#fecnac").datepicker({
+    showOn: "button",
+    buttonImageOnly: true,
     autoSize : true,
-    altFormat: 'dd-mm-yy',
-    dateFormat: 'yy-mm-dd',
+    altFormat: 'd/mm/y',
+    dateFormat: 'dd/mm/y',
     minDate: '-15Y',
     maxDate: '-3Y',
     changeYear: true,
@@ -137,15 +139,7 @@ $(document).ready(function(){
     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
     monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    onSelect:function(){
-      hoy=new Date();
-      nacio=new Date($(this).val());
-      valor = hoy - nacio;
-      valor = parseInt(valor/1000/60/60/24/30/12);
-      $("#edad").html(valor);
-      $('input[name=edad]').val(valor);
-      $(this).blur();
-    }
+    onSelect:calculoEdad()
   });
   $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false});
   $('.botFec').button({icons:{primary:'ui-icon-calendar'}, text:false});
@@ -156,6 +150,8 @@ $(document).ready(function(){
     $("#fecnac").datepicker('show');
   });
   $(":text:visible:enabled:first").focus();
+  $("#sexo").click(function(){validoVisualDatos();});
+  validoVisualDatos();
 });
 function validoVisualDatos(){
   if($("input[name=sexo]:checked").val()=="M" || $("input[name=sexo]:checked").val()=="F" ){
@@ -163,5 +159,14 @@ function validoVisualDatos(){
   }else{
     $("#sexo").parent().addClass('estadoPendiente');    
   };
+}
+function calculoEdad(){
+      hoy=new Date();
+      nacio=new Date($("#fecnac").val());
+      valor = hoy - nacio;
+      valor = parseInt(valor/1000/60/60/24/30/12);
+      $("#edad").html(valor);
+      $('input[name=edad]').val(valor);
+      $("#fecnac").blur();
 }
 </script>
