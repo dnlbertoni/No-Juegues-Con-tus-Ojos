@@ -45,7 +45,7 @@ define('TXTFILES', BASEPATH .'../assets/txt/');
 define('IMGFILES', BASEPATH .'../assets/img/');
 define('PROGRAMA', 1);
 define('COPIAS', 1);
-define('DEVELOP', 'ALL'); // 0- nadie, 1 - por ip, ALL - todos
+define('DEVELOP', 1 ); // 0- nadie, 1 - por ip, ALL - todos
 /*
  * ESTADOS DE PESQUIZAS
  */
