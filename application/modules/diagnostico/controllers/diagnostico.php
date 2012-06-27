@@ -52,9 +52,13 @@ class Diagnostico extends MY_Controller{
         }
         if($cant>0){
           $tiempos[$p->Dia][]=( $p->tiempo - $tAux) /60;        
-        }else{
+        };
+        /*
+        else{
           $tiempos[$p->Dia][]=0;                
         };
+         * *
+         */
         $tAux=$p->tiempo;
         $cant++;
       };
@@ -80,6 +84,7 @@ class Diagnostico extends MY_Controller{
     }else{
       $data['promIngreso']=0;      
     }
+    $data['promIngreso']=$this->Casos_model->promedioIngresos();
     Template::set($data);
     Template::render();
   }

@@ -24,6 +24,7 @@ class Pdf extends MY_Controller{
     $this->load->library('fpdf');
     //$this->load->library('pdfauto');
     $this->load->model('Casos_model','',true);
+    $this->load->model('Pesquizas_model','',true);
   }
   function hojaDeRuta($id=false){
     /**
@@ -143,7 +144,7 @@ class Pdf extends MY_Controller{
     $this->fpdf->Cell(15,10,"7", 1,0,'C');
     $this->fpdf->Cell(120,10,"Observacion de Nervio Optico", 1,0,'L');
     $this->fpdf->Cell(35,10,"", 1,1,'C');
-    $this->fpdf->AutoPrint(true);
+
     $this->fpdf->Output('hojaDeRuta', 'I');
   }
   function ordenEntregaLente($id){
@@ -753,6 +754,40 @@ class Pdf extends MY_Controller{
         $this->fpdf->AddPage();
       }
     }
+    $this->fpdf->Output('listado.pdf', 'I');    
+  }
+  function listadoTurnos(){
+    $this->fpdf->Open();
+    $this->fpdf->SetMargins(10,0,0);
+    $this->fpdf->SetAutoPageBreak(true);
+    $this->fpdf->SetDrawColor(128);
+    $this->fpdf->SetFillColor(128,128,128);
+    $this->fpdf->SetTopMargin(2);
+	$this->fpdf->SetFont('Arial','',10);        
+    $escuelas=$this->Pesquizas_model->getTurnos();
+    $this->fpdf->AddPage();
+    $renglon=0;
+    foreach($escuelas as $esc){
+      $this->fpdf->Cell(100,5,  utf8_decode($esc->colegio),'LTR',0,'L');      
+      $this->fpdf->Cell(25,5,$esc->fechadiag,'LTRB',0,'C');              
+      $this->fpdf->Cell(25,5,$esc->horaesc,'LTRB',0,'C',($esc->transporte=="COLECTIVO"));              
+      $this->fpdf->Cell(25,5,$esc->horadiag,'LTRB',1,'C');              
+      $this->fpdf->Cell(80,5,  utf8_decode($esc->escuela_dir),'LB',0,'L');      
+      $this->fpdf->Cell(60,5,$esc->escuela_ciu,'BR',0,'L');      
+      if($esc->transporte=="COLECTIVO"){
+        $this->fpdf->SetDrawColor(255);
+        $this->fpdf->Cell(35,5,$esc->transporte,1,0,'C',true);     
+        $this->fpdf->SetDrawColor(128);        
+      }else{
+        $this->fpdf->Cell(35,5,$esc->transporte,'LBR',0,'C', false);                   
+      };
+      $this->fpdf->Cell(15,5,$esc->cantidad,'LBR',1,'C');   
+      $renglon+=2;
+      if($renglon>52){
+        $renglon=0;
+        $this->fpdf->AddPage();
+      }
+    };
     $this->fpdf->Output('listado.pdf', 'I');    
   }
   function listadoAlfabetico(){

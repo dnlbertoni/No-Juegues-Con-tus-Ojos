@@ -135,8 +135,8 @@ function LinkAjax(url, nombre){
    var options = {
      autoOpen : false,
      modal:true,
-     height:400,
-     width:550,
+     height:600,
+     width:800,
      title: nombre
    };
    $("#ventanaAjax").dialog(options);

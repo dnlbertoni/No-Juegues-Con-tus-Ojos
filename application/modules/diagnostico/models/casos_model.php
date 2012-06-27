@@ -90,8 +90,9 @@ class Casos_model extends MY_Model{
     $this->db->join('escuelas', 'escuelas.id=pesquizas.escuela_id', 'inner');
     $this->db->where('pesquizas.escuela_id', $escuela);
     $this->db->order_by('escuela_id');
-    $this->db->order_by('grado');
-    $this->db->order_by('apellido');    
+    $this->db->order_by('apellido');
+    $this->db->order_by('nombre');    
+    $this->db->order_by('grado');    
     return $this->db->get()->result();
   }  
   function detalleCaso($id){
@@ -162,6 +163,21 @@ class Casos_model extends MY_Model{
     $this->db->order_by('Dia');
     $this->db->order_by('tiempo');
     return $this->db->get()->result();    
+  }
+  function promedioIngresos(){
+    $this->db->select('MIN(TIME_TO_SEC(casos.horaini)) as minimo',false);
+    $this->db->from($this->getTable());
+    $this->db->where('casos.programa_id', $this->session->userdata('programa_id'));
+    $primer=$this->db->get()->row()->minimo;
+    $this->db->select('MAX(TIME_TO_SEC(casos.horaini)) as max', false);
+    $this->db->from($this->getTable());
+    $this->db->where('casos.programa_id', $this->session->userdata('programa_id'));
+    $ultimo=$this->db->get()->row()->max;
+    $this->db->select('count(casos.id) as cantidad', false);
+    $this->db->from($this->getTable());
+    $this->db->where('casos.programa_id', $this->session->userdata('programa_id'));
+    $cantidad=$this->db->get()->row()->cantidad;
+    return (($ultimo - $primer)/($cantidad - 1))/60;
   }
   function getConfirmados(){
     $this->db->select('casos.id as id');

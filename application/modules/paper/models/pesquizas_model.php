@@ -95,4 +95,27 @@ class Pesquizas_model extends MY_Model{
     //echo $this->db->_compile_select();
     return $this->db->get()->row();
   }
+  function getTurnos(){
+    $this->db->select('pesquizas.escuela_id  as escuela_id');
+    $this->db->select('escuelas.numero_estab as escuela_num');
+    $this->db->select('escuelas.nombre       as colegio');
+    $this->db->select('escuelas.direccion    as escuela_dir');
+    $this->db->select('escuelas.lugarTransporte  as escuela_trans');
+    $this->db->select('ciudades.nombre       as escuela_ciu');
+    $this->db->select('IF(pesquizas.transporte=1,"COLECTIVO","facultad") as transporte', false);
+    $this->db->select('SUM(pesquizas.cant_prob)  as cantidad');
+    $this->db->select('DATE_FORMAT(pesquizas.fechadiag,"%d-%m") as fechadiag', false);
+    $this->db->select('pesquizas.horadiag    as horadiag');
+    $this->db->select('pesquizas.horaescuela as horaesc');    
+    $this->db->from($this->getTable());
+    $this->db->join('escuelas', 'escuelas.id=escuela_id', 'left');
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'left');
+    $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
+    $this->db->having('cantidad > ',0);
+    $this->db->group_by('pesquizas.escuela_id');
+    $this->db->order_by('pesquizas.fechadiag', 'asc');
+    $this->db->order_by('horadiag', 'asc');
+    //echo $this->db->_compile_select();
+    return $this->db->get()->result();    
+  }
 }
