@@ -124,6 +124,15 @@ $(document).ready(function(){
   };
   $("#hoja-Form").ajaxForm(optionForms);
   $("#sexo").buttonset();
+  $("#fecnac").keyup(function(){
+    valor=$(this).val();
+    if(valor.length==8){
+      aux=valor.split('/');
+      aux2=(parseInt(aux[2])+2000)+"-"+aux[1]+"-"+aux[0];    
+      $(this).val(aux2);
+      validoVisualDatos();
+    }
+  });
   $("#fecnac").datepicker({
     showOn: "button",
     buttonImageOnly: true,
@@ -149,9 +158,9 @@ $(document).ready(function(){
   $(".botFec").click(function(){
     $("#fecnac").datepicker('show');
   });
-  $(":text:visible:enabled:first").focus();
   $("#sexo").click(function(){validoVisualDatos();});
   validoVisualDatos();
+  $(":text:visible:enabled:first").focus();
 });
 function validoVisualDatos(){
   if($("input[name=sexo]:checked").val()=="M" || $("input[name=sexo]:checked").val()=="F" ){
@@ -159,6 +168,7 @@ function validoVisualDatos(){
   }else{
     $("#sexo").parent().addClass('estadoPendiente');    
   };
+  calculoEdad();
 }
 function calculoEdad(){
       hoy=new Date();

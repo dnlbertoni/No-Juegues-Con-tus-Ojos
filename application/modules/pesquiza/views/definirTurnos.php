@@ -1,5 +1,6 @@
 <?php echo Assets::css('pesquizas', 'screen');?>
 <h2>Turnos Otorgados</h2>
+<?php echo anchor('paper/pdf/listadoTurnos', 'Listado de turnos', 'id="listadoTurno"');?>
 <table>
   <tr><td>Asignados</td></tr>
   <?php $total=0;?>
@@ -61,6 +62,7 @@
 <div id="dialogos"></div>
 <script>
 $(document).ready(function(){
+	$("#listadoTurno").button({icons:{primary:'ui-icon-calendar', secondary:'ui-icon-print'}, text:true});
 	$(".botTurno").button({icons:{primary:'ui-icon-calendar'}, text:false});
     $(".botTurno").click(function(e){
       e.preventDefault();

@@ -78,7 +78,7 @@ class Casos_model extends MY_Model{
     $this->db->select('pesquizas.grado      as grado');
     $this->db->select('pesquizas.division   as division');
     $this->db->select('pesquizas.turno      as turno');
-    $this->db->select('pesquizas.fechadiag  as fecha');
+    $this->db->select('DATE_FORMAT(pesquizas.fechadiag, "%d-%m-%Y")  as fecha', false);
     $this->db->select('pesquizas.horadiag   as hora');
     $this->db->from($this->getTable());
     $this->db->join('pesquizas', 'pesquizas.id=pesquiza_id', 'inner');

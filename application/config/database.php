@@ -40,15 +40,15 @@
 
 $IPDEBUG=array('192.168.1.2','192.168.1.3');
 $bas3=(in_array($_SERVER['REMOTE_ADDR'],$IPDEBUG) && (DEVELOP == 1))?'debug':'default';
-$bas3=( DEVELOP == "ALL")?'debug':$bas3;
+$bas3=( DEVELOP === "ALL")?'debug':$bas3;
 
 $active_group = $bas3;
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'okulo2012';
+$db['default']['username'] = 'sistemas';
+$db['default']['password'] = 'kaltidus';
+$db['default']['database'] = 'okulo';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

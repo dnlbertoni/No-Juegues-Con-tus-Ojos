@@ -26,7 +26,7 @@ class Diagnostico extends MY_Controller{
     Template::set_block('menu', '_menu');    
   }
   function index(){
-    $this->output->enable_profiler(true);
+    $this->output->enable_profiler(false);
     $menu[] = array('link' =>'diagnostico/buscoTurno/ajax',    'nombre'=>'F1 - Por Turno',    'extra'=>'id="botTurno"');
     $menu[] = array('link' =>'diagnostico/buscoDNI/ajax',      'nombre'=>'F2 - Por DNI',      'extra'=>'id="botDNI"');
     $menu[] = array('link' =>'diagnostico/buscoApellido/ajax', 'nombre'=>'F3 - Por Apellido', 'extra'=>'id="botApellido"');
@@ -40,51 +40,9 @@ class Diagnostico extends MY_Controller{
      */
     $datosDia = $this->Casos_model->datosPorDia();
     $data['datosDia']=$datosDia;
-    $prom=$this->Casos_model->getIngresos();
-    $cant=0;
-    $tAux=0;
-    $dAux=false;
-    if(isset($prom)){
-      foreach($prom as $p){
-        if($dAux!=$p->Dia){
-          $dAux=$p->Dia;
-          $cant=0;
-        }
-        if($cant>0){
-          $tiempos[$p->Dia][]=( $p->tiempo - $tAux) /60;        
-        };
-        /*
-        else{
-          $tiempos[$p->Dia][]=0;                
-        };
-         * *
-         */
-        $tAux=$p->tiempo;
-        $cant++;
-      };
-      $promedio=0;
-      $c=0;
-      if(isset($tiempos)){
-        foreach ($tiempos as $key=>$value){
-          $prome=0;
-          $cant=0;
-          foreach($value as $valor){
-            $prome += $valor;
-            $cant++;
-            $prome /=$cant;
-          }
-          $promedio += $prome;
-          $c++;
-          $promedio /= $c;
-        }
-        $data['promIngreso']=$promedio;
-      }else{
-        $data['promIngreso']=0;        
-      }
-    }else{
-      $data['promIngreso']=0;      
-    }
+    $data['datosTotal']=$this->Casos_model->datosTotal();    
     $data['promIngreso']=$this->Casos_model->promedioIngresos();
+    $data['promTiempo']=$this->Casos_model->promedioTiempo();
     Template::set($data);
     Template::render();
   }
@@ -291,10 +249,29 @@ class Diagnostico extends MY_Controller{
     $this->load->view('listaFinalizados', $data);
   }
   function finalizaProcesoDo(){
-    $id=$this->input->post('texto');
-    $id=$this->_decodeEAN13($id);
+    $this->output->enable_profiler(false);
+    $id     = $this->input->post('texto');
+    $id     = $this->_decodeEAN13($id);
+    if($id){
+      $idCaso = intval($id/10);
+      $estado = $id - ($idCaso*10);
+      if($estado==1){
+        $leyenda="Se le han asignado Lentes";
+        $clase="notification info";
+      }else{
+        $leyenda="NO le han asignado Lentes";
+        $clase="notification ok";
+      };
+      $this->Casos_model->finalizarCaso($idCaso, $estado);
+    }else{
+        $idCaso=$this->input->post('texto');
+        $leyenda="POSEE ERROR EN LA CARGA DEL CODIGO";
+        $clase="notification error";
+    }
+    $mensaje=sprintf("<div class='%s'>Al Caso %s %s</div>", $clase, $idCaso, $leyenda);
     $alumnos=$this->Casos_model->getFinalizados();
     $data['chicos']=$alumnos;
+    $data['mensaje']=$mensaje;
     $this->load->view('listaFinalizados', $data);
   }
   function _decodeEAN13($barcode){

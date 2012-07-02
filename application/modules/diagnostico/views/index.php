@@ -1,11 +1,12 @@
 <div class="ui-widget">
   <div class="ui-widget-header">Datos del Programa</div>
   <div class="ui-widget-content">
-    <p>Cantidad total de Alumnos</p>
-    <p>Cantidad total de Derivados</p>        
-    <p>Cantidad de Alumnos Atendidos</p>        
-    <p>Cantidad de Lentes a Entregar</p>
-    <p>Promedio  Ingreso <span><?php echo sprintf("%3.2f minutos por Chico", $promIngreso)?></span></p>
+    <p>Cantidad total de Derivados <span><?php //echo $datosTotal->Esperados?></span></p>        
+    <p>Cantidad de Alumnos en Proceso <span><?php echo $datosTotal->Proceso?></span></p>        
+    <p>Cantidad de Alumnos Atendidos <span><?php echo $datosTotal->Finalizados?></span></p>        
+    <p>Cantidad de Lentes a Entregar <span><?php echo $datosTotal->Lentes?></span></p>
+    <p>Promedio  Ingreso <span><?php echo $promIngreso?></span></p>
+    <p>Promedio  Tiempo Total <span><?php echo $promTiempo?></span></p>
   </div>
 </div>
 <div >&nbsp;</div>
@@ -15,6 +16,9 @@
   <h1 class="ui-widget-header" style="text-align:center"><?php echo $datos->Dia?></h1>
   <div class="ui-widget-content">
     <p>Cantdidad Esperada: <span><?php echo $datos->Esperados?></span></p>
+    <p>Cantdidad Atendidos: <span><?php echo $datos->Asistentes?></span></p>
+    <p>Cantdidad Finalizado: <span><?php echo $datos->Finalizados?></span></p>
+    <p>Cantdidad Lentes: <span><?php echo $datos->Lentes?></span></p>
     <p>Realizado: <span id="dato<?php echo $datos->Dia?>"><?php echo sprintf("%02.2f",$datos->Asistentes/$datos->Esperados*100)?></span>%</p>
     <div id="real<?php echo $datos->Dia?>" class="Pb"></div>
   </div>

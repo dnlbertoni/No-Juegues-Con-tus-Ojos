@@ -111,8 +111,12 @@ class Pdf extends MY_Controller{
       $cant++;
       $fil=$this->fpdf->GetY()+5;
     };
+    /*
+     * Primera Etapa
+     */
     $this->fpdf->SetFillColor(200,200,200);
     $this->fpdf->SetFont('Arial','I',14);     
+    $this->fpdf->Cell(170,10,"PRIMERA ETAPA", 1,1,'C',true);
     $this->fpdf->Cell(15,10,"AULA", 1,0,'C',true);
     $this->fpdf->Cell(120,10,"PROCEDIMIENTO", 1,0,'C',true);
     $this->fpdf->Cell(35,10,"REALIZADO", 1,1,'C',true);
@@ -124,9 +128,20 @@ class Pdf extends MY_Controller{
     $this->fpdf->Cell(15,10,"2", 1,0,'C');
     $this->fpdf->Cell(120,10,"Agudeza visual", 1,0,'L');
     $this->fpdf->Cell(35,10,"", 1,1,'C');    
+    $this->fpdf->Ln(10);
+    /*
+     * segunda etapa
+     */
+    $this->fpdf->SetFillColor(200,200,200);
+    $this->fpdf->SetFont('Arial','I',14);     
+    $this->fpdf->Cell(170,10,"SEGUNDA ETAPA", 1,1,'C',true);
+    $this->fpdf->Cell(15,10,"AULA", 1,0,'C',true);
+    $this->fpdf->Cell(120,10,"PROCEDIMIENTO", 1,0,'C',true);
+    $this->fpdf->Cell(35,10,"REALIZADO", 1,1,'C',true);
+    
     //paso 3
     $this->fpdf->Cell(15,10,"3", 1,0,'C');
-    $this->fpdf->Cell(120,10,"Seleccion de Marcos", 1,0,'L');
+    $this->fpdf->Cell(120,10,"Fondo De Ojos - Hora de Realizacion:", 1,0,'L');
     $this->fpdf->Cell(35,10,"", 1,1,'C');    
     //paso 4
     $this->fpdf->Cell(15,10,"4", 1,0,'C');
@@ -134,17 +149,17 @@ class Pdf extends MY_Controller{
     $this->fpdf->Cell(35,10,"", 1,1,'C');    
     //paso 5
     $this->fpdf->Cell(15,10,"5", 1,0,'C');
-    $this->fpdf->Cell(120,10,"Fondo De Ojos - Hora de Realizacion:", 1,0,'L');
-    $this->fpdf->Cell(35,10,"", 1,1,'C');    
+    $this->fpdf->Cell(120,10,"Autorefractometro - ARM", 1,0,'L');
+    $this->fpdf->Cell(35,10,"", 1,1,'C');
     //paso 6
     $this->fpdf->Cell(15,10,"6", 1,0,'C');
-    $this->fpdf->Cell(120,10,"Autorefractometro - ARM", 1,0,'L');
+    $this->fpdf->Cell(120,10,"Observacion de Nervio Optico", 1,0,'L');
     $this->fpdf->Cell(35,10,"", 1,1,'C');
     //paso 7
     $this->fpdf->Cell(15,10,"7", 1,0,'C');
-    $this->fpdf->Cell(120,10,"Observacion de Nervio Optico", 1,0,'L');
-    $this->fpdf->Cell(35,10,"", 1,1,'C');
-
+    $this->fpdf->Cell(120,10,"Seleccion de Marcos", 1,0,'L');
+    $this->fpdf->Cell(35,10,"", 1,1,'C');    
+    $this->fpdf->AutoPrint(true);
     $this->fpdf->Output('hojaDeRuta', 'I');
   }
   function ordenEntregaLente($id){
@@ -730,11 +745,11 @@ class Pdf extends MY_Controller{
     $renglon=0;
     foreach($alumnos as $alu){
       if($renglon==0){
-        $this->fpdf->Cell(65,5,$alu->colegio,0,0,'C');      
-        $this->fpdf->Cell(85,5,$alu->escuela_dir,0,0,'C');      
-        $this->fpdf->Cell(35,5,$alu->escuela_ciu,0,1,'C');      
-        $this->fpdf->Cell(25,5,$alu->fecha,1,0,'C');              
-        $this->fpdf->Cell(25,5,$alu->hora,1,1,'C');              
+        $this->fpdf->Cell(65,8,sprintf("Escuela: %s",$alu->colegio),0,0,'L');      
+        $this->fpdf->Cell(85,8,sprintf("Direccion: %s",$alu->escuela_dir),0,0,'L');      
+        $this->fpdf->Cell(35,8,sprintf("Ciudad: %s",$alu->escuela_ciu),0,1,'L');      
+        $this->fpdf->Cell(65,8,sprintf("Dia en facultad: %s",$alu->fecha),1,0,'C');              
+        $this->fpdf->Cell(65,8,sprintf("Hora en Facultad:%s",$alu->hora),1,1,'C');              
         $this->fpdf->Ln(10);
         
         $this->fpdf->Cell(15,5,'Turno',1,0,'C',true);
@@ -749,7 +764,7 @@ class Pdf extends MY_Controller{
       $this->fpdf->Cell(50,5,($alu->confirmo==1)?'Esperar':'No Confirmo Asistencia',1,0,'C');
       $this->fpdf->Cell(20,5,'',1,1,'C');
       $renglon++;
-      if($renglon>30){
+      if($renglon>40){
         $renglon=0;
         $this->fpdf->AddPage();
       }
