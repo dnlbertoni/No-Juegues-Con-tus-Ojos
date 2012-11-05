@@ -28,6 +28,7 @@ Una vez que llegue el colectivo le entrega
 <div class="ui-widget boxCh Izq">
   <div class="ui-widget-header">1 - Escuelas</div>
   <p>La cantidad de escuelas que participan de este Programa son: <b><?php echo $escuelasInfo?></b></p>
+  <p>La cantidad de escuelas que se Pesquizaron fueron: <b><?php echo $pesquizadas?></b></p>
 </div>
 <div class="boxCh Der">
   <h2>2 - Pesquiza</h2>
