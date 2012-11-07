@@ -81,10 +81,42 @@ class Casos_model extends MY_Model{
     $this->db->where('escuela_id', $colegio);
     $this->db->where('lentes',1);
     if($programa_id>0)
-      $this->db->where('programa_id', $programa_id);
+      $this->db->where('casos.programa_id', $programa_id);
     $this->db->order_by('apellido');
     return $this->db->get()->result();    
   }
+  function getAlumnosLentes(){
+    $this->db->select('casos.id             as id');
+    $this->db->select('casos.apellido       as apellido');
+    $this->db->select('casos.nombre         as nombre');
+    $this->db->select('casos.numdoc         as dni');
+    $this->db->select('pesquizas.escuela_id as escuela_id');
+    $this->db->select('escuelas.numero_estab as escuela_num');
+    $this->db->select('escuelas.nombre      as escuela_nom');
+    $this->db->select('escuelas.direccion   as escuela_dir');
+    $this->db->select('escuelas.lugarTransporte  as escuela_trans');
+    $this->db->select('ciudades.nombre      as escuela_ciu');
+    $this->db->select('pesquizas.grado      as grado');
+    $this->db->select('pesquizas.division   as division');
+    $this->db->select('pesquizas.turno      as turno');
+    $this->db->select('pesquizas.transporte as transporte');
+    $this->db->select('DATE_FORMAT(pesquizas.fechadiag,"%d-%m-%Y") as fechadiag', false);
+    $this->db->select('pesquizas.horadiag    as horadiag');    
+    $this->db->select('pesquizas.horaescuela as horaesc');    
+    $this->db->from($this->getTable());
+    $this->db->join('pesquizas', 'pesquizas.id=pesquiza_id', 'inner');
+    $this->db->join('escuelas', 'escuelas.id=escuela_id', 'inner');
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'left');
+    $this->db->where('lentes', 1);
+    $this->db->where('casos.programa_id', $this->session->userdata('programa_id'));
+    $this->db->order_by('escuela_ciu');    
+    $this->db->order_by('escuelas.nombre');
+    $this->db->order_by('pesquizas.grado','ASC');
+    $this->db->order_by('pesquizas.division');
+    $this->db->order_by('apellido');
+    //echo $this->db->_compile_select();
+    return $this->db->get()->result();
+  }  
   function entregoLente($id){
     $this->db->set('lentes_entregado',1);
     $this->db->where($this->getPrimaryKey(),$id);

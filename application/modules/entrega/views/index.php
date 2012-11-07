@@ -1,4 +1,5 @@
 <br/>
+Total a Entregar: <?php echo $casos?>
 <br/>
 <br/>
 <div class="box">

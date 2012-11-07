@@ -7,15 +7,28 @@
 class Entrega extends MY_Controller{
   function __construct() {
     parent::__construct();
-    $this->template->write('header','Entrega de Lentes');
+    $this->load->model('Perfil_model');
+    $this->load->model('UserModulos_model');
     $this->load->model('Casos_model', '', true);
     $this->load->model('Pesquizas_model', '', true);
+
     $menu[] = array('link' =>'entrega/lenteOk', 'nombre'=>'Lente Entregado', 'extra'=>'id="botLente" class="boton"');
     $dataLateral['linea']=$menu;
     $dataLateral['statics']=$this->Casos_model->estadisticasLentes($this->session->userdata('programa_id'));
-    $this->template->write_view('lateral', '_lateral', $dataLateral );    
+    Template::set($dataLateral);
+    Template::set_block('lateral', '_lateral');
+    if($this->session->userdata('status')==0){
+      redirect('auth/login');
+    }
+    $idUser=$this->session->userdata('user_id');
+    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);        
+    Template::set('header','Entrega de Lentes');
+    Template::set('dataMenu', $modulos);
+    Template::set_block('menu', '_menu');    
+
   }
   function index($error=""){
+    $data['casos'] = count($this->Casos_model->getAlumnosLentes());
     $data['colSel']= $this->Pesquizas_model->escuelaToDropDown();
     $data['error'] = $error;
     $data['estado'] = array ( 0 => 'Sin Diagnosticar',
@@ -26,8 +39,8 @@ class Entrega extends MY_Controller{
                               5 => 'Lentes', 
                               6 => 'Terminado'
                             );
-    $this->template->write_view('content', 'entrega/index', $data);
-    $this->template->render();
+    Template::set($data);
+    Template::render();
   }
   function dniSearch(){
     $caso = $this->Casos_model->getByDni($this->input->post('dniTXT'), $this->session->userdata('programa_id'));
@@ -54,7 +67,7 @@ class Entrega extends MY_Controller{
   }
   function colegioSearch(){
     $casos = $this->Casos_model->getByColegio( $this->input->post('colegioTXT'),
-                                                $this->session->userdata('programa_id'));
+                                               $this->session->userdata('programa_id'));
     $data['casos']=$casos;
     $data['estado'] = array ( 0 => 'Sin Diagnosticar',
                               1 => 'Carta Enviada', 
@@ -64,8 +77,9 @@ class Entrega extends MY_Controller{
                               5 => 'Lentes', 
                               6 => 'Terminado'
                             );
-    $this->template->write_view('content','entrega/lista',$data);
-    $this->template->render();
+    Template::set($data);
+    Template::set_view('entrega/lista');
+    Template::render();
   }
   function casoLente($id){
     $caso = $this->Casos_model->detalleCaso($id);
