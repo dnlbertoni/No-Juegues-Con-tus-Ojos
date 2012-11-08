@@ -300,4 +300,11 @@ class Diagnostico extends MY_Controller{
         $r=10-$r;
     return $barcode.$r;    
   }
+  /*
+   * Agregar un chicos que no se haya visto en una pesquiza y vaya al diagnostico
+   * 
+   */
+  function addManual(){
+    Template::render();
+  }
 }
