@@ -63,24 +63,30 @@ $(document).ready(function(){
     var nombre = $(this).text();
     LinkAjax($(this).attr('href'), nombre);
   });  
-  $("#botDNI").button({icons:{primary:'ui-icon-contact'}})
+  $("#botDNI").button({icons:{primary:'ui-icon-contact'}});
   $("#botDNI").click(function(e){
     e.preventDefault();
     var nombre = $(this).text();
     LinkAjax($(this).attr('href'), nombre);
   });  
-  $("#botApellido").button({icons:{primary:'ui-icon-person'}})
+  $("#botApellido").button({icons:{primary:'ui-icon-person'}});
   $("#botApellido").click(function(e){
     e.preventDefault();
     var nombre = $(this).text();
     LinkAjax($(this).attr('href'), nombre);
   });  
-  $("#botEscuela").button({icons:{primary:'ui-icon-home'}})
+  $("#botEscuela").button({icons:{primary:'ui-icon-home'}});
   $("#botEscuela").click(function(e){
     e.preventDefault();
     var nombre = $(this).text();
     LinkAjax($(this).attr('href'), nombre);
   });  
+  $("#botAdd").button({icons:{primary:'ui-icon-circle-plus'}});
+  $("#botAdd").click(function(e){
+    e.preventDefault();
+    var nombre = $(this).text();
+    LinkAjax($(this).attr('href'), nombre);
+  });
   //chequeo las teclas de funciones
   $(document).bind('keydown',function(e){
     var code = e.keyCode;
@@ -99,6 +105,9 @@ $(document).ready(function(){
           break;
         case 'f4':
           $("#botEscuela").click();
+          break;
+        case 'f6':
+          $("#botAdd").click();
           break;
       }
     }else{

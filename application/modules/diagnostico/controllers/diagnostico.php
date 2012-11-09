@@ -31,6 +31,7 @@ class Diagnostico extends MY_Controller{
     $menu[] = array('link' =>'diagnostico/buscoDNI/ajax',      'nombre'=>'F2 - Por DNI',      'extra'=>'id="botDNI"');
     $menu[] = array('link' =>'diagnostico/buscoApellido/ajax', 'nombre'=>'F3 - Por Apellido', 'extra'=>'id="botApellido"');
     $menu[] = array('link' =>'diagnostico/buscoEscuela/ajax',  'nombre'=>'F4 - Por Escuela',  'extra'=>'id="botEscuela"');
+    $menu[] = array('link' =>'diagnostico/addManual',          'nombre'=>'F6 - Sin Turno',    'extra'=>'id="botAdd"');
     $dataLateral['linea']=$menu;
     $dataLateral['titulo']='Busquedas';
     Template::set($dataLateral);
@@ -305,6 +306,28 @@ class Diagnostico extends MY_Controller{
    * 
    */
   function addManual(){
-    Template::render();
+    $fechoy= new DateTime();
+    $c = array( 'id'=>'',
+                'apellido'=>'',
+                'nombre'=>'',
+                'sexo'=>'',
+                'dni'=>'',
+                'fecnac'=>'',
+                'escuela'=>'',
+                'ciudad'=>'',
+                'grado'=>'',
+                'fechapesq'=>$fechoy->format('Y-m-d'),
+                'voluntario'=>1,
+                'turno'=>$fechoy->format('d-m'),
+                'hora'=>$fechoy->format('h:s'),        
+                'carta'=>0,
+                'confirmo'=>0,
+                'tipopesq'=>3,
+                'edad'=>0,
+                'programa_id'=>'');
+    $caso= (object)$c;
+    $data['ocultos']=array('id'=>$caso->id, 'edad'=>$caso->edad,'programa_id'=>$this->session->userdata('programa_id'));
+    $data['caso']= $caso;
+    $this->load->view('diagnostico/addManual',$data);
   }
 }
