@@ -15,8 +15,14 @@
   <div id="header">
     <div id="logo">
       <h1>OKULO</h1>
-      <div><?php echo CLUB_ROTARIO, "  ", $this->session->userdata('programa_nombre')?> </div>
-      <div><?php echo ($_SERVER['REMOTE_ADDR']) ?> </div>
+      <h2><?php echo $nombrePrograma;?> </h2>
+      <h3><?php echo CLUB_ROTARIO;?> </h3>
+      <?php if(DEVELOP==='ALL'):?>
+        <span class="ui-state-error"><?php echo $database ?> POR FAVOR NO GRABAR NADA IMPORTANTE YA QUE ES UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO</span>
+      <?php endif?>
+      <?php if(DEVELOP===1):?>
+        <span class="ui-state-error"><?php echo $database ?> POR FAVOR PREGUTNAR ANTES DE TRABAJAR YA QUE PUEDE SER UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO</span>
+      <?php endif?>
     </div>
     <div class="quest">
       <?php echo anchor('home', 'Home', 'id="Home"')?>

@@ -2,7 +2,7 @@
   <?php foreach($datos as $dato):?>
   <tr>
     <td id="texto_<?php echo $dato->id?>"><?php echo $dato->texto?></td>
-    <td><div id="<?php echo $dato->id ?>" class="botoncito"</div></td>
+    <td><div id="<?php echo $dato->id ?>" class="botoncito"></div></td>
   </tr>
   <?php endforeach; ?>
 </table>

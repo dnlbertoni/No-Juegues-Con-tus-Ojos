@@ -36,6 +36,29 @@ class escuelas_model extends MY_Model{
         return false;
       }
     }
-  }  
+  }
+  function getAllindex(){
+    $this->db->select('escuelas.id as id');
+    $this->db->select('escuelas.nombre');
+    $this->db->select('numero_estab');
+    $this->db->select('ciudades.nombre as ciudad');
+    $this->db->from($this->getTable());
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'inner');
+    $this->db->where('escuelas.programa_id', $this->session->userdata('programa_id'));
+    return $this->db->get()->result();
+  }
+  function getEscuelasTransportes($transporte=1){
+    //$this->db->distinct();
+    $this->db->select('CONCAT(escuelas.nombre, " - ", ciudades.nombre) as nombre', false);
+    $this->db->select('SUM(pesquizas.cant_prob) as cantidad', false);
+    $this->db->from($this->getTable());
+    $this->db->join('pesquizas', 'pesquizas.escuela_id=escuelas.id', 'left');
+    $this->db->join('ciudades', 'escuelas.ciudad_id=ciudades.id', 'left');
+    $this->db->where('pesquizas.transporte',$transporte);
+    $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
+    $this->db->group_by('escuela_id');
+    $this->db->order_by('cantidad', 'DESC');
+    return $this->db->get()->result();
+  }
 }
 

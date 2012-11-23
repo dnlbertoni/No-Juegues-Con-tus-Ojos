@@ -1,0 +1,1 @@
+Se debe presentar el {fecha} a las {hora}Hs, acompañado de DNI del menor y del  padre, tutor o encargado en {lugar}.

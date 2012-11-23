@@ -250,7 +250,12 @@ class MY_Model extends CI_Model{
     $this->db->update($this->getTable());
     return true;
   }
-
+  public function setByEstado($estado){
+    $this->db->where('estado', $estado);
+    $this->db->where('programa_id', $this->session->userdata('programa_id'));
+    $this->db->from($this->getTable());
+    return $this->db->get()->result();
+  }
 }
 
 /* End of file MY_Model.php*/

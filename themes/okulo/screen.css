@@ -85,7 +85,7 @@ td {
 
 .boxCh{
   border: 1px solid #000;
-  width: 46%;
+  width: 48%;
   margin: auto;
   padding: 2px;
   font-family: 'Verdana';
@@ -101,7 +101,7 @@ label{
 }
 .box {
   border: 1px solid #000;
-  width: 90%;
+  width: 95%;
   margin: auto;
   padding: 10px;
 }
@@ -160,7 +160,25 @@ p.error {
 }
 .Izq{
   float:left;
+  postion:realtive;
 }
 .Der{
   float: right;
+  postion:realtive;
+}
+table{
+  width:100%;
+}
+td{
+  border-bottom: 1px solid;
+}
+.tercio{
+  width:60%;
+}
+.formCentral{
+  margin: auto;
+  background-color:#F79C1A;
+  width: 50%;
+  text-align: center;
+  padding: 20px;
 }

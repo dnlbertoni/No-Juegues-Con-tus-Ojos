@@ -38,13 +38,21 @@ class Home extends MY_Controller{
     };
     $data['nombreUsuario']=$this->tank_auth->get_username();
     $data['lastLog']=$webuser->last_login;
+    /*
+     * Datos de las Escuelas
+     */
     $escuelasInfo=$this->Escuelas_model->getAll();
-    $data['escuelasInfo']=count($escuelasInfo);
-    //datos de la pesquiza
+    $data['escuelasInfo']= count($escuelasInfo);
+    $data['pesquizadas'] = count($this->Pesquizas_model->getDetalleEscuelas());
+    /*
+     * Datos de las pesquizas
+     */
     $pesquizas=$this->Pesquizas_model->getTotalesAgrupados();
     $data['pesqTotales']=$pesquizas;
     $fin=count($pesquizas);
     $data['total']=$pesquizas[$fin-1]->cantidad;
+    $pesquizas=$this->Pesquizas_model->getTotalesAgrupados(2);
+    $data['pesqExcep']=$pesquizas;
     $alu=$this->Pesquizas_model->getTotalesAlumnos();
     $data['totPre']=$alu->totPre;
     $data['totAlu']=$alu->totAlu;

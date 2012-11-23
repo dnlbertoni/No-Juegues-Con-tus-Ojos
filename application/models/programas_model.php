@@ -29,4 +29,14 @@ class Programas_model extends MY_Model{
     $this->db->where('programas.id',$this->session->userdata('programa_id'));
     return $this->db->get()->row();
   }
+  function getFechasDiag(){
+    $this->db->select('programas.id as id');
+    $this->db->select('programas.nombre as nombre');
+    $this->db->select('programas.fecini_diag as inicio');
+    $this->db->select('programas.fecfin_diag as final');
+    $this->db->from($this->getTable());
+    $this->db->join('ciudades', 'ciudades.id=ciudad_id', 'inner');
+    $this->db->where('programas.id',$this->session->userdata('programa_id'));
+    return $this->db->get()->row();
+  }
 }

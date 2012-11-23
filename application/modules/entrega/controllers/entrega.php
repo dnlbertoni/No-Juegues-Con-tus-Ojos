@@ -7,13 +7,20 @@
 class Entrega extends MY_Controller{
   function __construct() {
     parent::__construct();
-    $this->template->write('header','Entrega de Lentes');
+    $this->load->model('Perfil_model');
+    $this->load->model('UserModulos_model');
     $this->load->model('Casos_model', '', true);
     $this->load->model('Pesquizas_model', '', true);
-    $menu[] = array('link' =>'entrega/lenteOk', 'nombre'=>'Lente Entregado', 'extra'=>'id="botLente" class="boton"');
-    $dataLateral['linea']=$menu;
-    $dataLateral['statics']=$this->Casos_model->estadisticasLentes($this->session->userdata('programa_id'));
-    $this->template->write_view('lateral', '_lateral', $dataLateral );    
+
+    if($this->session->userdata('status')==0){
+      redirect('auth/login');
+    }
+    $idUser=$this->session->userdata('user_id');
+    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);        
+    Template::set('header','Entrega de Lentes');
+    Template::set('dataMenu', $modulos);
+    Template::set_block('menu', '_menu');    
+
   }
   function index($error=""){
     $data['colSel']= $this->Pesquizas_model->escuelaToDropDown();
@@ -26,8 +33,8 @@ class Entrega extends MY_Controller{
                               5 => 'Lentes', 
                               6 => 'Terminado'
                             );
-    $this->template->write_view('content', 'entrega/index', $data);
-    $this->template->render();
+    Template::set($data);
+    Template::render();
   }
   function dniSearch(){
     $caso = $this->Casos_model->getByDni($this->input->post('dniTXT'), $this->session->userdata('programa_id'));
@@ -67,63 +74,41 @@ class Entrega extends MY_Controller{
     $this->template->write_view('content','entrega/lista',$data);
     $this->template->render();
   }
-  function casoLente($id){
-    $caso = $this->Casos_model->detalleCaso($id);
-    $data['caso']=$caso;
-    $data['estado'] = array ( 0 => 'Sin Diagnosticar',
-                              1 => 'Carta Enviada',
-                              2 => 'Diagnosticado',
-                              3 => 'Pendiente Lente',
-                              4 => 'Carta Enviada',
-                              5 => 'Lentes',
-                              6 => 'Terminado'
-                            );
-    $data['activo']=  ' $(".txt").attr("disabled", true);';
-    $data['accion']= '';
-    if($caso->estado!=6){
-      $botones[]=array('accion'=> 'paper/pdf/ordenEntregaLente/'.$caso->id,
-                                    'texto'=> 'Orden Entrega',
-                                    'id'=>'Bentrega',
-                                    'clase'=>'print',
-                                    'target'=>"_blank");
+  function casoLente(){
+    if($this->input->post('dni')){
+      $caso = $this->Casos_model->getByDni($this->input->post('dniTXT'), $this->session->userdata('programa_id'));
+      $id=$caso->id;
     }
-    $botones[]=array('accion'=> 'admin/casos/edit/'.$caso->id,
-                                  'texto'=> 'Editar Datos',
-                                  'id'=>'Bedit',
-                                  'clase'=>'edit',
-                                  'target'=>"_self");
-    $botones[]=array('accion'=> 'entrega/',
-                                  'texto'=> 'Volver',
-                                  'id'=>'Bback',
-                                  'clase'=>'boton',
-                                  'target'=>"_self");
-    
-    /*
-    $botones[]=array('accion'=> 'paper/pdf/cartaEntregaLente/'.$caso->id,
-                                  'texto'=> 'Carta Lente',
-                                  'id'=>'Baccion',
-                                  'clase'=>'print',
-                                  'target'=>"_blank");
-    $botones[]=array('accion'=> 'paper/pdf/etiquetaCasoLente/'.$caso->id,
-                                  'texto'=> 'Etiqueta Lente',
-                                  'id'=>'Baccion',
-                                  'clase'=>'print',
-                                  'target'=>"_blank");
-     * 
-     */
-    $dataLateral['back']="'".base_url()."index.php/entrega/lenteProceso/".$caso->id."'";
-    $dataLateral['botones']=$botones;
-    $this->template->write_view('header2', 'admin/casos/lateral', $dataLateral);
-    $this->template->write_view('content','admin/casos/view',$data);
-    $this->template->render();    
-  }
-  function lenteProceso($id){
-    $this->Casos_model->setEstado($id,5);
-    $this->index();
+    if($id){
+      $caso = $this->Casos_model->detalleCaso($id);
+      $data['caso']=$caso;
+      $data['estado'] = array ( 0 => 'Sin Diagnosticar',
+                                1 => 'Carta Enviada',
+                                2 => 'Diagnosticado',
+                                3 => 'Pendiente Lente',
+                                4 => 'Carta Enviada',
+                                5 => 'Lentes',
+                                6 => 'Terminado'
+                              );
+      $data['activo']=  ' $(".txt").attr("disabled", true);';
+      $data['accion']= '';
+      if($caso->estado!=6){
+        $menu[] = array('link' =>'paper/pdf/ordenEntregaLente/'.$caso->id,    'nombre'=>'Orden Entrega',    'extra'=>'id="botPrint"');
+      }
+      $menu[] = array('link' =>'entrega/',      'nombre'=>'Volver',      'extra'=>'id="botBack"');
+      $dataLateral['linea']=$menu;
+      $dataLateral['titulo']='Busquedas';
+      Template::set($dataLateral);
+      Template::set_block('lateral', '_lateral');
+      Template::set($data);
+      Template::set_view('entrega/view');
+    }else{
+      echo "error";
+    }
+    Template::render();
   }
   function lenteOk(){
-    $this->output->enable_profiler(false);
-    $this->load->view('entrega/lenteOK');
+    Template::render();
   }
   function lenteOkDo(){
     $this->Casos_model->entregoLente($this->input->post('caso'));

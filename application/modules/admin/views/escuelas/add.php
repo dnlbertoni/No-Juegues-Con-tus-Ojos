@@ -1,23 +1,48 @@
 <?php echo form_open($accion, 'id="escuela-Form"')?>
-<?php if($esc->id==''):?>
-  <?php echo form_hidden('id', '');?>
-<?php else: ?>
-Id : <?php echo form_input('id', $esc->id, '');?>
-<?php endif?>
-<br />
-Nombre:<?php echo form_input('nombre', $esc->nombre, '');?>
-<br/>
-Direccion:<?php echo form_input('direccion', $esc->direccion, '');?>
-<br/>
-Telefono:<?php echo form_input('telefono', $esc->telefono, '');?>
-<br/>
-Director:<?php echo form_input('director', $esc->director, '');?>
-Numero Establecimiento:<?php echo form_input('numero_estab', $esc->numero_estab, '');?>
+<table>
+  <tr>
+    <th>Nombre:</th>
+    <td><?php echo form_input('nombre', $esc->nombre, 'size="20"');?></td>
+  </tr>
+  <tr>
+    <th>Direccion:</th>
+    <td><?php echo form_input('direccion', $esc->direccion, 'size="40"');?></td>
+  </tr>
+  <tr>
+    <th>Ciudad:</th>
+    <td><?php echo form_dropdown('ciudad_id', $selCiudades,$esc->ciudad_id, '');?></td>
+  </tr>
+  <tr>
+    <th>Telefono:</th>
+    <td><?php echo form_input('telefono', $esc->telefono, 'size="20"');?></td>
+  </tr>
+  <tr>
+    <th>Director:</th>
+    <td><?php echo form_input('director', $esc->director, 'size="20"');?></td>
+  </tr>
+  <tr>
+    <th>Numero Establecimiento:</th>
+    <td><?php echo form_input('numero_estab', $esc->numero_estab, 'size="5"');?></td>
+  </tr>
+  <tr>
+    <th>lugar de retiro de Transporte:</th>
+    <td><?php echo form_textarea('lugarTransporte', $esc->lugarTransporte,'id="lugartransporte"');?></td>
+  </tr>  
+  <tr>
+    <td colspan="2"><div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div></td>
+  </tr>
+  <tr>
+    <td colspan="2"><?php echo form_hidden('programa_id', $esc->programa_id, '');?></td>
+    <td colspan="2"><?php echo form_hidden('id', $esc->id, '');?></td>
+  </tr>
+</table>
 <?php echo form_close();?>
-<div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div>
+
 
 <script>
 $(document).ready(function(){
+  $('input').css('float','left');
+  $("#lugartransporte").css('width','250');
   $(".boton").button();
   var options = {
       //target:     '#divToUpdate',

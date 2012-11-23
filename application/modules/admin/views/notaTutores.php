@@ -1,6 +1,6 @@
 <h2>Modificacion Nota Tutores</h2>
 <div><?php echo $fecha?></div>
-<div><?php echo $destinatarios?>
+<div><?php echo $destinatarios?></div>
 <?php echo form_open('admin/notaTutoresDo','id="nota-Form"');?>
 <?php echo form_textarea('texto', $texto, 'id="texto"');?>
 <div id="Guardar">Guardar</div>

@@ -15,7 +15,6 @@ root {
   display: block;
 }
 .estadoPendiente{
-  border: 2px solid red;
   background-color: red;
   color: white;
 }
@@ -24,14 +23,12 @@ root {
 }
 .estadoRealizada{
   background-color: yellow;
-  border: 2px solid yellow;
 }
 .bordeRealizada{
   border: 2px solid yellow;
 }
 .estadoCarta{
   background-color: blue;
-  border: 2px solid blue;
   color:white;
 }
 .bordeCarta{
@@ -39,14 +36,12 @@ root {
 }
 .estadoTurno{
   background-color: orange;
-  border: 2px solid orange;
 }
 .bordeTurno{
   border: 2px solid orange;
 }
 .estadoFinalizada{
   background-color: green;
-  border: 2px solid green;
   color:white;
 }
 .bordeFinalizada{
@@ -54,4 +49,44 @@ root {
 }
 .seleccionada{
   background-color: lightgray;
+}
+
+/* validador*/
+
+div.vanadium-invalid {
+    border-color: red !important;
+    border-style: solid !important;
+}
+
+div.vanadium-valid {
+    border-color: green !important;
+    border-style: solid !important;
+}
+
+.vanadium-message-value {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.vanadium-advice.vanadium-invalid, .vanadium-advice.vanadium-invalid * {
+    color: red;
+}
+
+input.vanadium-valid {
+    background-color: greenyellow;
+}
+
+input.vanadium-invalid {
+    background-color: pink;
+}
+
+#messages {
+    height: 70px;
+    padding: 0;
+    border-color: yellow;
+}
+
+input.vanadium-valid ~ .vanadium-valid-advice {
+    display: inline !important;
+    color: green;
 }

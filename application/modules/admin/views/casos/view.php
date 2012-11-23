@@ -3,11 +3,11 @@
 <br/>
 <?php echo form_open($accion,'id="update-Form"')?>
 <table>
-  <thead>
-    <th colspan="2">
-      Datos Personales
-    </th>
-  </thead>
+	<tr>
+	    <th colspan="2">
+	      Datos Personales
+	    </th>
+    </tr>
   <tr>
     <td>Caso</td>
     <td><?php echo $caso->id?><?php echo form_hidden('id', $caso->id)?></td>
@@ -30,9 +30,11 @@
     <td><?php echo $caso->fecnac?></td>
   </tr>
   <thead>
+  <tr>
     <th colspan="2">
     Datos Escolares
     </th>
+  </tr>
 </thead>
   <tr>
     <td>Colegio</td>

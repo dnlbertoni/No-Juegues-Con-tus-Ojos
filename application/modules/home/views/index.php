@@ -2,25 +2,40 @@
 <?php if(!isset($nombreUsuario)):?>
   <?php echo Template::message()?>
 <?php endif;?>
-<div class="boxCh Izq">
-  <h2><?php echo $nombreUsuario?></h2>
-  <p>Ingresaste por ultima vez: <?php echo $lastLog?></p>
-  <?php echo anchor('auth/logout', 'Salir Sistema','id="Logout"');?>
+<div class="ui-widget boxCh Izq">
+  <div class="ui-widget-header">Datos del Usuario</div>
+    <div class="ui-widget-content">
+      <p>Nombre del usuario: <?php echo $nombreUsuario?></p>
+      <p>Ingresaste por ultima vez: <?php echo $lastLog?></p>
+      <?php echo anchor('auth/logout', 'Salir Sistema','id="Logout"');?>    
+    </div>
 </div>
-<div  class="boxCh Der">
-  <h2>Procedimientos</h2>
-  manuales y demas
-</div>
+  <div class="ui-widget boxCh Der">
+  <div class="ui-widget-header">Documentacion</div>
+  <div class="ui-widget-content">
+    <h2>Roles y Funciones</h2>
+    <ul>
+      <li>Responsable de Escuelas	
+Estar al menos 20 minutos antes del horario de llegada del colectivo al colegio.
+Aglutinar a las personas que van llegando.
+Tomar asistencia de las que están presentes. 
+Una vez que llegue el colectivo le entrega 
+</li>
+    </ul>        
+  </div>
+  </div>
 <div class="clearfix">&nbsp;</div>
-<div class="boxCh Izq">
-  <h2>1 - Escuelas Potenciales</h2>
+<div class="ui-widget boxCh Izq">
+  <div class="ui-widget-header">1 - Escuelas</div>
   <p>La cantidad de escuelas que participan de este Programa son: <b><?php echo $escuelasInfo?></b></p>
+  <p>La cantidad de escuelas que se Pesquizaron fueron: <b><?php echo $pesquizadas?></b></p>
+  <p>La cantidad de escuelas que se fueron a buscar: <b><?php echo $colectivo?></b></p>
+  <p>La cantidad de escuelas que fueron a la sede: <b><?php echo $sede?></b></p>
 </div>
 <div class="boxCh Der">
   <h2>2 - Pesquiza</h2>
   <div class="boxCh Izq">
     <table align="center">
-      <tboby>
         <?php foreach($pesqTotales as $pesq):?>
         <tr>
           <td class="estados"><?php echo $pesq->estado;?></td>
@@ -28,7 +43,15 @@
           <td><?php echo sprintf("%02.2f", $pesq->cantidad/$total*100),"%";?></td>
         </tr>
         <?php endforeach;?>
-      </tboby>
+    </table>
+    <table align="center">
+        <?php foreach($pesqExcep as $pesq):?>
+        <tr>
+          <td class="estados"><?php echo $pesq->estado;?></td>
+          <td><?php echo $pesq->cantidad;?></td>
+          <td><?php echo sprintf("%02.2f", $pesq->cantidad/$total*100),"%";?></td>
+        </tr>
+        <?php endforeach;?>
     </table>
   </div>
   <div class="boxCh Der">
