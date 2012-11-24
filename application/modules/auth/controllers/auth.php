@@ -6,6 +6,7 @@ class Auth extends MY_Controller{
     $this->lang->load('tank_auth');
 //    $this->config->load('tank_auth');
 	$this->load->library('firephp');
+    $this->load->library('session');
 	$this->firephp->fb('asdfasd');
   }
   function index(){
@@ -26,6 +27,8 @@ class Auth extends MY_Controller{
     $programa_id=($this->input->post('programa_id'))?$this->input->post('programa_id'):$programa_id;
     if(!$programa_id ){
         Template::redirect('inicio');
+    }else{
+      $this->session->set_userdata('programa_id', $programa_id);         
     };
     if ($this->tank_auth->is_logged_in()) {									// logged in
         redirect('home');
@@ -147,7 +150,9 @@ class Auth extends MY_Controller{
                                           $use_username ? $this->form_validation->set_value('username') : '',
                                           $this->form_validation->set_value('email'),
                                           $this->form_validation->set_value('password'),
-                                          $email_activation))) {									// success
+                                          $email_activation),
+                                          $this->session->userdata('programa_id'))
+                                          ) {									// success
 
                                   $data['site_name'] = $this->config->item('website_name');
 
