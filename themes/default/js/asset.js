@@ -1,1 +1,0 @@
-document.write('<p style="color: red">This was loaded from the asset.js file.</p>');

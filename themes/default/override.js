@@ -1,1 +1,0 @@
-alert('This javascript was automatically loaded from override.js');
