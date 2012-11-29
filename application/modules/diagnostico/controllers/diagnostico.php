@@ -311,21 +311,27 @@ class Diagnostico extends MY_Controller{
                 'apellido'=>'',
                 'nombre'=>'',
                 'sexo'=>'',
-                'dni'=>'',
+                'dni'=>0,
                 'fecnac'=>'',
                 'escuela'=>'',
                 'ciudad'=>'',
                 'grado'=>'',
+                'division'=>'A',
                 'fechapesq'=>$fechoy->format('Y-m-d'),
                 'voluntario'=>1,
-                'turno'=>$fechoy->format('d-m'),
+                'dia'=>$fechoy->format('d-m'),
                 'hora'=>$fechoy->format('h:s'),        
-                'carta'=>0,
+                'carta'=>1,
                 'confirmo'=>0,
-                'tipopesq'=>3,
+                'tipopesq'=>2,
                 'edad'=>0,
                 'programa_id'=>'');
     $caso= (object)$c;
+    $this->load->model('Escuelas_model');
+    $this->load->model('Ciudades_model');
+    $data['escuelas'] = $this->Escuelas_model->toDropdownEspecial('id','nombre');
+    $data['ciudades'] = $this->Ciudades_model->toDropdown('id','nombre');
+    $data['turnos'] = array('M','T');
     $data['ocultos']=array('id'=>$caso->id, 'edad'=>$caso->edad,'programa_id'=>$this->session->userdata('programa_id'));
     $data['caso']= $caso;
     $this->load->view('diagnostico/addManual',$data);

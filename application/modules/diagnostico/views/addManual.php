@@ -10,13 +10,11 @@
   <tr>
     <th>Apellido:</th>
     <td>
-      <?php echo form_input('apellido', $caso->apellido, 'id="apellido" disabled="disabled"')?>
-      <div class="botEdit">Editar</div>
+      <?php echo form_input('apellido', $caso->apellido, 'id="apellido"')?>
     </td>
     <th>Nombre:</th>
     <td>
-      <?php echo form_input('nombre', $caso->nombre, 'id="nombre" disabled="disabled"')?>
-      <div class="botEdit">Editar</div>
+      <?php echo form_input('nombre', $caso->nombre, 'id="nombre" ')?>
     </td>
     <td colspan="2">
       <div id="sexo" >
@@ -30,12 +28,11 @@
   <tr>
     <th>DNI:</th>
     <td>
-      <?php echo form_input('numdoc', $caso->dni, 'id="numdoc" disabled="disabled" class=":min_length;6 :max_length;8 :required :digits"' );?>
-      <div class="botEdit">Editar</div>
+      <?php echo form_input('numdoc', $caso->dni, 'id="numdoc"' );?>
     </td>
     <th>Fecha Nac.:</th>
     <td>
-      <?php echo form_input('fecnac', $caso->fecnac, 'id="fecnac" class=":required "')?>
+      <?php echo form_input('fecnac', $caso->fecnac, 'id="fecnac"')?>
       <div class="botFec">Fecha</div>
     </td>
     <th>Edad:</th>
@@ -48,11 +45,15 @@
   </tr>
   <tr>
     <th>Escuela:</th>
-    <td><?php echo $caso->escuela?></td>
+    <td><?php echo form_dropdown('escuela_id', $escuelas, 1, 'id="escuela_id');?></td>
     <th>Ciudad:</th>
     <td><?php echo $caso->ciudad?></td>
     <th>Grado:</th>
-    <td><?php echo $caso->grado?></td>
+    <td>
+      <?php echo form_input('grado', $caso->grado, 'id="grado" size="3"')?>
+      <?php echo form_input('division', $caso->division, 'id="division" size="3"')?>
+      <?php echo form_dropdown('turno', $turnos,'M', 'id="turno"')?>
+    </td>
   </tr>  
   <tr>
     <th colspan="6">Datos del Programa</th>
@@ -63,7 +64,7 @@
     <th>Voluntario</th>
     <td><?php echo $caso->voluntario?></td>
     <th>Dia y Hora Turno</th>
-    <td><?php echo $caso->turno ,' ', $caso->hora?></td>
+    <td><?php echo $caso->dia ,' ', $caso->hora?></td>
   </tr>  
   <tr>
     <th>Carta:</th>
