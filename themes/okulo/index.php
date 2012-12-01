@@ -41,7 +41,7 @@
   <!-- /content -->
   <div id="footer">
     <div id="ftinner">
-      <p id="copyright">© 2011. All Rights Reserved. <br/>
+      <p id="copyright">© 2011-2013. All Rights Reserved. <br/>
         <a href="http://www.rotarysaltogrande.org.ar/" target="_blank">Rotary Salto Grande Concordia</a> by <a href="mailto:daniel.bertoni@gmail.com" >DnL</a></p>
     </div>
   </div>

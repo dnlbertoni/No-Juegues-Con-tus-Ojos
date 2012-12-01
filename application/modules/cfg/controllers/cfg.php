@@ -14,5 +14,8 @@ class Cfg extends MY_Controller{
   function definirRoles(){
     $usuarios=$this->Users_model->getAll();
     $modulos=$this->Modulos_model->getAll();
+    Template::set('usuarios',$usuarios);
+    Template::set('modulos',$modulos);
+    Template::render();
   }
 }

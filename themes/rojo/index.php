@@ -15,28 +15,35 @@ Released   : 20120604
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Redallover by FCT</title>
-<link href="http://fonts.googleapis.com/css?family=Abel|Arvo" rel="stylesheet" type="text/css" />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<title><?php echo $this->config->item('site_name')?></title>
+	<?php echo Assets::css('screen'); ?>
+	<?php echo Assets::css('jquery-ui'); ?>
+	<?php echo Assets::js('jquery-1.5.min'); ?>	
+	<?php echo Assets::js('jquery-ui-1.8.12.min'); ?>	
+	<?php echo Assets::js('okulo'); ?>	
+	<?php echo Assets::js('forms'); ?>	
 </head>
 <body>
 <div id="wrapper">
 	<div id="menu-wrapper">
 	<div id="menu">
 		<ul>
-			<li class="current_page_item"><a href="#">Home</a></li>
-			<li><a href="#">Blog</a></li>
-			<li><a href="#">Photos</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Links</a></li>
-			<li><a href="#">Contact</a></li>
+          <?php echo Template::block('menu')?>
 		</ul>
 	</div>
 	</div>
 	<!-- end #menu -->
 	<div id="header">
 		<div id="logo">
-			<h1><a href="#">RedAllOver</a></h1>
+      <h1>OKULO</h1>
+      <h2><?php echo $nombrePrograma;?> </h2>
+      <h3><?php echo CLUB_ROTARIO;?> </h3>
+      <?php if(DEVELOP==='ALL'):?>
+        <span class="ui-state-error"><?php echo $database ?> POR FAVOR NO GRABAR NADA IMPORTANTE YA QUE ES UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO</span>
+      <?php endif?>
+      <?php if(DEVELOP===1):?>
+        <span class="ui-state-error"><?php echo $database ?> POR FAVOR PREGUTNAR ANTES DE TRABAJAR YA QUE PUEDE SER UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO</span>
+      <?php endif?>
 		</div>
 	</div>
 	<!-- end #header -->
@@ -93,7 +100,8 @@ Released   : 20120604
 	</div>
 </div>
 <div id="footer">
-	<p>Copyright (c) 2012 Sitename.com. All rights reserved. photo by <a href="http://fotogrph.com/">fotogrph</a>. Design by <a href="http://www.freecsstemplates.org/">FCT</a>.</p>
+      <p id="copyright">© 2011-2013. All Rights Reserved. <br/>
+        <a href="http://www.rotarysaltogrande.org.ar/" target="_blank">Rotary Salto Grande Concordia</a> by <a href="mailto:daniel.bertoni@gmail.com" >DnL</a></p>
 </div>
 <!-- end #footer -->
 </body>
