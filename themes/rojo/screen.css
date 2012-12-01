@@ -219,7 +219,7 @@ img.aligncenter {
 
 #content {
 	float: left;
-	width: 540px;
+	width: 640px;
 }
 
 .post {
@@ -272,7 +272,7 @@ img.aligncenter {
 
 #sidebar {
 	float: right;
-	width: 290px;
+	width: 190px;
 	padding: 40px 20px;
 	background: rgba(0,0,0,.5);
 }

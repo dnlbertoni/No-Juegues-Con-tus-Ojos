@@ -70,7 +70,7 @@ $config['template.use_mobile_themes'] = FALSE;
 | when 'template.use_mobile_themes' is set to TRUE.
 |
 */
-$config['template.default_theme'] = 'rojo/';
+$config['template.default_theme'] = 'pastel/';
 
 /*
 |--------------------------------------------------------------------

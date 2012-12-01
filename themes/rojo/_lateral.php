@@ -1,4 +1,4 @@
-    <div class="side fr">
+    <div class="side">
       <div class="si">
         <?php if(isset($titulo)):?>
         <h2><?php echo $titulo?></h2>
