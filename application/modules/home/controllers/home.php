@@ -58,6 +58,8 @@ class Home extends MY_Controller{
     $data['totAlu']=$alu->totAlu;
     $data['totDer']=$alu->totDer;
     Template::set($data);
+    Template::set('lateralInfoData',true);
+    Template::set_block('lateral', '_lateralHome');
     Template::render();
   }
 }

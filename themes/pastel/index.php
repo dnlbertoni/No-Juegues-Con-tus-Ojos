@@ -28,7 +28,7 @@ Released   : 20110123
 <div id="wrapper">
 	<div id="header">
 		<div id="logo">
-          <h1><a href="#">OKULO</a></h1>
+          <h1><?php echo anchor('home/','OKULO');?></h1>
           <p><?php echo $nombrePrograma;?> </p>
           <?php if(DEVELOP==='ALL'):?>
             <span class="ui-state-error"><?php echo $database ?> POR FAVOR NO GRABAR NADA IMPORTANTE YA QUE ES UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO</span>
@@ -39,7 +39,7 @@ Released   : 20110123
 		</div>
 		<div id="search">
 			<form method="get" action="">
-				<fieldset>
+              <fieldset>
 					<input type="text" name="s" id="search-text" size="15" value="enter keywords here..." />
 					<input type="submit" id="search-submit" value="GO" />
 				</fieldset>

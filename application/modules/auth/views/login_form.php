@@ -31,7 +31,7 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
+<?php echo form_open($this->uri->uri_string(),'id="log"'); ?>
 <table width="95%" align="center">
 	<tr>
 		<td><?php echo form_label($login_label, $login['id']); ?></td>
@@ -87,7 +87,9 @@ $captcha = array(
 		</td>
 	</tr>
     <tr>
-      <td colspan="3" align="center"><?php echo form_submit('submit', 'Ingresar'); ?></td>
+      <td colspan="3" align="center">
+        <div id="loginn">Ingresar</div>
+      </td>
     </tr>
 </table>
 
@@ -96,5 +98,9 @@ $captcha = array(
 <script>
 $(document).ready(function(){
   $('td').css('border', 'none');
+  $("#loginn").button({icons:{primary:'ui-icon-unlocked'}});
+  $("#loginn").click(function(){
+    $('#log').submit();
+  });
 });
 </script>

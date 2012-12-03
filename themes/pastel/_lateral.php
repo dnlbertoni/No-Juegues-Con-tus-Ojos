@@ -1,4 +1,4 @@
-    <div class="side">
+    <div class="sidebar">
       <div class="si">
         <?php if(isset($titulo)):?>
         <h2><?php echo $titulo?></h2>
@@ -15,5 +15,8 @@
 <script>
 $(document).ready(function(){
 	$("li").css('padding','5px');
+    $("li").css('list-style-type','none');
+    $("#Registrarse").button({icons:{primary:'ui-icon-star'}});    
+    $("#Password").button({icons:{primary:'ui-icon-key'}});    
 });
 </script>

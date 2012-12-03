@@ -1,8 +1,6 @@
-<div class="box">
-  <?php echo Template::block('formulario');?>
+<div class="post">
+    <h2 class="title"><a href="#">Acceso Restringido</a></h2>
+    <div class="entry">
+      <?php echo Template::block('formulario');?>
+    </div>
 </div>
-<script>
-$(document).ready(function(){
-  $('form').css('background-color', '#F79C1A');
-});
-</script>

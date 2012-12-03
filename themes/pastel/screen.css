@@ -218,8 +218,10 @@ img.aligncenter {
 
 #content {
 	float: left;
-	width: 540px;
+	width: 640px;
 	padding: 30px 20px 0px 0px;
+    clear: left;
+    margin: auto;
 }
 
 .post {
@@ -268,8 +270,10 @@ img.aligncenter {
 
 #sidebar {
 	float: right;
-	width: 330px;
+	width: 230px;
 	padding: 40px 0px 0px 0px;
+    clear: right;
+    margin: auto;
 }
 
 #sidebar ul {
