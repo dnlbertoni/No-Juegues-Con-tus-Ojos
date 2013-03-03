@@ -12,9 +12,10 @@ class Inicio extends MY_Controller{
     }
   }
   function index(){
-    $this->load->model('Programas_model');
     $programas = $this->Programas_model->getActivos();
     Template::set('programas', $programas);
+    $programas = $this->Programas_model->getFinalizados();
+    Template::set('programasVie', $programas);
     Template::set_block('menu', 'auth/_menu');
     Template::render();
   }

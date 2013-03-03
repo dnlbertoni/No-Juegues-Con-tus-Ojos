@@ -38,11 +38,7 @@
 | the active record class
 */
 
-$IPDEBUG=array('192.168.1.2','192.168.1.3');
-$bas3=(in_array($_SERVER['REMOTE_ADDR'],$IPDEBUG) && (DEVELOP == 1))?'debug':'default';
-$bas3=( DEVELOP === "ALL")?'debug':$bas3;
-
-$active_group = $bas3;
+$active_group = (ENVIRONMENT==='desarrollo')?'debug':'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
@@ -65,7 +61,7 @@ $db['default']['stricton'] = FALSE;
 $db['debug']['hostname'] = 'localhost';
 $db['debug']['username'] = 'sistemas';
 $db['debug']['password'] = 'kaltidus';
-$db['debug']['database'] = 'okulo_2012';
+$db['debug']['database'] = 'okulo_dev';
 $db['debug']['dbdriver'] = 'mysql';
 $db['debug']['dbprefix'] = '';
 $db['debug']['pconnect'] = TRUE;

@@ -122,38 +122,12 @@ img.aligncenter {
 
 /* Search */
 
-#search {
-	float: right;
-	width: 280px;
-	height: 100px;
-	padding: 0;
-}
-
-#search form {
-	height: 41px;
-	margin: 0;
-	padding: 100px 0 0 30px;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-
-#search-text {
-	width: 233px;
-	height: 30px;
-	padding: 0px 10px 0px 10px;
-	border: none;
-	background: url(images/img09.jpg) no-repeat left top;
-	text-transform: lowercase;
-	font: normal 11px Arial, Helvetica, sans-serif;
-	color: #303030;
-}
-
-#search-submit {
-	display: none;
+#news {
+  margin-top: 50px;
+  float: right;
+  width: 280px;
+  height: 100px;
+  padding: 0;
 }
 
 /* Menu */

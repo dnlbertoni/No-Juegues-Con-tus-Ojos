@@ -1,0 +1,92 @@
+/* 
+    Document   : pesquizas
+    Created on : 13-abr-2012, 19:48:07
+    Author     : dnl
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+  display: block;
+}
+.estadoPendiente{
+  background-color: red;
+  color: white;
+}
+.bordePendiente{
+  border: 2px solid red;
+}
+.estadoRealizada{
+  background-color: yellow;
+}
+.bordeRealizada{
+  border: 2px solid yellow;
+}
+.estadoCarta{
+  background-color: blue;
+  color:white;
+}
+.bordeCarta{
+  border: 2px solid blue;
+}
+.estadoTurno{
+  background-color: orange;
+}
+.bordeTurno{
+  border: 2px solid orange;
+}
+.estadoFinalizada{
+  background-color: green;
+  color:white;
+}
+.bordeFinalizada{
+  border: 2px solid green;
+}
+.seleccionada{
+  background-color: lightgray;
+}
+
+/* validador*/
+
+div.vanadium-invalid {
+    border-color: red !important;
+    border-style: solid !important;
+}
+
+div.vanadium-valid {
+    border-color: green !important;
+    border-style: solid !important;
+}
+
+.vanadium-message-value {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.vanadium-advice.vanadium-invalid, .vanadium-advice.vanadium-invalid * {
+    color: red;
+}
+
+input.vanadium-valid {
+    background-color: greenyellow;
+}
+
+input.vanadium-invalid {
+    background-color: pink;
+}
+
+#messages {
+    height: 70px;
+    padding: 0;
+    border-color: yellow;
+}
+
+input.vanadium-valid ~ .vanadium-valid-advice {
+    display: inline !important;
+    color: green;
+}

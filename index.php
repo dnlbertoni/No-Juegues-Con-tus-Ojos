@@ -18,7 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'desarrollo');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -30,17 +30,18 @@
 
 	switch (ENVIRONMENT)
 	{
-		case 'development':
+		case 'desarrollo':
 			error_reporting(E_ALL);
 		break;
-	
-		case 'testing':
-		case 'production':
+
+		case 'testeo':
+			error_reporting(E_ALL);
+		case 'final':
 			error_reporting(0);
 		break;
 
 		default:
-			exit('The application environment is not set correctly.');
+			exit('El entorno de la aplicacion no esta definido');
 	}
 
 /*

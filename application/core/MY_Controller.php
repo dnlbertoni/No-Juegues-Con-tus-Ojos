@@ -6,8 +6,7 @@ require APPPATH."third_party/MX/Controller.php";
 class MY_Controller extends MX_Controller {
   function __construct() {
     parent::__construct();
-    $ipDebags=array('192.168.1.2','192.168.0.8');
-    $this->output->enable_profiler(in_array($_SERVER['REMOTE_ADDR'],$ipDebags));
+    $this->output->enable_profiler(ENVIRONMENT==='desarrollo');
     $programa=$this->Programas_model->getOnline();
     Template::set('database', $this->Programas_model->db->database);
     Template::set('nombrePrograma', (isset($programa->nombre))?$programa->nombre:'');

@@ -19,6 +19,16 @@ class Programas_model extends MY_Model{
     $this->db->where('estado',1);
     return $this->db->get()->result();
   }
+  function getFinalizados(){
+    $this->db->select('programas.id as id');
+    $this->db->select('programas.nombre as nombre');
+    $this->db->select('programas.ciudad_id as city');
+    $this->db->select('ciudades.nombre as ciudadNombre');
+    $this->db->from($this->getTable());
+    $this->db->join('ciudades', 'ciudades.id=ciudad_id', 'inner');
+    $this->db->where('estado',0);
+    return $this->db->get()->result();
+  }
   function getOnline(){
     $this->db->select('programas.id as id');
     $this->db->select('programas.nombre as nombre');
