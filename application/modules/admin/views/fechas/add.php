@@ -20,7 +20,7 @@ $(document).ready(function(){
             url: url,
             data: {tipo:2 , fecha:fecha , hora_ini:hora_ini, hora_fin:hora_fin},
             success: function(){
-      $("#addFecha-form").parent().dialog('destroy');
+				$("#addFecha-form").parent().dialog('destroy');
     }
           });
   });

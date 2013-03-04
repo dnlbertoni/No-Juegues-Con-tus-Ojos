@@ -15,15 +15,6 @@ class Diagnostico extends MY_Controller{
     parent::__construct();
     $this->load->model('Escuelas_model');
     $this->load->model('Casos_model');
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $this->load->model('Perfil_model');
-    $this->load->model('UserModulos_model');
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);    
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu');    
   }
   function index(){
     $this->output->enable_profiler(false);
@@ -41,7 +32,7 @@ class Diagnostico extends MY_Controller{
      */
     $datosDia = $this->Casos_model->datosPorDia();
     $data['datosDia']=$datosDia;
-    $data['datosTotal']=$this->Casos_model->datosTotal();    
+    $data['datosTotal']=$this->Casos_model->datosTotal();
     $data['promIngreso']=$this->Casos_model->promedioIngresos();
     $data['promTiempo']=$this->Casos_model->promedioTiempo();
     Template::set($data);
@@ -59,14 +50,14 @@ class Diagnostico extends MY_Controller{
     $nene     = $this->Casos_model->getByTurno($idTurno);
     if(!$nene){
       $data['mensaje']="El turno ".$idTurno." ingresado no se encuentra registrado en nuestra base de datos";
-      $this->load->view('diagnostico/error',$data);      
+      $this->load->view('diagnostico/error',$data);
     }else{
       $x=0;
       foreach($nene as $n){
         $id[$x]=$n->escuela_id;
         $nombre[$x]=$n->escuela;
         $x++;
-      } 
+      }
       $aux = array_unique($id);
       $x=0;
       foreach ($aux as $key=>$value){
@@ -76,9 +67,9 @@ class Diagnostico extends MY_Controller{
       };
       $data['escuelas'] =$escuela;
       $data['nene']=$nene;
-      $this->load->view('diagnostico/resultadoAjax',$data);            
+      $this->load->view('diagnostico/resultadoAjax',$data);
     }
-  }  
+  }
   function buscoDNI($method="ajax"){
     $data['texto']='DNI:';
     $data['accion']="diagnostico/dniDo";
@@ -91,14 +82,14 @@ class Diagnostico extends MY_Controller{
     $nene     = $this->Casos_model->getByDni($dni);
     if(!$nene){
       $data['mensaje']="El numero DNI ".$dni." ingresado no se encuentra registrado en nuestra base de datos";
-      $this->load->view('diagnostico/error',$data);      
+      $this->load->view('diagnostico/error',$data);
     }else{
       $x=0;
       foreach($nene as $n){
         $id[$x]=$n->escuela_id;
         $nombre[$x]=$n->escuela;
         $x++;
-      } 
+      }
       $aux = array_unique($id);
       $x=0;
       foreach ($aux as $key=>$value){
@@ -108,7 +99,7 @@ class Diagnostico extends MY_Controller{
       };
       $data['escuelas'] =$escuela;
       $data['nene']=$nene;
-      $this->load->view('diagnostico/resultadoAjax',$data);            
+      $this->load->view('diagnostico/resultadoAjax',$data);
     }
   }
   function buscoApellido($method="ajax"){
@@ -117,20 +108,20 @@ class Diagnostico extends MY_Controller{
     if($method=="ajax"){
       $this->load->view('diagnostico/search',$data);
     }
-  }  
+  }
   function apellidoDo(){
     $apellido=$this->input->post('texto');
     $nene = $this->Casos_model->getByApellido($apellido);
     if(!$nene){
       $data['mensaje']="No existen registros con el apellido:  ".$apellido."  en nuestra base de datos";
-      $this->load->view('diagnostico/error',$data);      
+      $this->load->view('diagnostico/error',$data);
     }else{
       $x=0;
       foreach($nene as $n){
         $id[$x]=$n->escuela_id;
         $nombre[$x]=$n->escuela;
         $x++;
-      } 
+      }
       $aux = array_unique($id);
       $x=0;
       foreach ($aux as $key=>$value){
@@ -140,9 +131,9 @@ class Diagnostico extends MY_Controller{
       };
       $data['escuelas'] =$escuela;
       $data['nene']=$nene;
-      $this->load->view('diagnostico/resultadoAjax',$data);            
+      $this->load->view('diagnostico/resultadoAjax',$data);
     }
-  }  
+  }
   function buscoEscuela($method="ajax"){
     $data['texto']='Escuela:';
     $data['pageEscuelas']= '"'. base_url().'index.php/diagnostico/searchEscuelas"';
@@ -171,14 +162,14 @@ class Diagnostico extends MY_Controller{
     $escu=$this->Escuelas_model->getById($esc);
     if(!$nene){
       $data['mensaje']="No existen chicos con posibles problemas cargados para la escuela:  ".$escu->nombre."  en nuestra base de datos para este Programa";
-      $this->load->view('diagnostico/error',$data);      
+      $this->load->view('diagnostico/error',$data);
     }else{
       $x=0;
       foreach($nene as $n){
         $id[$x]=$n->escuela_id;
         $nombre[$x]=$n->escuela;
         $x++;
-      } 
+      }
       $aux = array_unique($id);
       $x=0;
       foreach ($aux as $key=>$value){
@@ -188,9 +179,9 @@ class Diagnostico extends MY_Controller{
       };
       $data['escuelas'] =$escuela;
       $data['nene']=$nene;
-      $this->load->view('diagnostico/resultadoAjax',$data);            
+      $this->load->view('diagnostico/resultadoAjax',$data);
     }
-  }   
+  }
   function recibir($id=false){
     $caso=$this->Casos_model->detalleCaso($id);
     $caso->fecnac=($caso->fecnac=="0000-00-00")?'':$caso->fecnac;
@@ -286,8 +277,8 @@ class Diagnostico extends MY_Controller{
       if(($sum+$barcode{12})%10==0){
         return $numero;
       } else {
-        return false; 
-      }    
+        return false;
+      }
   }
   function _encodeEAN13($barcode){
     $barcode=  str_pad($barcode, 12, '0', STR_PAD_LEFT);
@@ -299,11 +290,11 @@ class Diagnostico extends MY_Controller{
     $r=$sum%10;
     if($r>0)
         $r=10-$r;
-    return $barcode.$r;    
+    return $barcode.$r;
   }
   /*
    * Agregar un chicos que no se haya visto en una pesquiza y vaya al diagnostico
-   * 
+   *
    */
   function addManual(){
     $fechoy= new DateTime();
@@ -320,7 +311,7 @@ class Diagnostico extends MY_Controller{
                 'fechapesq'=>$fechoy->format('Y-m-d'),
                 'voluntario'=>1,
                 'dia'=>$fechoy->format('d-m'),
-                'hora'=>$fechoy->format('h:s'),        
+                'hora'=>$fechoy->format('h:s'),
                 'carta'=>1,
                 'confirmo'=>0,
                 'tipopesq'=>2,

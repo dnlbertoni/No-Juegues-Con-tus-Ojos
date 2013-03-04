@@ -13,24 +13,50 @@
 class Admin extends MY_Controller{
   function __construct() {
     parent::__construct();
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $this->load->model('Perfil_model');
-    $this->load->model('UserModulos_model');
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
-    $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
-    $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
-    $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');
-    //Template::set('linea', $menu);
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu'); 
-    Template::set_block('lateral', '_lateral'); 
+    Template::set('lateralInfoData',true);    
+    Template::set_block('lateral', '_lateralAdmin'); 
   }
   function index(){
+    $fecPesq = $this->Fechas_model->getPesquizas();
+    $fecEntr = $this->Fechas_model->getEntregas();
+    $data['programa']=$this->Programas_model->getById($this->session->userdata('programa_id'));
+    Template::set('urlMuestroPesq', "'".base_url()."admin/muestroFechas/1"."'");
+    Template::set('urlMuestroDiags', "'".base_url()."admin/muestroFechas/2"."'");
+    Template::set('urlMuestroEntr', "'".base_url()."admin/muestroFechas/3"."'");
+    Template::set($data);	  
     Template::render();
   }
+  function muestroFechas($tipo){
+    $this->output->enable_profiler(false);
+    switch ($tipo){
+      case 1:
+        $data['fechas'] = $this->Fechas_model->getPesquizas();
+        break;
+      case 2:
+        $data['fechas'] = $this->Fechas_model->getDiagnosticos();
+        break;
+      case 3:
+        $data['fechas'] = $this->Fechas_model->getEntregas();
+        break;
+    }
+    $this->load->view('fechas/muestro',$data);
+  }
+  function agregoFecha(){
+    $this->load->view('fechas/add');
+  }
+  function agregoFechaDo(){
+    $datos = array(
+        'tipo'        => $this->input->post('tipo'),
+        'fecha'       => $this->input->post('fecha'),
+        'hora_ini'    => $this->input->post('hora_ini'),
+        'hora_fin'    => $this->input->post('hora_fin'),
+        'programa_id' => $this->input->post('programa_id')
+    );
+    $id=$this->Fechas_model->add($datos);
+  }  
+  function borroFecha($id){
+    $this->Fechas_model->borrar($id);
+  }  
   function notaTutores(){
     $nombreFile = TXTFILES . "notatutores".$this->session->userdata('programa_id').".txt";
     if(file_exists($nombreFile)){

@@ -11,20 +11,11 @@ class Pesquiza extends MY_Controller{
     $this->load->model('Voluntarios_model', '', true);
     $this->load->model('Pesquizas_model', '', true);
     $this->load->model('Casos_model');
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $this->load->model('Perfil_model');
-    $this->load->model('UserModulos_model');
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
+
     $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
     $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
-    $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');
-    //Template::set('linea', $menu);
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu'); 
-    Template::set_block('lateral', '_lateral'); 
+    $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');;
+    Template::set_block('lateral', '_lateral');
   }
   function index(){
     $data['pesquizas']=$this->Pesquizas_model->getIndexAgrupados();
@@ -121,11 +112,11 @@ class Pesquiza extends MY_Controller{
     $datos = array( 'apellido' => $this->input->post('apellido'),
                     'nombre'   => $this->input->post('nombre'),
                     'numdoc'   => $this->input->post('dni'),
-                    'izq'      => $this->input->post('izq'), 
+                    'izq'      => $this->input->post('izq'),
                     'der'      => $this->input->post('der'),
                     'pesquiza_id' => $this->input->post('pesquiza_id')
     );
-    $id=$this->Casos_model->add($datos);    
+    $id=$this->Casos_model->add($datos);
   }
   function borroAlumno($id){
     $this->Casos_model->borrar($id);
@@ -148,7 +139,7 @@ class Pesquiza extends MY_Controller{
     $f=explode('-', $programa->fecfin_pesq);
     $fecfin->setDate($f[0],$f[1],$f[2]);
     $data['fechfin']=$fecfin;
-    $data['escuelasSel'] = $this->Escuelas_model->toDropdownEspecial('id', 'nombre');    
+    $data['escuelasSel'] = $this->Escuelas_model->toDropdownEspecial('id', 'nombre');
     $data['responsablesSel'] = $this->Pesquizas_model->toDropDownResponsables('id', 'nombre');
     $data['accion']='pesquiza/generarAutoDo';
     $this->load->view('pesquiza/generarAuto', $data);
@@ -156,13 +147,13 @@ class Pesquiza extends MY_Controller{
   function generarAutoDo(){
     $cursos = array('A', 'B', 'C', 'D', 'E', 'F', 'G');
     for($i=0;$i<$this->input->post('cantidad')&&$i<6;$i++){
-      $datos = array( 'fecha'=>$this->_formatFechaSave($this->input->post('fecha')), 
+      $datos = array( 'fecha'=>$this->_formatFechaSave($this->input->post('fecha')),
                       'programa_id' => $this->session->userdata('programa_id'),
-                      'escuela_id'  => $this->input->post('escuela'), 
-                      'grado'       => $this->input->post('grado'), 
+                      'escuela_id'  => $this->input->post('escuela'),
+                      'grado'       => $this->input->post('grado'),
                       'turno'       => 'M',
                       'tipo'        => 1,
-                      'division'    => $cursos[$i], 
+                      'division'    => $cursos[$i],
                       'estado'      => PESQUIZA_PENDIENTE
                     );
       $this->Pesquizas_model->add($datos);
@@ -191,12 +182,12 @@ class Pesquiza extends MY_Controller{
   function finalizarDo(){
     $this->output->enable_profiler(true);
     $datos = array(
-        'fecha'         => $this->input->post('fecha'), 
-        'division'      => $this->input->post('division'), 
-        'turno'         => $this->input->post('turno'), 
-        'cant_alum'     => $this->input->post('cant_alum'), 
-        'cant_pres'     => $this->input->post('cant_pres'), 
-        'cant_prob'     => $this->input->post('cant_prob'), 
+        'fecha'         => $this->input->post('fecha'),
+        'division'      => $this->input->post('division'),
+        'turno'         => $this->input->post('turno'),
+        'cant_alum'     => $this->input->post('cant_alum'),
+        'cant_pres'     => $this->input->post('cant_pres'),
+        'cant_prob'     => $this->input->post('cant_prob'),
         'voluntario_id' => $this->input->post('voluntario_id'),
         'tipo'          => $this->input->post('tipo'),
         'estado'        => PESQUIZA_FINALIZADA
@@ -209,7 +200,7 @@ class Pesquiza extends MY_Controller{
     * modulo que genera una marca en la pesquiza para que quede pendiente de impresion de carta
     * cuando se imprime ahi recien se marca como impresa en el alumno
     */
-    $this->Pesquizas_model->setEstado($idPesq,PESQUIZA_REALIZADA);    
+    $this->Pesquizas_model->setEstado($idPesq,PESQUIZA_REALIZADA);
   }
   function enviarCarta($idPesq){
     /*
@@ -258,11 +249,11 @@ class Pesquiza extends MY_Controller{
     $this->load->view('pesquiza/addTT', $data);
   }
   function asignarTurnoTransporteDo(){
-    $this->output->enable_profiler(false);    
-    $this->Pesquizas_model->asignoTurno(  $this->input->post('escuela'), 
-                                          $this->input->post('dia'), 
-                                          $this->input->post('hora'), 
-                                          $this->input->post('transporte'), 
+    $this->output->enable_profiler(false);
+    $this->Pesquizas_model->asignoTurno(  $this->input->post('escuela'),
+                                          $this->input->post('dia'),
+                                          $this->input->post('hora'),
+                                          $this->input->post('transporte'),
                                           $this->input->post('viaje'));
     /*
     $pesq=$this->Pesquizas_model->getTurnoEscuela($this->input->post('escuela'));
@@ -278,7 +269,7 @@ class Pesquiza extends MY_Controller{
 TEXTO;
     $resultado .= "<td >Turno recien Asignado</td>";
     echo $resultado;
-     * 
+     *
      */
   }
   function definirTransporte(){
@@ -289,7 +280,7 @@ TEXTO;
     Template::render();
   }
   function asignoTransporte($idEsc, $transporte){
-    $this->Pesquizas_model->asignoTransporte($idEsc,$transporte);    
+    $this->Pesquizas_model->asignoTransporte($idEsc,$transporte);
   }
   function imprimirTurnos(){
   	$data['finalizadas']=$this->Pesquizas_model->getByEstado(PESQUIZA_TURNOS);

@@ -23,7 +23,9 @@ class Fechas_model extends MY_Model{
     $this->db->select('fechas.id as id');
     $this->db->select('programas.id as programa');
     $this->db->select('programas.nombre as nombre');
+    $this->db->select('programas.clubrotario as clubrotario');
     $this->db->select('fechas.fecha as fecha');
+    $this->db->select('fechas.sede as sede');
     $this->db->select('fechas.hora_ini as inicio');
     $this->db->select('fechas.hora_fin as final');
     $this->db->from('fechas');

@@ -1,7 +1,5 @@
 <h2>Listado de Escuelas</h2>
 <?php echo anchor('admin/escuelas/add', 'Nueva escuela', 'id="botEscuela""');?>
-<?php echo anchor('admin/pdf/listadoTransporte/1', 'Listado Transporte', 'class="botTransporte" target="_blank"');?>
-<?php echo anchor('admin/pdf/listadoTransporte/0', 'Listado a la Facultad', 'class="botTransporte" target="_blank"');?>
 <div class="post">
 <table>
   <thead>

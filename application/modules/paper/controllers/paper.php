@@ -7,18 +7,7 @@
 class Paper extends MY_Controller{
   function __construct() {
     parent::__construct();
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $this->load->model('Perfil_model');
-    $this->load->model('UserModulos_model');
-    $this->load->model('Casos_model', '', true);
-    $this->load->model('Pesquizas_model', '', true);  
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu'); 
-    Template::set_block('lateral', '_lateral');     
+    Template::set_block('lateral', '_lateral');
   }
   function index(){
     Template::render();

@@ -32,9 +32,18 @@ Released   : 20110123
           <p><?php echo $nombrePrograma;?> </p>
 		</div>
 		<div id="news">
+		  <?php if($this->session->userdata('status')==1):?>
+		  <div id="navUser">
+			 <?php echo anchor('admin/','Administracion','id="bAdmin"');?>
+			 <?php echo anchor('auth/profile',$this->session->userdata('username'),'id="bUser"');?>
+			 <?php echo anchor('auth/logout','Salir','id="bOut"');?>
+		  </div>
+		  <?php endif;?>
           <?php if(ENVIRONMENT==='desarrollo'):?>
-              POR FAVOR PREGUTNAR ANTES DE TRABAJAR YA QUE es UNA BASE DE DATOS DE PRUEBAS Y SERA BORRADO TODO
+			  <p>&nbsp;</p>
+              <p>BASE DE DATOS DE PRUEBAS!!!</p>
           <?php endif?>
+
 		</div>
 	</div>
 	<!-- end #header -->
@@ -63,5 +72,12 @@ Released   : 20110123
 	</div>
 </div>
 <!-- end #footer -->
+<script>
+	$(document).ready(function(){
+		$("#bAdmin").button({icons:{secondary:'ui-icon-wrench'},text:true});
+		$("#bUser").button({icons:{secondary:'ui-icon-person'},text:true});
+		$("#bOut").button({icons:{secondary:'ui-icon-power'},text:false});
+	});
+</script>
 </body>
 </html>

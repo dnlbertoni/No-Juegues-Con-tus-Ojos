@@ -17,26 +17,17 @@ class Entrega extends MY_Controller{
     $dataLateral['statics']=$this->Casos_model->estadisticasLentes($this->session->userdata('programa_id'));
     Template::set($dataLateral);
     Template::set_block('lateral', '_lateral');
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);        
-    Template::set('header','Entrega de Lentes');
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu');    
-
   }
   function index($error=""){
     $data['casos'] = count($this->Casos_model->getAlumnosLentes());
     $data['colSel']= $this->Pesquizas_model->escuelaToDropDown();
     $data['error'] = $error;
     $data['estado'] = array ( 0 => 'Sin Diagnosticar',
-                              1 => 'Carta Enviada', 
+                              1 => 'Carta Enviada',
                               2 => 'Diagnosticado',
-                              3 => 'Pendiente Lente', 
-                              4 => 'Carta Enviada', 
-                              5 => 'Lentes', 
+                              3 => 'Pendiente Lente',
+                              4 => 'Carta Enviada',
+                              5 => 'Lentes',
                               6 => 'Terminado'
                             );
     Template::set($data);
@@ -47,7 +38,7 @@ class Entrega extends MY_Controller{
     if(!$caso){
       $this->index($error="dni");
     }else{
-     $this->casoLente($caso->id); 
+     $this->casoLente($caso->id);
     }
   }
   function apellidoSearch(){
@@ -55,11 +46,11 @@ class Entrega extends MY_Controller{
                                                 $this->session->userdata('programa_id'));
     $data['casos']=$casos;
     $data['estado'] = array ( 0 => 'Sin Diagnosticar',
-                              1 => 'Carta Enviada', 
+                              1 => 'Carta Enviada',
                               2 => 'Diagnosticado',
-                              3 => 'Pendiente Lente', 
-                              4 => 'Carta Enviada', 
-                              5 => 'Lentes', 
+                              3 => 'Pendiente Lente',
+                              4 => 'Carta Enviada',
+                              5 => 'Lentes',
                               6 => 'Terminado'
                             );
     $this->template->write_view('content','entrega/lista',$data);
@@ -70,11 +61,11 @@ class Entrega extends MY_Controller{
                                                $this->session->userdata('programa_id'));
     $data['casos']=$casos;
     $data['estado'] = array ( 0 => 'Sin Diagnosticar',
-                              1 => 'Carta Enviada', 
+                              1 => 'Carta Enviada',
                               2 => 'Diagnosticado',
-                              3 => 'Pendiente Lente', 
-                              4 => 'Carta Enviada', 
-                              5 => 'Lentes', 
+                              3 => 'Pendiente Lente',
+                              4 => 'Carta Enviada',
+                              5 => 'Lentes',
                               6 => 'Terminado'
                             );
     Template::set($data);
@@ -111,7 +102,7 @@ class Entrega extends MY_Controller{
                                   'id'=>'Bback',
                                   'clase'=>'boton',
                                   'target'=>"_self");
-    
+
     /*
     $botones[]=array('accion'=> 'paper/pdf/cartaEntregaLente/'.$caso->id,
                                   'texto'=> 'Carta Lente',
@@ -123,13 +114,13 @@ class Entrega extends MY_Controller{
                                   'id'=>'Baccion',
                                   'clase'=>'print',
                                   'target'=>"_blank");
-     * 
+     *
      */
     $dataLateral['back']="'".base_url()."index.php/entrega/lenteProceso/".$caso->id."'";
     $dataLateral['botones']=$botones;
     $this->template->write_view('header2', 'admin/casos/lateral', $dataLateral);
     $this->template->write_view('content','admin/casos/view',$data);
-    $this->template->render();    
+    $this->template->render();
   }
   function lenteProceso($id){
     $this->Casos_model->setEstado($id,5);
