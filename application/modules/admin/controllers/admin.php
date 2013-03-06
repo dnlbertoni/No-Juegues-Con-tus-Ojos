@@ -13,8 +13,8 @@
 class Admin extends MY_Controller{
   function __construct() {
     parent::__construct();
-    Template::set('lateralInfoData',true);    
-    Template::set_block('lateral', '_lateralAdmin'); 
+    Template::set('lateralInfoData',true);
+    Template::set_block('lateral', '_lateralAdmin');
   }
   function index(){
     $fecPesq = $this->Fechas_model->getPesquizas();
@@ -23,7 +23,7 @@ class Admin extends MY_Controller{
     Template::set('urlMuestroPesq', "'".base_url()."admin/muestroFechas/1"."'");
     Template::set('urlMuestroDiags', "'".base_url()."admin/muestroFechas/2"."'");
     Template::set('urlMuestroEntr', "'".base_url()."admin/muestroFechas/3"."'");
-    Template::set($data);	  
+    Template::set($data);
     Template::render();
   }
   function muestroFechas($tipo){
@@ -53,10 +53,10 @@ class Admin extends MY_Controller{
         'programa_id' => $this->input->post('programa_id')
     );
     $id=$this->Fechas_model->add($datos);
-  }  
+  }
   function borroFecha($id){
     $this->Fechas_model->borrar($id);
-  }  
+  }
   function notaTutores(){
     $nombreFile = TXTFILES . "notatutores".$this->session->userdata('programa_id').".txt";
     if(file_exists($nombreFile)){
@@ -152,5 +152,8 @@ class Admin extends MY_Controller{
     fwrite($archivo, $this->input->post('texto'));
     fclose($archivo);
     redirect('paper/', 'location', 301);
+  }
+  function ciudad(){
+    $this->load->view('admin/ciudadAdd');
   }
 }

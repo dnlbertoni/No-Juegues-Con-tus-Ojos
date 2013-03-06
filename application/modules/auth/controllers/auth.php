@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auth extends MY_Controller{
+class Auth extends Pub_Controller{
   function __construct(){
     parent::__construct();
     $this->lang->load('tank_auth');
@@ -28,7 +28,7 @@ class Auth extends MY_Controller{
     if(!$programa_id ){
         Template::redirect('inicio');
     }else{
-      $this->session->set_userdata('programa_id', $programa_id);         
+      $this->session->set_userdata('programa_id', $programa_id);
     };
     if ($this->tank_auth->is_logged_in()) {									// logged in
         redirect('home');
@@ -90,7 +90,7 @@ class Auth extends MY_Controller{
                   }
           }
           $menu[] = array('link' =>'/auth/forgot_password/', 'nombre'=>'Olvide la contraseña', 'extra'=>'id="Password"');
-          if ($this->config->item('allow_registration')){ 
+          if ($this->config->item('allow_registration')){
             $menu[] = array('link' =>'/auth/register/', 'nombre'=>'Registrarse', 'extra'=>'id="Registrarse"');
           }
           Template::set('linea', $menu);

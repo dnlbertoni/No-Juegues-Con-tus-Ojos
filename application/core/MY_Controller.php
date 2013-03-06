@@ -31,3 +31,13 @@ class MY_Controller extends MX_Controller {
     return $fX[2]."/".$fX[1]."/".$fX[0];
   }
 }
+class Pub_Controller extends MX_Controller {
+  function __construct() {
+    parent::__construct();
+    $this->output->enable_profiler(ENVIRONMENT==='desarrollo');
+    $programa=$this->Programas_model->getOnline();
+    Template::set('database', $this->Programas_model->db->database);
+    Template::set('nombrePrograma', (isset($programa->nombre))?$programa->nombre:'');
+    Template::set_theme($this->session->userdata('tema'));
+  }
+}

@@ -4,7 +4,7 @@
  *
  * @author dnl
  */
-class Inicio extends MY_Controller{
+class Inicio extends Pub_Controller{
   function __construct() {
     parent::__construct();
     if($this->session->userdata('status')==1){

@@ -1,22 +1,21 @@
   $(document).ready(function(){
-    $('.boton').button();
-    $("#Bpesq").button({text:true,icons:{primary:'ui-icon-search'}});
-    $("#Badmi").button({text:true,icons:{primary:'ui-icon-gear'}});
-    $("#Bpaper").button({text:true,icons:{primary:'ui-icon-document'}});
-    $("#Bdiag").button({text:true,icons:{primary:'ui-icon-bookmark'}});
-    $("#Bentr").button({text:true,icons:{primary:'ui-icon-flag'}});
-    //
-    $("#botEscuela").button({icons:{primary:'ui-icon-home'}})
-    $("#botCurso").button({icons:{primary:'ui-icon-suitcase'}})
-    $("#botVol").button({icons:{primary:'ui-icon-person'}})
     $("#Volver").button({icons:{primary:'ui-icon-circle-arrow-w'}})
-    $("#Pesq").button({icons:{primary:'ui-icon-document'}})
     $("div [id^=bot]").click(function(e){
       e.preventDefault();
       var nombre = "Busqueda por " + $(this).text();
       LinkAjax($(this).attr('href'), nombre);
     });
+    /* botones genericos */
+    $('.boton').button();
+    $(".botEscuela").button({icons:{primary:'ui-icon-home'}, text:false});
+    $(".botDocumento").button({icons:{primary:'ui-icon-document'}, text:false});
+    $(".botCurso").button({icons:{primary:'ui-icon-suitcase'}, text:false})
+    $(".botVol").button({icons:{primary:'ui-icon-person'}, text:false})
+    $('.botAdd').button({icons:{primary:'ui-icon-circle-plus'}, text:false});
+    $('.botMinus').button({icons:{primary:'ui-icon-circle-minus'}, text:false});
+    $('.botPrint').button({icons:{primary:'ui-icon-print'}, text:false});
     $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false})
+    /* fin botones genericos */
     $(".botEdit").click(function(e){
       e.preventDefault();
       var nombre = $(this).text();
