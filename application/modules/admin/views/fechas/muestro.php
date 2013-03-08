@@ -18,7 +18,7 @@
   </tr>
   <?php endforeach;?>
 </table>
-<?php echo anchor('admin/agregoFecha/', 'Agrego Fecha', 'class="botAddFecha boton ventana"');?>
+<?php echo anchor('admin/agregoFecha/'.$tipo, 'Agrego Fecha', 'class="botAddFecha boton ventana"');?>
 <script>
 $(document).ready(function(){
   $(".botAddFecha").button({icons:{primary:'ui-icon-circle-plus'}});
@@ -32,7 +32,7 @@ $(document).ready(function(){
     if($(this).hasClass('ventana')){
 		$("#ventanaAjax").load(url,[],function(){$("#ventanaAjax").dialog("open")});
 	}else{
-		$.ajax({url:url, success:function(){$("#ventanaAjax").dialog("destroy")}});
+		$.ajax({url:url, success:function(){muestroTodo()}});
 	};
   });
 });

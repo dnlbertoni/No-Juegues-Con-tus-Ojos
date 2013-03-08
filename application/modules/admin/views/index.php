@@ -30,8 +30,12 @@ aca va la ayuda de lo que se hace en este modulo
 </div>
 <script>
 $(document).ready(function(){
+  muestroTodo();
+})
+function muestroTodo(){
   $("#muestroPesq").load(<?php echo $urlMuestroPesq?>);
   $("#muestroDiags").load(<?php echo $urlMuestroDiags?>);
   $("#muestroEntr").load(<?php echo $urlMuestroEntr?>);
-});
+
+}
 </script>

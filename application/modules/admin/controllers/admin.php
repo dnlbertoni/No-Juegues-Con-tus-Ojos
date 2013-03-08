@@ -39,15 +39,23 @@ class Admin extends MY_Controller{
         $data['fechas'] = $this->Fechas_model->getEntregas();
         break;
     }
+    $data['tipo']=$tipo;
     $this->load->view('fechas/muestro',$data);
   }
-  function agregoFecha(){
-    $this->load->view('fechas/add');
+  function agregoFecha($tipo){
+    $this->output->enable_profiler(false);
+    $data['horaini']='08:00:00';
+    $data['horafin']='18:00:00';
+    $data['tipo']=$tipo;
+    $data['min'] =  array('year'=>'2013', 'mon'=>'0','mday'=>'3');
+    $data['max'] =  array('year'=>'2013', 'mon'=>'11','mday'=>'31');
+    $this->load->view('fechas/add', $data);
   }
   function agregoFechaDo(){
     $datos = array(
-        'tipo'        => $this->input->post('tipo'),
-        'fecha'       => $this->input->post('fecha'),
+        'tipoevent'   => $this->input->post('tipo'),
+        'fecha'       => $this->_formatFechaSave($this->input->post('fecha')),
+        'sede'        => $this->input->post('sede'),
         'hora_ini'    => $this->input->post('hora_ini'),
         'hora_fin'    => $this->input->post('hora_fin'),
         'programa_id' => $this->input->post('programa_id')
