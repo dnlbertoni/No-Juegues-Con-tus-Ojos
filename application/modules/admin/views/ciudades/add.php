@@ -1,39 +1,27 @@
-<?php echo form_open($accion, 'id="escuela-Form"')?>
+<?php echo form_open($accion, 'id="ciudad-Form"')?>
 <table>
   <tr>
     <th>Nombre:</th>
-    <td><?php echo form_input('nombre', $esc->nombre, 'size="20"');?></td>
+    <td><?php echo form_input('nombre', $ciu->nombre, 'size="20"');?></td>
   </tr>
   <tr>
     <th>Direccion:</th>
-    <td><?php echo form_input('direccion', $esc->direccion, 'size="40"');?></td>
+    <td><?php echo form_input('cpostal', $ciu->cpostal, 'size="40"');?></td>
   </tr>
   <tr>
     <th>Ciudad:</th>
-    <td><?php echo form_dropdown('ciudad_id', $selCiudades,$esc->ciudad_id, '');?></td>
+    <td><?php echo form_input('provincia',$ciu->provincia, '');?></td>
   </tr>
   <tr>
     <th>Telefono:</th>
-    <td><?php echo form_input('telefono', $esc->telefono, 'size="20"');?></td>
+    <td><?php echo form_input('pais', $ciu->pais, 'size="20"');?></td>
   </tr>
-  <tr>
-    <th>Director:</th>
-    <td><?php echo form_input('director', $esc->director, 'size="20"');?></td>
-  </tr>
-  <tr>
-    <th>Numero Establecimiento:</th>
-    <td><?php echo form_input('numero_estab', $esc->numero_estab, 'size="5"');?></td>
-  </tr>
-  <tr>
-    <th>lugar de retiro de Transporte:</th>
-    <td><?php echo form_textarea('lugarTransporte', $esc->lugarTransporte,'id="lugartransporte"');?></td>
-  </tr>  
   <tr>
     <td colspan="2"><div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div></td>
   </tr>
   <tr>
-    <td colspan="2"><?php echo form_hidden('programa_id', $esc->programa_id, '');?></td>
-    <td colspan="2"><?php echo form_hidden('id', $esc->id, '');?></td>
+    <td colspan="2"><?php echo form_hidden('programa_id', $ciu->programa_id, '');?></td>
+    <td colspan="2"><?php echo form_hidden('id', $ciu->id, '');?></td>
   </tr>
 </table>
 <?php echo form_close();?>
@@ -48,15 +36,15 @@ $(document).ready(function(){
       //target:     '#divToUpdate',
       //url:        'comment.php',
       success:    function() {
-        var nombre= $('#escuela-Form').parent().attr('id');
+        var nombre= $('#ciudad-Form').parent().attr('id');
         nombre = "#" + nombre;
         $(nombre).dialog('destroy');
         location.reload();
       }
   };
-  $("#escuela-Form").ajaxForm(options);
+  $("#ciudad-Form").ajaxForm(options);
   $("#Guardar").click(function(){
-    $("#escuela-Form").submit();
+    $("#ciudad-Form").submit();
   });
   $("#Cancelar").click(function(){
     var nombre = "#" + $(this).parent().attr('id');
