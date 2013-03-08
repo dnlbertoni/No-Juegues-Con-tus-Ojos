@@ -1,12 +1,8 @@
 <div id="sidebar">
   <div class="ui-widget">
-    <h3 class="ui-widget-header">Escuelas</h3>
+    <h3 class="ui-widget-header" title="Escuelas"><span class="expande"></span>Escuelas</h3>
     <div class="ui-widget-content">
 		<ul>
-          <li>
-              <?php echo anchor('admin/ciudad', 'Nueva Ciudad', 'class="botAdd"');?>
-              <?php echo anchor('admin/ciudad', 'Nueva Ciudad');?>
-          </li>
           <li>
 				<?php echo anchor('admin/escuelas/add', 'Nueva Escuela', 'class="botAdd"');?>
 				<?php echo anchor('admin/escuelas/add', 'Nueva Escuela');?>
@@ -29,7 +25,7 @@
   <div style="clear:both">&nbsp;</div>
   <!--fin modulo1 -->
   <div class="ui-widget">
-    <h3 class="ui-widget-header">Voluntarios</h3>
+    <h3 class="ui-widget-header"><span class="expande"></span>Voluntarios</h3>
     <div class="ui-widget-content">
 		<ul>
 			<li>
@@ -69,6 +65,37 @@
     </div>
   </div>
   <div style="clear:both">&nbsp;</div>
-  <!--fin modulo2 -->
+  <!--fin modulo3 -->
+  <div style="clear:both">&nbsp;</div>
+  <div class="ui-widget">
+    <h3 class="ui-widget-header">Ciudades</h3>
+    <div class="ui-widget-content">
+		<ul>
+          <li>
+              <?php echo anchor('admin/ciudad', 'Nueva Ciudad', 'class="botAdd"');?>
+              <?php echo anchor('admin/ciudad', 'Nueva Ciudad');?>
+          </li>
+          <li>
+              <?php echo anchor('admin/ciudades', 'Admin. ciudades',  'class="botCiu"');?>
+              <?php echo anchor('admin/ciudades', 'Admin. ciudades');?>
+          </li>
+		</ul>
+    </div>
+  </div>
+  <div style="clear:both">&nbsp;</div>
+  <!--fin modulo4 -->
+  <div style="clear:both">&nbsp;</div>
 </div>
-<div style="clear:both">&nbsp;</div>
+<script>
+  $(document).ready(function(){
+    $(".expande").addClass('ui-icon ui-icon-circle-plus');
+    $(".expande").css('float', 'left');
+    $(".expande").css('margin', '7px');
+    $("#sidebar .ui-widget-content").hide();
+    $(".ui-widget-header").click(function(){
+      $(this).next().toggle();
+      icono=$(this).children();
+      icono.toggle();
+      });
+  });
+</script>

@@ -11,6 +11,7 @@
     $(".botDocumento").button({icons:{primary:'ui-icon-document'}, text:false});
     $(".botCurso").button({icons:{primary:'ui-icon-suitcase'}, text:false})
     $(".botVol").button({icons:{primary:'ui-icon-person'}, text:false})
+    $(".botCiu").button({icons:{primary:'ui-icon-image'}, text:false})
     $('.botAdd').button({icons:{primary:'ui-icon-circle-plus'}, text:false});
     $('.botMinus').button({icons:{primary:'ui-icon-circle-minus'}, text:false});
     $('.botPrint').button({icons:{primary:'ui-icon-print'}, text:false});
