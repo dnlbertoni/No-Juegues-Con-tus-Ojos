@@ -43,8 +43,7 @@ class Ciudades extends MY_Controller{
                 'nombre'=>$this->input->post('nombre'),
                 'cpostal'=>$this->input->post('cpostal'),
                 'provincia'=>$this->input->post('provincia'),
-                'pais'=>$this->input->post('pais'),
-                'programa_id'=>$this->session->userdata('programa_id')
+                'pais'=>$this->input->post('pais')
                 );
         $id=$this->Ciudades_model->add($datos);
     }
@@ -59,15 +58,14 @@ class Ciudades extends MY_Controller{
                 'nombre'=>$this->input->post('nombre'),
                 'cpostal'=>$this->input->post('cpostal'),
                 'provincia'=>$this->input->post('provincia'),
-                'pais'=>$this->input->post('pais'),
-                'programa_id'=>$this->session->userdata('programa_id')
+                'pais'=>$this->input->post('pais')
                 );
         $this->Ciudades_model->update($datos,$this->input->post('id'));
     }
     function del($id){
         $data['accion']='admin/ciudades/delDo';
         $data['botGuardar']='Borrar';
-        $data['ciu']=$this->Escuelas_model->getByid($id);
+        $data['ciu']=$this->Ciudades_model->getById($id);
         $this->load->view('admin/ciudades/add', $data);
     }
     function delDo(){

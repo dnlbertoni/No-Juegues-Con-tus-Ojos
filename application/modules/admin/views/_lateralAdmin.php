@@ -42,7 +42,7 @@
   <div style="clear:both">&nbsp;</div>
   <!--fin modulo2 -->
   <div class="ui-widget">
-    <h3 class="ui-widget-header">Papeleria</h3>
+    <h3 class="ui-widget-header"><span class="expande"></span>Papeleria</h3>
     <div class="ui-widget-content">
 		<ul>
 			<li>
@@ -66,9 +66,8 @@
   </div>
   <div style="clear:both">&nbsp;</div>
   <!--fin modulo3 -->
-  <div style="clear:both">&nbsp;</div>
   <div class="ui-widget">
-    <h3 class="ui-widget-header">Ciudades</h3>
+    <h3 class="ui-widget-header"><span class="expande"></span>Ciudades</h3>
     <div class="ui-widget-content">
 		<ul>
           <li>
@@ -95,7 +94,13 @@
     $(".ui-widget-header").click(function(){
       $(this).next().toggle();
       icono=$(this).children();
-      icono.toggle();
+      icono.toggleClass(function() {
+          if ($(this).is('.ui-icon-circle-plus')) {
+            return 'ui-icon-circle-minus';
+          } else {
+            return 'ui-icon-circle-plus';
+          }
+        });
       });
   });
 </script>

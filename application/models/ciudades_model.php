@@ -21,4 +21,18 @@ class Ciudades_model extends MY_Model{
           }
           return $datos;
   }  
+  public function getAll($orden=FALSE, $limite=false){
+    $this->db->from($this->getTable());
+    if($orden)
+	  $this->db->order_by($orden);
+    if($limite){
+      $this->db->limit($limite);
+    };
+    return $this->db->get()->result();
+  }  
+  public function borrar($id){
+	  $this->db->where($this->getPrimaryKey(),$id);
+	  $this->db->delete($this->getTable());
+	  return true;
+  }  
 }

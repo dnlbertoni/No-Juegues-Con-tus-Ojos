@@ -5,22 +5,21 @@
     <td><?php echo form_input('nombre', $ciu->nombre, 'size="20"');?></td>
   </tr>
   <tr>
-    <th>Direccion:</th>
+    <th>Codigo Postal:</th>
     <td><?php echo form_input('cpostal', $ciu->cpostal, 'size="40"');?></td>
   </tr>
   <tr>
-    <th>Ciudad:</th>
+    <th>Provincia:</th>
     <td><?php echo form_input('provincia',$ciu->provincia, '');?></td>
   </tr>
   <tr>
-    <th>Telefono:</th>
+    <th>Pais:</th>
     <td><?php echo form_input('pais', $ciu->pais, 'size="20"');?></td>
   </tr>
   <tr>
     <td colspan="2"><div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div></td>
   </tr>
   <tr>
-    <td colspan="2"><?php echo form_hidden('programa_id', $ciu->programa_id, '');?></td>
     <td colspan="2"><?php echo form_hidden('id', $ciu->id, '');?></td>
   </tr>
 </table>
