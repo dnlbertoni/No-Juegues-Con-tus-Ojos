@@ -5,7 +5,7 @@
 		<ul>
           <li>
 				<?php echo anchor('admin/escuelas/add', 'Nueva Escuela', 'class="botAdd"');?>
-				<?php echo anchor('admin/escuelas/add', 'Nueva Escuela');?>
+				<?php echo anchor('admin/escuelas/add', 'Nueva Escuela', 'class="ajax"');?>
 			</li>
 			<li>
 				<?php echo anchor('admin/escuelas', 'Listado Escuelas',  'class="botEscuela"');?>
@@ -29,8 +29,8 @@
     <div class="ui-widget-content">
 		<ul>
 			<li>
-				<?php echo anchor('admin/voluntarios/add', 'Nuevo voluntario', 'class="botAdd"');?>
-				<?php echo anchor('admin/voluntarios/add', 'Nuevo voluntario');?>
+				<?php echo anchor('admin/voluntarios/add', 'Nuevo voluntario', 'class="botAdd ajax"');?>
+				<?php echo anchor('admin/voluntarios/add', 'Nuevo voluntario', 'class="ajax"');?>
 			</li>
 			<li>
 				<?php echo anchor('admin/voluntarios', 'Admin. voluntarios',  'class="botVol"');?>
@@ -71,8 +71,8 @@
     <div class="ui-widget-content">
 		<ul>
           <li>
-              <?php echo anchor('admin/ciudad', 'Nueva Ciudad', 'class="botAdd"');?>
-              <?php echo anchor('admin/ciudad', 'Nueva Ciudad');?>
+              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="botAdd"');?>
+              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="ajax"');?>
           </li>
           <li>
               <?php echo anchor('admin/ciudades', 'Admin. ciudades',  'class="botCiu"');?>

@@ -5,6 +5,7 @@
       var nombre = "Busqueda por " + $(this).text();
       LinkAjax($(this).attr('href'), nombre);
     });
+  
     /* botones genericos */
     $('.boton').button();
     $(".botEscuela").button({icons:{primary:'ui-icon-home'}, text:false});
@@ -17,6 +18,11 @@
     $('.botPrint').button({icons:{primary:'ui-icon-print'}, text:false});
     $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false})
     /* fin botones genericos */
+    $(".botAdd").click(function(e){
+      e.preventDefault();
+      var nombre = $(this).text();
+      LinkAjax($(this).attr('href'), nombre);
+    });
     $(".botEdit").click(function(e){
       e.preventDefault();
       var nombre = $(this).text();
