@@ -15,6 +15,7 @@ class Admin extends MY_Controller{
     parent::__construct();
     Template::set('lateralInfoData',true);
     Template::set_block('lateral', '_lateralAdmin');
+    $this->load->helper('date');
   }
   function index(){
     $fecPesq = $this->Fechas_model->getPesquizas();
@@ -65,6 +66,12 @@ class Admin extends MY_Controller{
   function borroFecha($id){
     $this->Fechas_model->borrar($id);
   }
+  /*
+   * notaTutores
+   * @todo crear plantilla de Constantes y variables
+   * @todo definir la incrustacion de un logo
+   * @todo descargar muestra de 1 solo.
+   */
   function notaTutores(){
     $nombreFile = TXTFILES . "notatutores".$this->session->userdata('programa_id').".txt";
     if(file_exists($nombreFile)){
@@ -76,7 +83,7 @@ class Admin extends MY_Controller{
     }
     $this->load->model('programas_model');
     $programa=$this->Programas_model->getOnline();
-    $data['fecha']=$programa->ciudadNombre . ", ". "Marzo de 2012";
+    $data['fecha']=$programa->ciudadNombre . ", ". mdate('%F de %Y');
     $data['destinatarios']="SEÑORES PADRES/TUTORES";
     $data['texto']=$nota;
     Template::set($data);

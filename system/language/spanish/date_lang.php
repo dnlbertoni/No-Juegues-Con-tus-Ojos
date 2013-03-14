@@ -2,7 +2,7 @@
 
 $lang['date_year'] = "Year";
 $lang['date_years'] = "Years";
-$lang['date_month'] = "Month";
+$lang['date_month'] = "Mes";
 $lang['date_months'] = "Months";
 $lang['date_week'] = "Week";
 $lang['date_weeks'] = "Weeks";

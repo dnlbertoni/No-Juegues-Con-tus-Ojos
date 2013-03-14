@@ -5,6 +5,6 @@
  * @todo notas
  * @todo escuelas
  * @todo voluntarios
- * @papeleria
+ * @todo papeleria
  */
 ?>
