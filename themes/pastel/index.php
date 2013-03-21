@@ -30,6 +30,7 @@ Released   : 20110123
 		<div id="logo">
           <h1><?php echo anchor('home/','OKULO');?></h1>
           <p><?php echo $nombrePrograma;?> </p>
+          <p><?php echo $ciudadNombre;?></p>
 		</div>
 		<div id="news">
 		  <?php if($this->session->userdata('status')==1):?>

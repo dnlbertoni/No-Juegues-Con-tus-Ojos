@@ -33,13 +33,15 @@
   <br />
   Total Alumnos Vistos: <?php echo $totPre;?>
   <br />
-  Indice No Vistos: <?php echo sprintf("%02.2f",($totAlu-$totPre)/$totAlu*100)."%";?>
+  <?php $numero=($totAlu==0)?100:($totAlu-$totPre)/$totAlu*100;?>
+  Indice No Vistos: <?php echo sprintf("%02.2f",$numero)."%";?>
   <br />
   Total Derivados: <?php echo $totDer?>
   <br />
-  Indice de Deriv.: <?php echo sprintf("%02.2f",$totDer/$totPre*100)."%";?>
+  <?php $numero=($totPre==0)?0:$totDer/$totPre*100;?>
+  Indice de Deriv.: <?php echo sprintf("%02.2f",$numero)."%";?>
   </div>
-</div>  
+</div>
 <div class="post">
   <div class="ui-widget-header">3 - Notificaciones</div>
     <div class="ui-widget-content">
@@ -54,14 +56,14 @@
 </div>
 <div class="post">
   <div class="ui-widget-header">5 - Notificaciones</div>
-  <div class="ui-widget-content">  
+  <div class="ui-widget-content">
   resuemn de las notificiaiones a los chicos que van a recibir lentes
   </div>
 </div>
 <div class="post ui-widget">
   <div class="ui-widget-header">6 - Entrega</div>
   <div class="ui-widget-content">
-    resumen de la entrega de lentes  
+    resumen de la entrega de lentes
     </div>
   </div>
 </div>
@@ -103,7 +105,7 @@ $(document).ready(function(){
         break;
     }
   });
-});  
+});
 $(document).ready(function(){
   $("#Logout").button({icons:{primary:'ui-icon-circle-close'}});
   $("#Perfil").button({icons:{primary:'ui-icon-person'}});

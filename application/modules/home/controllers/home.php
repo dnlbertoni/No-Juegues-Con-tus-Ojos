@@ -40,7 +40,11 @@ class Home extends MY_Controller{
     $pesquizas=$this->Pesquizas_model->getTotalesAgrupados();
     $data['pesqTotales']=$pesquizas;
     $fin=count($pesquizas);
-    $data['total']=$pesquizas[$fin-1]->cantidad;
+    if($fin>0){
+      $data['total']=$pesquizas[$fin-1]->cantidad;
+    }else{
+      $data['total']=0;
+    }
     $pesquizas=$this->Pesquizas_model->getTotalesAgrupados(2);
     $data['pesqExcep']=$pesquizas;
     $alu=$this->Pesquizas_model->getTotalesAlumnos();

@@ -10,6 +10,7 @@ class MY_Controller extends MX_Controller {
     $programa=$this->Programas_model->getOnline();
     Template::set('database', $this->Programas_model->db->database);
     Template::set('nombrePrograma', (isset($programa->nombre))?$programa->nombre:'');
+    Template::set('ciudadNombre', (isset($programa->ciudadNombre))?$programa->ciudadNombre:'');
     Template::set_theme($this->session->userdata('tema'));
 // menu
     if($this->session->userdata('status')==0){
@@ -38,6 +39,7 @@ class Pub_Controller extends MX_Controller {
     $programa=$this->Programas_model->getOnline();
     Template::set('database', $this->Programas_model->db->database);
     Template::set('nombrePrograma', (isset($programa->nombre))?$programa->nombre:'');
+    Template::set('ciudadNombre', (isset($programa->ciudadNombre))?$programa->ciudadNombre:'');
     Template::set_theme($this->session->userdata('tema'));
   }
 }
