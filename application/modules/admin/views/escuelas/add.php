@@ -26,10 +26,10 @@
   </tr>
   <tr>
     <th>lugar de retiro de Transporte:</th>
-    <td><?php echo form_textarea('lugarTransporte', $esc->lugarTransporte,'id="lugartransporte"');?></td>
-  </tr>  
+    <td><?php echo form_textarea('lugarTransporte', $esc->lugartransporte,'id="lugartransporte" ');?></td>
+  </tr>
   <tr>
-    <td colspan="2"><div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div></td>
+    <td colspan="2" align="center"><div id="Guardar" class="botonGuardar" ><?php echo $botGuardar?></div><div id="Cancelar" class="botonCancelar">Cancelar</div></td>
   </tr>
   <tr>
     <td colspan="2"><?php echo form_hidden('programa_id', $esc->programa_id, '');?></td>
@@ -43,7 +43,9 @@
 $(document).ready(function(){
   $('input').css('float','left');
   $("#lugartransporte").css('width','250');
-  $(".boton").button();
+  $("#lugartransporte").attr('rows','3');
+  $('.botonGuardar').button({icons:{primary:'ui-icon-disk'},text:true})
+  $('.botonCancelar').button({icons:{primary:'ui-icon-cancel'},text:true})
   var options = {
       //target:     '#divToUpdate',
       //url:        'comment.php',

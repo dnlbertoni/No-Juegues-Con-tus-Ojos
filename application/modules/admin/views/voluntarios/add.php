@@ -6,13 +6,17 @@ Nombre:<?php echo form_input('nombre', $vol->nombre, '');?>
 <br/>
 Telefono:<?php echo form_input('telefono', $vol->telefono, '');?>
 <br/>
-Email:<?php echo form_input('email', $vol->email, '');?>
+Email:<?php echo form_input('email', $vol->email, 'size="50"');?>
 <?php echo form_close();?>
-<div id="Guardar" class="boton"><?php echo $botGuardar?></div><div id="Cancelar" class="boton">Cancelar</div>
+<div style="text-align:center;">
+  <div id="Guardar" class="botonGuardar"><?php echo $botGuardar?>
+  </div><div id="Cancelar" class="botonCancelar">Cancelar</div>
+</div>
 
 <script>
 $(document).ready(function(){
-  $(".boton").button();
+  $('.botonGuardar').button({icons:{primary:'ui-icon-disk'},text:true})
+  $('.botonCancelar').button({icons:{primary:'ui-icon-cancel'},text:true})
   var options = {
       //target:     '#divToUpdate',
       //url:        'comment.php',

@@ -8,20 +8,8 @@ class Voluntarios extends MY_Controller{
   function __construct() {
     parent::__construct();
     $this->load->model('Voluntarios_model', '', true);
-    if($this->session->userdata('status')==0){
-      redirect('auth/login');
-    }
-    $this->load->model('Perfil_model');
-    $this->load->model('UserModulos_model');
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
-    $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
-    $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
-    $menu[] = array('link' =>'pesquiza/add', 'nombre'=>'Nueva Pesquiza', 'extra'=>'id="Pesq"');
-    Template::set('linea', $menu);
-    Template::set('dataMenu', $modulos);
-    Template::set_block('menu', '_menu'); 
-    Template::set_block('lateral', '_lateral');     
+    Template::set('lateralInfoData',true);
+    Template::set_block('lateral', '_lateralAdmin');
   }
   function index(){
     $voluntarios = $this->Voluntarios_model->getAll('apellido, nombre', 20);

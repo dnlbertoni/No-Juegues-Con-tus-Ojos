@@ -6,7 +6,7 @@
   <tr>
     <th>Id</th>
     <th>Nombre</th>
-    <th>Numero Establecimiento</th>
+    <th>Num. Establ.</th>
     <th>Ciudad</th>
     <th>&nbsp;</th>
   </tr>

@@ -5,7 +5,7 @@
       var nombre = "Busqueda por " + $(this).text();
       LinkAjax($(this).attr('href'), nombre);
     });
-  
+
     /* botones genericos */
     $('.boton').button();
     $(".botEscuela").button({icons:{primary:'ui-icon-home'}, text:false});
@@ -17,6 +17,10 @@
     $('.botMinus').button({icons:{primary:'ui-icon-circle-minus'}, text:false});
     $('.botPrint').button({icons:{primary:'ui-icon-print'}, text:false});
     $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false})
+    $('.botMail').button({icons:{primary:'ui-icon-mail-closed'}, text:false})
+    $('.botBorrar').button({icons:{primary:'ui-icon-trash'},text:false})
+    $('.botonGuardar').button({icons:{primary:'ui-icon-disk'},text:true})
+    $('.botonCancelar').button({icons:{primary:'ui-icon-cancel'},text:true})
     /* fin botones genericos */
     $(".botAdd").click(function(e){
       e.preventDefault();
@@ -28,14 +32,17 @@
       var nombre = $(this).text();
       LinkAjax($(this).attr('href'), nombre);
     });
-    $('.botBorrar').button({icons:{primary:'ui-icon-trash'},text:false})
     $(".botBorrar").click(function(e){
       e.preventDefault();
       var nombre = $(this).text();
       LinkAjax($(this).attr('href'), nombre);
     });
-    $('.botMail').button({icons:{primary:'ui-icon-mail-closed'}, text:false})
     $(".botMail").click(function(e){
+      e.preventDefault();
+      var nombre = $(this).text();
+      LinkAjax($(this).attr('href'), nombre);
+    });
+    $(".ajax").click(function(e){
       e.preventDefault();
       var nombre = $(this).text();
       LinkAjax($(this).attr('href'), nombre);
@@ -61,6 +68,7 @@
    var options = {
      autoOpen : false,
      modal:true,
+     width:600,
      title: nombre
    };
    $("#ventanaAjax").dialog(options);
