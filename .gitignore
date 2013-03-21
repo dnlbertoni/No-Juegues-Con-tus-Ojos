@@ -2,3 +2,4 @@
 .project
 .buildpath
 /system/
+/application/config/database.php
