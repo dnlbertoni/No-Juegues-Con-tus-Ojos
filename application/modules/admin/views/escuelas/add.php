@@ -29,7 +29,28 @@
     <td><?php echo form_textarea('lugarTransporte', $esc->lugartransporte,'id="lugartransporte" ');?></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><div id="Guardar" class="botonGuardar" ><?php echo $botGuardar?></div><div id="Cancelar" class="botonCancelar">Cancelar</div></td>
+    <td colspan="2">
+      <div id="cursos">
+        <?php echo form_label('Grados:');?>
+        <div id="grados">
+            <?php echo form_label('1', 'g1');?>
+            <?php echo form_checkbox('grado1', 1, true,'id="g1"');?>
+            <?php echo form_label('2', 'g2');?>
+            <?php echo form_checkbox('grado2', 2, true,'id="g2"');?>
+            <?php echo form_label('3', 'g3');?>
+            <?php echo form_checkbox('grado3', 3, true,'id="g3"');?>
+        </div>
+        <p>
+          Cantidad de Divisiones: <?php echo form_dropdown('divisiones',array(1,2,3,4,5,6),1);?>
+        </p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <div id="Guardar" class="botonGuardar" ><?php echo $botGuardar?></div>
+      <div id="Cancelar" class="botonCancelar">Cancelar</div>
+    </td>
   </tr>
   <tr>
     <td colspan="2"><?php echo form_hidden('programa_id', $esc->programa_id, '');?></td>
@@ -42,6 +63,7 @@
 <script>
 $(document).ready(function(){
   $('input').css('float','left');
+  $("#grados").buttonset();
   $("#lugartransporte").css('width','250');
   $("#lugartransporte").attr('rows','3');
   $('.botonGuardar').button({icons:{primary:'ui-icon-disk'},text:true})

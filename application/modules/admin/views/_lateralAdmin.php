@@ -83,6 +83,25 @@
   </div>
   <div style="clear:both">&nbsp;</div>
   <!--fin modulo4 -->
+  <?php if(isset($admin)):?>
+  <div class="ui-widget">
+    <h3 class="ui-widget-header"><span class="expande"></span>Usuarios</h3>
+    <div class="ui-widget-content">
+		<ul>
+          <li>
+              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="botAdd"');?>
+              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="ajax"');?>
+          </li>
+          <li>
+              <?php echo anchor('admin/ciudades', 'Admin. ciudades',  'class="botCiu"');?>
+              <?php echo anchor('admin/ciudades', 'Admin. ciudades');?>
+          </li>
+		</ul>
+    </div>
+  </div>
+  <div style="clear:both">&nbsp;</div>
+  <!--fin modulo5 -->
+  <?php endif;?>
   <div style="clear:both">&nbsp;</div>
 </div>
 <script>

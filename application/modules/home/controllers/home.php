@@ -21,7 +21,7 @@ class Home extends MY_Controller{
     $idUser = $this->tank_auth->get_user_id();
     $webuser= $this->users->get_user_by_id($idUser, true);
     if($this->config->item('perfiles')){
-      $usuario = $this->Perfil_model->getById($idUser);
+      $usuario = $this->Userprofiles_model->getById($idUser);
       if(!isset($usuario->id)){
         Template::set_message('Faltan datos del Usuario', 'alert');
       }

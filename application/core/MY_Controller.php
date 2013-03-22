@@ -16,7 +16,6 @@ class MY_Controller extends MX_Controller {
     if($this->session->userdata('status')==0){
       redirect('auth/login');
     }
-    $this->load->model('Perfil_model');
     $this->load->model('UserModulos_model');
     $idUser=$this->session->userdata('user_id');
     $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);

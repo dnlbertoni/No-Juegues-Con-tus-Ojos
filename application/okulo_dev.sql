@@ -3,11 +3,13 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-03-2013 a las 20:40:12
+-- Tiempo de generación: 22-03-2013 a las 00:55:46
 -- Versión del servidor: 5.0.51
 -- Versión de PHP: 5.2.6-1+lenny13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT=0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -2110,7 +2112,6 @@ CREATE TABLE IF NOT EXISTS `ciudades` (
   `cpostal` varchar(40) collate utf8_bin NOT NULL,
   `provincia` varchar(40) collate utf8_bin NOT NULL,
   `pais` varchar(40) collate utf8_bin NOT NULL,
-  `programa_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='tabla de ciudades' AUTO_INCREMENT=36 ;
 
@@ -2118,42 +2119,42 @@ CREATE TABLE IF NOT EXISTS `ciudades` (
 -- Volcado de datos para la tabla `ciudades`
 --
 
-INSERT INTO `ciudades` (`id`, `nombre`, `cpostal`, `provincia`, `pais`, `programa_id`) VALUES
-(1, 'CONCORDIA', '3200', 'Entre Rios', 'Argentina', 0),
-(2, 'Las Parejas', '', 'Santa fe', 'Argentina', 0),
-(3, 'San Salvador', '', 'entre rios', 'argentina', 0),
-(4, 'Arroyo Grande', '3200', 'Entre rios', 'Argentina', 0),
-(5, 'Benito Legeren', '3200', 'Entre rios', 'Argentina', 0),
-(6, 'Calabacilla ', '3200', 'Entre rios', 'Argentina', 0),
-(7, 'Camba Paso', '3200', 'Entre rios', 'Argentina', 0),
-(8, 'Clodomiro Ledesma ', '3200', 'Entre rios', 'Argentina', 0),
-(9, 'Colonia Ayui', '3200', 'Entre rios', 'Argentina', 0),
-(10, 'Colonia Bayling', '3200', 'Entre rios', 'Argentina', 0),
-(11, 'Colonia Gral Roca', '3200', 'Entre rios', 'Argentina', 0),
-(12, 'Colonia La Armonia', '3200', 'Entre rios', 'Argentina', 0),
-(13, 'Colonia San Bonifacio ', '3200', 'Entre rios', 'Argentina', 0),
-(14, 'Colonia San Justo', '3200', 'Entre rios', 'Argentina', 0),
-(15, 'Colonia Santa Isabel', '3200', 'Entre rios', 'Argentina', 0),
-(16, 'Colonia Santa Margarita', '3200', 'Entre rios', 'Argentina', 0),
-(17, 'Colonia Urquiza', '3200', 'Entre rios', 'Argentina', 0),
-(18, 'Colonia Yerua', '3200', 'Entre rios', 'Argentina', 0),
-(19, 'El Redomon', '3200', 'Entre rios', 'Argentina', 0),
-(20, 'Estacion Yerua', '3200', 'Entre rios', 'Argentina', 0),
-(21, 'Estacion Yuqueri', '3200', 'Entre rios', 'Argentina', 0),
-(22, 'Gral Campos', '3200', 'Entre rios', 'Argentina', 0),
-(23, 'La Bianca', '3200', 'Entre rios', 'Argentina', 0),
-(24, 'La Criolla', '3200', 'Entre rios', 'Argentina', 0),
-(25, 'Los Charruas', '3200', 'Entre rios', 'Argentina', 0),
-(26, 'Los Sauces', '3200', 'Entre rios', 'Argentina', 0),
-(27, 'Nueva Escocia', '3200', 'Entre rios', 'Argentina', 0),
-(28, 'Osvaldo Magnasco ', '3200', 'Entre rios', 'Argentina', 0),
-(29, 'Paso Gallo', '3200', 'Entre rios', 'Argentina', 0),
-(30, 'Pedernal', '3200', 'Entre rios', 'Argentina', 0),
-(31, 'Pueblo Ferre', '3200', 'Entre rios', 'Argentina', 0),
-(32, 'Puerto Yerua', '3200', 'Entre rios', 'Argentina', 0),
-(33, 'Puntas de Moreyra', '3200', 'Entre rios', 'Argentina', 0),
-(34, 'Villa Adela', '3200', 'Entre rios', 'Argentina', 0),
-(35, 'Villa Zorraquin', '3200', 'Entre rios', 'Argentina', 0);
+INSERT INTO `ciudades` (`id`, `nombre`, `cpostal`, `provincia`, `pais`) VALUES
+(1, 'CONCORDIA', '3200', 'Entre Rios', 'Argentina'),
+(2, 'Las Parejas', '', 'Santa fe', 'Argentina'),
+(3, 'San Salvador', '', 'Entre Rios', 'Argentina'),
+(4, 'Arroyo Grande', '3200', 'Entre rios', 'Argentina'),
+(5, 'Benito Legeren', '3200', 'Entre rios', 'Argentina'),
+(6, 'Calabacilla ', '3200', 'Entre rios', 'Argentina'),
+(7, 'Camba Paso', '3200', 'Entre rios', 'Argentina'),
+(8, 'Clodomiro Ledesma ', '3200', 'Entre rios', 'Argentina'),
+(9, 'Colonia Ayui', '3200', 'Entre rios', 'Argentina'),
+(10, 'Colonia Bayling', '3200', 'Entre rios', 'Argentina'),
+(11, 'Colonia Gral Roca', '3200', 'Entre rios', 'Argentina'),
+(12, 'Colonia La Armonia', '3200', 'Entre rios', 'Argentina'),
+(13, 'Colonia San Bonifacio ', '3200', 'Entre rios', 'Argentina'),
+(14, 'Colonia San Justo', '3200', 'Entre rios', 'Argentina'),
+(15, 'Colonia Santa Isabel', '3200', 'Entre rios', 'Argentina'),
+(16, 'Colonia Santa Margarita', '3200', 'Entre rios', 'Argentina'),
+(17, 'Colonia Urquiza', '3200', 'Entre rios', 'Argentina'),
+(18, 'Colonia Yerua', '3200', 'Entre rios', 'Argentina'),
+(19, 'El Redomon', '3200', 'Entre rios', 'Argentina'),
+(20, 'Estacion Yerua', '3200', 'Entre rios', 'Argentina'),
+(21, 'Estacion Yuqueri', '3200', 'Entre rios', 'Argentina'),
+(22, 'Gral Campos', '3200', 'Entre rios', 'Argentina'),
+(23, 'La Bianca', '3200', 'Entre rios', 'Argentina'),
+(24, 'La Criolla', '3200', 'Entre rios', 'Argentina'),
+(25, 'Los Charruas', '3200', 'Entre rios', 'Argentina'),
+(26, 'Los Sauces', '3200', 'Entre rios', 'Argentina'),
+(27, 'Nueva Escocia', '3200', 'Entre rios', 'Argentina'),
+(28, 'Osvaldo Magnasco ', '3200', 'Entre rios', 'Argentina'),
+(29, 'Paso Gallo', '3200', 'Entre rios', 'Argentina'),
+(30, 'Pedernal', '3200', 'Entre rios', 'Argentina'),
+(31, 'Pueblo Ferre', '3200', 'Entre rios', 'Argentina'),
+(32, 'Puerto Yerua', '3200', 'Entre rios', 'Argentina'),
+(33, 'Puntas de Moreyra', '3200', 'Entre rios', 'Argentina'),
+(34, 'Villa Adela', '3200', 'Entre rios', 'Argentina'),
+(35, 'Villa Zorraquin', '3200', 'Entre rios', 'Argentina');
 
 -- --------------------------------------------------------
 
@@ -2176,7 +2177,31 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('a3f83dd20cdf80afb7c0022ee03ddd6a', '192.168.1.2', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (K', 1362266717, '');
+('30b6030518302ce8346458dc3cb1fa4a', '192.168.1.2', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (K', 1363913027, 'a:4:{s:11:"programa_id";s:1:"3";s:7:"user_id";s:1:"1";s:8:"username";s:13:"danielbertoni";s:6:"status";s:1:"1";}'),
+('7b547c388386ee2c9cac221b61c8e997', '192.168.1.2', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (K', 1363923127, 'a:4:{s:11:"programa_id";s:1:"3";s:7:"user_id";s:1:"1";s:8:"username";s:13:"danielbertoni";s:6:"status";s:1:"1";}');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clubes`
+--
+
+DROP TABLE IF EXISTS `clubes`;
+CREATE TABLE IF NOT EXISTS `clubes` (
+  `id` int(11) NOT NULL auto_increment,
+  `nombre` varchar(150) NOT NULL,
+  `distrito` int(4) unsigned zerofill NOT NULL,
+  `nroclub` int(10) unsigned zerofill default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `distrito` (`distrito`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='tabla de clubes rotarios' AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `clubes`
+--
+
+INSERT INTO `clubes` (`id`, `nombre`, `distrito`, `nroclub`) VALUES
+(1, 'Salto Grande Concordia', 4940, NULL);
 
 -- --------------------------------------------------------
 
@@ -2196,177 +2221,179 @@ CREATE TABLE IF NOT EXISTS `escuelas` (
   `numero_estab` int(10) unsigned default NULL,
   `observaciones` longtext collate utf8_bin COMMENT 'observacoines de las pesquizas',
   `lugarTransporte` varchar(255) collate utf8_bin NOT NULL default 'Facultad Administracion',
+  `notatutores` tinyint(1) NOT NULL COMMENT 'estado de las cartas a los tutores',
   PRIMARY KEY  (`id`),
   KEY `ciudad_id` (`ciudad_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=811 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=812 ;
 
 --
 -- Volcado de datos para la tabla `escuelas`
 --
 
-INSERT INTO `escuelas` (`id`, `nombre`, `direccion`, `ciudad_id`, `director`, `telefono`, `programa_id`, `numero_estab`, `observaciones`, `lugarTransporte`) VALUES
-(1, 'VELEZ SARSFIELD', 'MITRE 390', 1, 'GRACIELA PEDRAZOLI', '421-1863', 1, 1, NULL, 'Facultad Administracion'),
-(2, 'ALMAFUERTE', 'URQUIZA 276', 1, 'MARIA DEL CARMEN FERNANDEZ', '421-6007', 1, 2, NULL, 'Facultad Administracion'),
-(3, 'DOMINGO F. SARMIENTO', 'MOULINS 1900', 1, 'MARIA ESTHER INCHAUSPE', '', 1, 3, NULL, 'Facultad Administracion'),
-(4, 'LAVARDEN', 'LA PRIDA Y LOS VI', 1, 'ELISA C. DE PEREZ MARIA', '425-1568', 1, 4, NULL, 'Facultad Administracion'),
-(5, 'SAN JOSE DE CALASANZ.', 'LOS ANDES', 1, 'NORMA MORELLO', '427-1170', 1, 5, NULL, 'Facultad Administracion'),
-(6, 'GRAL. SAN MARTIN', 'MAIPU', 1, 'BLANCA VILLANUEVA DE OTRIZ', '', 1, 6, NULL, 'Facultad Administracion'),
-(7, 'CABILDO ABIERTO', 'COLONI ROCA', 1, 'ALBA ZUFIAURRE DE OTERO', '', 1, 7, NULL, 'Facultad Administracion'),
-(8, 'MADAME CURIE', 'VILLA ZORRAQUIN', 1, 'ANGELICA SOSA DE MEDRANO', '', 1, 8, NULL, 'Facultad Administracion'),
-(9, 'JUAN M. GUTIERREZ', 'SARMIENTO 94', 1, 'ROSA GATTI DE MIGLIORA', '421-6372', 1, 9, NULL, 'Facultad Administracion'),
-(10, 'BENITO GARAT', 'URDINARRAIN 752', 1, 'GRACIELA B. DE TAMA', '421-4882', 1, 10, NULL, 'Facultad Administracion'),
-(11, 'GRAL. BASAVILBASO', 'LA RIOJA 1819', 1, 'MARIA LEONOR REALI DE MEDINA', '421-3723', 1, 11, NULL, 'Facultad Administracion'),
-(12, 'EL SUPREMO ENTRERRIANO', 'ALEM 424', 1, 'ELBA FERRARI DE SCATONE', '421-2597', 1, 12, NULL, 'Facultad Administracion'),
-(13, 'PANCHO RAMIREZ', 'PASO GALLO', 1, 'PAOLAZZI JUANA', '427-1426', 1, 13, NULL, 'Facultad Administracion'),
-(14, 'CNEL. ANIONIO NAVARRO', 'SAN LORENZO Y VILLAGUAY', 1, 'HILDA F. DE SHAUVINHOLD', '427-0511', 1, 14, NULL, 'Facultad Administracion'),
-(15, 'NORMAL D. F. SARMIENTO', 'SARMIENTO 530', 1, 'SILVIA CANALS', '421-2645', 1, 15, NULL, 'Facultad Administracion'),
-(16, 'MANUEL P. ANTEQUEDA', 'COLONIA AYUI', 1, 'VIRGINIA VELAZQUEZ DE FLORES', '', 1, 16, NULL, 'Facultad Administracion'),
-(17, 'DIOGENES J. DE URQUIZA', 'LAS HERAS 654', 1, 'JOSE MARIANO WASINGER', '421-6166', 1, 17, NULL, 'Facultad Administracion'),
-(18, 'EL ACONCAGUA', 'COLONIA YERUA', 1, 'ANA MARIA MIGLIORA', '', 1, 18, NULL, 'Facultad Administracion'),
-(19, 'JUAN LAVALLE', 'ESTANCIA GRANDE', 1, 'MARIA ROSA VOLPI', '', 1, 19, NULL, 'Facultad Administracion'),
-(20, 'CAETANO SILVA', 'PUEBLO FERRE', 1, 'GRACIELA CHESSINI DE HIDALGO', 'NO', 1, 20, NULL, 'Facultad Administracion'),
-(21, 'LUIS RODRIGUEZ', 'PUERTO YERUA', 1, 'MARIA MARTA SANSONI', '499-1045', 1, 21, NULL, 'Facultad Administracion'),
-(22, 'MADRE PATRIA', 'CALABACILLA', 1, 'GUTIERREZ SOLEDAD', '', 1, 22, NULL, 'Facultad Administracion'),
-(23, 'ANDERSON', 'COLONIA YERUA', 1, 'OLGA SOMMER DE MARINI', '', 1, 23, NULL, 'Facultad Administracion'),
-(24, 'EL ESCONDIDO', 'CLOROMIRO LEDESMA', 1, 'ANA GALLO DE CABRERA', '', 1, 24, NULL, 'Facultad Administracion'),
-(27, 'NTRA SRA DE LOURDES', 'LEGUIZAM', 1, '', '', 1, 27, NULL, 'Facultad Administracion'),
-(28, 'TOMAS EDISON', 'NUEVA ESCOCIA', 1, 'JOSE EDUARDO BERTOCHI', '', 1, 28, NULL, 'Facultad Administracion'),
-(30, 'ALINA P. DE MATHERON', 'PUERTO YERUA', 1, 'EVA ACEVEDO MI', '', 1, 30, NULL, 'Facultad Administracion'),
-(31, 'SANTA LUCIA', 'Aristobulo del valle 476', 1, '', '421-7928', 1, 31, NULL, 'Facultad Administracion'),
-(32, 'NTRA SRA DEL SILENCIO', 'Ruta 4 Km 5.', 1, '', '422-5205', 1, 32, NULL, 'Facultad Administracion'),
-(33, 'PASO A PASO', 'COLONIA SAN JUSTO', 1, 'CRISTINA TEJERA', '', 1, 33, NULL, 'Facultad Administracion'),
-(34, 'ESTEBAN ECHEVERRIA', 'AVENIDA CASTRO 430', 1, 'LEONOR KAMIN DE ELBERG', '422-9914', 1, 34, NULL, 'Facultad Administracion'),
-(35, 'ALMIRANTE BROWN (NOCT.)', 'BELGRANO Y NESTOR GARAT', 1, 'MARIA OLGA GOMEZ OLGA', '', 1, 35, NULL, 'Facultad Administracion'),
-(36, 'DAMIAN P. GARAT', 'ESTACION YERUA', 1, 'JORGE FONTANARI', '', 1, 36, NULL, 'Facultad Administracion'),
-(38, 'LUIS N. PALMA', 'ESTACION YUQUERI', 1, 'ROSA BOCANEGRA DE TORALE', '', 1, 38, NULL, 'Facultad Administracion'),
-(39, 'JOSE N. PAZ', 'COLONIA SAN JUSTO', 1, 'MABEL MIGOYA DE MORINICO', '', 1, 39, NULL, 'Facultad Administracion'),
-(41, 'BATALLA DE CHACABUCO', 'OSVALDO MAGNASCO', 1, 'RAQUEL ROSSEAU DE COLOMBO', '', 1, 41, NULL, 'Facultad Administracion'),
-(42, 'Gra. M. BELGRANO', 'ENTRE RIOS 1015', 1, 'RAQUEL ORTIZ DE COLOMBO', '421-4710', 1, 42, NULL, 'Facultad Administracion'),
-(43, 'BERNARDINO RIVADAVIA', 'LAMADRID 945', 1, 'ESTELA GARCIA DE DI MAIO', '421-2354', 1, 43, NULL, 'Facultad Administracion'),
-(44, 'MARIANO MORENO', 'B. DE. HIRIGOYEN 496', 1, 'LUCRECIA E. DE FERNANDEZ', '421-2004', 1, 44, NULL, 'Facultad Administracion'),
-(45, 'FRAY LUIS DELTRAN (NOCT.)', 'ENTRE RIOS 1015', 1, 'SARA LORENZO DE VITON', '421-9660', 1, 45, NULL, 'Facultad Administracion'),
-(46, 'ELENA L. DE ROFFO', 'LOS CHARRUAS', 1, 'ALICIA MARSILLI DE GALLARDO', '490-7032', 1, 46, NULL, 'Facultad Administracion'),
-(47, 'JUSTA GAYOSO', 'BENITO LEGEREN', 1, 'ALICIA V. DE ALBARENQUE', '499-5082', 1, 47, NULL, 'Facultad Administracion'),
-(49, 'GREGORIA PEREZ', 'SAN BONIFACIO', 1, 'CRISTINA M. DE LAROCCA', '', 1, 49, NULL, 'Facultad Administracion'),
-(50, 'ELIAS ROMERO', 'PUNTAS DE MOREIRA', 1, 'LEIVA OSCAR', '3454421225', 1, 50, NULL, 'Facultad Administracion'),
-(51, 'FELIPE GARDEL', 'MOULINS Y VILLAGUAY', 1, 'SILVIA GRIEVE', '427-1046', 1, 51, NULL, 'Facultad Administracion'),
-(52, 'DOS NACIONES', 'LA BIANCA', 1, 'ROSA TAMAY DE COUSIDO', '425-1686', 1, 52, NULL, 'Facultad Administracion'),
-(53, 'SAN MARTIN', 'SAN LORENZO 0.', 1, 'ELSA NORMA TERAMO', '421-3503', 1, 53, NULL, 'Facultad Administracion'),
-(54, 'SALTA', 'BOLIVIA 581', 1, 'TERESA OLIVERA DE BASTAN', '422-1276', 1, 54, NULL, 'Facultad Administracion'),
-(55, 'NTRA SRA DE ITAT', 'Per', 1, '', '421-8848', 1, 55, NULL, 'Facultad Administracion'),
-(56, 'ANGEL C. BARDELLI', 'PUERTO VERUA', 1, 'GUSTAVO IGLESIAS', '', 1, 56, NULL, 'Facultad Administracion'),
-(57, 'BELGRANO', 'H. IRIGOYEN 1380', 1, 'ALGA GAL VARINI', '421-6206', 1, 57, NULL, 'Facultad Administracion'),
-(58, 'DE LOS INMIGRANTES', 'COLONIA LOMA NEGRA', 1, 'MATILDE MINAGLIA DE MASETTI', '', 1, 58, NULL, 'Facultad Administracion'),
-(59, 'EL RAB', 'COLONIA SANTA ISABEL', 1, 'MEDINA CARLOS', 'NO', 1, 59, NULL, 'Facultad Administracion'),
-(60, 'MANUEL DE OLAZABAL.', 'PEDERNAL', 1, 'DORA IGARZA DE BENITEZ', '', 1, 60, NULL, 'Facultad Administracion'),
-(61, 'MI PATRIA CHICA', 'COLONIA SAN BONIFACIO', 1, 'EMA MIRTA ALVAREZ', '', 1, 61, NULL, 'Facultad Administracion'),
-(62, 'CARLOS VILLAMIL', 'EL REDOMON', 1, 'MARIA GARC', '', 1, 62, NULL, 'Facultad Administracion'),
-(63, 'HERNANDO A. SAAVEDRA', 'COLONIA URQUIZA', 1, 'CRISTINA RUBIN', '', 1, 63, NULL, 'Facultad Administracion'),
-(64, 'JUAN E. ALBERDI', 'LA CRIOLLA', 1, 'ROSA VALLEJOS DE TISOCCO', '490-0010', 1, 64, NULL, 'Facultad Administracion'),
-(65, 'ALMIRANTE BROWN', 'VILLA ADELA', 1, 'YOLANDA CATTANEO DE RAMAT', '429-0193', 1, 65, NULL, 'Facultad Administracion'),
-(66, 'RCA. O. DEL URUGUAY', 'PELLEGRINI 136', 1, 'STELLA F. DE AGOSTINI', '421-0843', 1, 66, NULL, 'Facultad Administracion'),
-(67, 'ADOLFO GUIDOBONO', 'LA QUERENCIA', 1, 'CRISTINA GALLEGOS DE RAUCH', '', 1, 67, NULL, 'Facultad Administracion'),
-(68, 'MALVINAS ARGENTINAS', 'LA BIANCA', 1, 'MARIA SAUCEDO DE RODRIGUEZ', '425-1463', 1, 68, NULL, 'Facultad Administracion'),
-(69, 'SAN FRANCISCO', 'DR ALDAS Y 2 DE ABRIL', 1, '', '', 1, 69, NULL, 'Facultad Administracion'),
-(70, 'EVA DUARTE', 'LIEBERMAN Y VILLAGUAY', 1, 'SILVIA RUBO DE CEDERMAZ', '', 1, 70, NULL, 'Facultad Administracion'),
-(71, 'INDEPENDENCIA', 'BVARD. YUQUERI 141', 1, 'MARIA DEL CARMEN P. DE SIBLEN', '', 1, 71, NULL, 'Facultad Administracion'),
-(72, 'TRABAJADOR COMUNITARIO', 'Brio. SAN AGUSTIN', 1, 'ALCIRA SPINELLI DE GIMENEZ', '', 1, 72, NULL, 'Facultad Administracion'),
-(73, 'PANCHO RAMIREZ', 'PTE. ILIAS Y YUQUERI', 1, 'LILIANA MARSILLI DE DALZOTO', '', 1, 73, NULL, 'Facultad Administracion'),
-(74, 'GRAL. JUAN JOSE VALLE', 'MARIA INES LOPEZ', 1, 'MARIA ELORDI DE VILLARRUEL', '421-9660', 1, 74, NULL, 'Facultad Administracion'),
-(81, 'JESUS DE NAZARENO', 'Illia 255', 1, '', '427-2611', 1, 81, NULL, 'Facultad Administracion'),
-(115, 'JOSE E. RIVERA', 'COLONIA LOS SAUCES', 1, 'ELIDA LEONOR DIAZ', '', 1, 115, NULL, 'Facultad Administracion'),
-(131, 'EL CHIMBORAZO', 'COLONIA URQUIZA', 1, 'ANDRES FRACARO', '', 1, 131, NULL, 'Facultad Administracion'),
-(132, 'BENITO JUAREZ', 'ESTACION YUQUERI', 1, 'PATRICIA VAZQUEZ DE ZILONI', '421-6639', 1, 132, NULL, 'Facultad Administracion'),
-(155, 'JUSTO JOSE DE URQUIZA', 'SAN MARTIN 36', 1, 'CARMEN GODOY DE MACE', '421-3010', 1, 155, NULL, 'Facultad Administracion'),
-(156, 'COL. DE LOS INMIGRANTES', 'LA CRIOLLA', 1, '', '', 1, 156, NULL, 'Facultad Administracion'),
-(157, 'ESP 01', 'ESTRADA 553', 1, 'LILIANA SONEYRA DE PAREDES', '421-5562', 1, 157, NULL, 'Facultad Administracion'),
-(158, 'ESP 02 AZAHARES', 'SARGENTO CABRAL', 1, 'MERCEDES ORIESER DE TECHERA', '422-4686', 1, 158, NULL, 'Facultad Administracion'),
-(159, 'ESP 25 DE SORDOS', 'LA RIOJA', 1, 'ALEJANDRA BOCALANDRO', '421-0762', 1, 159, NULL, 'Facultad Administracion'),
-(160, 'ESP 07 GURISITO COSTERO (Maternal)', 'LA BIANCA', 1, 'SILVIA BELLEZA DE PESSOLANI', '', 1, 160, NULL, 'Facultad Administracion'),
-(161, 'MAT 03 MATERNAL 3', 'GUEMES Y PERU', 1, 'OLGA SABRE DE BORDOLLI', '', 1, 161, NULL, 'Facultad Administracion'),
-(166, 'VELEZ SARSFIELD', 'Mitre 390', 1, '', '421-1863', 2, 1, '', 'Facultad Administracion'),
-(167, 'ALMAFUERTE', 'Urquiza 278', 1, '', '421-6007', 2, 2, '6toC > Excepciones', 'Facultad Administracion'),
-(168, 'DOMINGO F. SARMIENTO', 'Moulins 1900', 1, '', '421-1283 / 427-2396', 2, 3, NULL, 'Facultad Administracion'),
-(169, 'MANUEL J. DE LAVARDEN', 'Laprida 2799 y Los Vi', 1, '', '425-1568', 2, 4, 'Pend: Prosane 2012', 'Facultad Administracion'),
-(170, 'SAN JOSE DE CALASANZ.', 'Los Andes 1240', 1, '', '427-1170 / 427-0636', 2, 5, NULL, 'Facultad Administracion'),
-(171, 'GRAL. JOSE DE SAN MARTIN', 'Maipu y Nestor Garat', 1, '', '421-8921 / 421-0822', 2, 6, NULL, 'Facultad Administracion'),
-(172, 'JOSE MARIA TEXIER', 'Av. Malar', 3, '', '491-0270', 2, 1, 'Pend: Recorrido RAMIRO', 'Escuela Texeira, cita en Av. Malarin 280, San Salvador.'),
-(173, 'BARTOLOME MITRE', 'Tulio Gonzalez 222', 3, '', '', 2, 2, NULL, 'Escuela San Jose, cita en Av. Malarin 1092, San Salvador.'),
-(174, 'JUAN MARIA GUTIERREZ', 'Sarmiento 94', 1, '', '421-6372 / 422-7085', 2, 9, NULL, 'Facultad Administracion'),
-(175, 'BENITO GARAT', 'Urdinarrain 752', 1, '', '421-4882 / 156-027529', 2, 10, '', 'Facultad Administracion'),
-(176, 'GRAL. M. BASAVILBASO', 'La Rioja 1819', 1, '', '421-3723', 2, 11, '5to > Excepción', 'Facultad Administracion'),
-(178, 'CNEL. ANTONIO NAVARRO', 'San Lorenzo 995', 1, '', '427-0511 / 427-2022', 2, 14, NULL, 'Facultad Administracion'),
-(179, 'NORMAL SUP. DF. SARMIENTO', 'Sarmiento 530', 1, '', '421-2645 / 422-9792 / 154-015285 > Griselda Reynoso', 2, 15, NULL, 'Facultad Administracion'),
-(180, 'CENTENARIO', '1', 3, '', '427-0636 / 491-0187', 2, 5, NULL, 'Escuela Texeira, cita en Av. Malarin 280, San Salvador.'),
-(181, 'CIUDAD DE CORDOBA', 'Colonia Santa Elena', 10, '', '', 2, 7, NULL, 'Facultad Administracion'),
-(182, 'DIOGENES J. DE URQUIZA', 'Las Heras 654', 1, '', '421-6166', 2, 17, 'faltan cargar? NO, NO SE HIZO 3RO', 'Facultad Administracion'),
-(183, 'CABILDO ABIERTO', 'Ruta 4 Km 9', 11, '', '427-1718 >  casa de la dire / 155-280829', 2, 7, '\n', 'Facultad Administracion'),
-(184, 'MADAME CURIE', 'Per', 35, '', '425-1057 / 155-083932', 2, 8, 'claudia tiene los datos', 'Facultad Administracion'),
-(185, 'PABLO GOUSSAC', 'Ruta N', 16, '', '', 2, 10, NULL, 'Facultad Administracion'),
-(186, 'JUSTO JOSE DE URQUIZA', '25 de Mayo 585', 22, '', '490-1337', 2, 12, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(187, 'PANCHO RAMIREZ', 'Rutas 5 y 128', 29, '', '154-174252 > esc. / 156-256312', 2, 13, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(188, 'JOSE E. RIVERA', 'Colonia Los Sauces ', 26, '', '156-022217', 2, 15, NULL, 'Facultad Administracion'),
-(189, 'MANUEL PACIFICO ANTEQUEDA', 'Ruta Prov N', 9, '', '499-2008 > casa de la dire / 156-024157', 2, 16, '', 'Facultad Administracion'),
-(190, 'NTRA SRA. DE LA MERCED', 'Estrada 524', 1, '', '421-3464', 2, 25, '', 'Facultad Administracion'),
-(192, 'NTRA. SRA. DE LOURDES', 'Leguizam', 1, '', '421-5690', 2, 27, NULL, 'Facultad Administracion'),
-(194, 'PROVINCIA DE CORRIENTES', 'Colonia La Armon', 12, '', '', 2, 16, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(196, 'EL ACONCAGUA', 'Ex Ruta Nac. N', 18, '', '422-6102 / 422-3628 / 490-3003 / 154-038519', 2, 18, 'Ver Probl con 1 excepcion\n', 'Facultad Administracion'),
-(197, 'JUAN LAVALLE', 'Estancia Grande', 18, '', '421-5119 > llamar x la ma', 2, 19, NULL, 'Facultad Administracion'),
-(198, 'CAYETANO SILVA', 'Pueblo Ferr', 31, '', '', 2, 20, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(199, 'SANTA LUCIA', 'A. del Valle 436', 1, '', '421-7928', 2, 31, NULL, 'Facultad Administracion'),
-(200, 'LUIS RODRIGUEZ', 'Eduardo Oliver S/N', 32, '', '499-1077 / 156-024985', 2, 21, NULL, 'Facultad Administracion'),
-(201, 'MADRE PATRIA', 'Calabacilla ', 6, '', '422-1809 / 154-116432', 2, 22, 'Recorrido LAURA', 'Facultad Administracion'),
-(202, 'HANS CHRISTIAN ANDERSEN', 'Colonia Yeru', 18, '', '155-086161', 2, 23, 'Recorrido LAURA', 'Facultad Administracion'),
-(203, 'ESTEBAN ECHEVERRIA', 'Av. Castro 430', 1, '', '431-1007 / 154-076387', 2, 34, 'Pend: Ines???', 'Facultad Administracion'),
-(205, 'EL ESCONDIDO', 'Clodomiro Ledesma ', 8, '', '422-1077', 2, 24, 'Todo 1er Ciclo en un solo curso.', 'Escuela El Aconcagua'),
-(207, 'THOMAS ALVA EDISON', 'Nueva Escocia ', 27, '', '154-052100 > mandar mje si no contesta xq x ah', 2, 28, 'Recorrido LAURA', 'Facultad Administracion'),
-(210, 'BERNARDINO RIVADAVIA', 'Lamadrid 945', 1, '', '421-2354 / 154-062332', 2, 43, 'Pend:  Info Prosane 2011.', 'Facultad Administracion'),
-(211, 'MARIANO MORENO', 'Bdo. de Hirigoyen 496', 1, '', '421-0742 / 421-2004', 2, 44, NULL, 'Facultad Administracion'),
-(213, 'ALINA P. DE MATHERON', 'Colonia Puerto Yeru', 32, '', '422-3624 / 421-7928 / 154-094539', 2, 30, 'modifiqué', 'Escuela Luis Rodriguez (Puerto Yeruá)'),
-(215, 'NTRA SRA DEL SILENCIO', 'Ruta 4 Km 5', 7, '', '422-5205 / 422-2895 / 154-066692', 2, 32, '', 'Facultad Administracion'),
-(216, 'BENITO JUAREZ', 'Ruta Pcial. 22 y V', 21, '', '431-0562 > casa de la dire / 154-015945', 2, 32, '', 'Facultad Administracion'),
-(217, 'PROFESOR FELIPE GARDEL', 'Moulins y Villaguay', 1, '', '427-1046', 2, 51, NULL, 'Facultad Administracion'),
-(220, 'DAMIAN P. GARAT', 'Paraje Vecinal', 20, '', '490-9012 / 156-263727 ', 2, 36, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(221, 'LUIS N.C. PALMA', 'Barrio Coelho', 21, '', '154-159838', 2, 38, 'no fui', 'Facultad Administracion'),
-(223, 'BATALLA DE CHACABUCO', 'Yolanda Gallo S/N', 28, '', '425-2266 / 154-089469', 2, 41, 'Pend: Claudia', 'Facultad Administracion'),
-(224, 'ELENA LARROQUE DE ROFFO', 'Helena L. de Roffo 618', 25, '', '490-7032', 2, 45, 'Recorrido DANIEL\nno fui', 'Facultad Administracion'),
-(225, 'JUSTA GAYOSO', 'Av. Juventud Unida', 5, '', '499-5080 / 499-5082', 2, 47, 'Recorrido LAURA', 'Facultad Administracion'),
-(226, 'SANTIAGO DE CHILE', '', 22, '', '', 2, 48, 'Recorrido RAMIRO', 'Facultad Administracion'),
-(229, 'DOS NACIONES', 'Cabo 1', 23, '', '425-1686 / 4251811 / 498-8077', 2, 52, 'Pend: Ines??', 'Facultad Administracion'),
-(230, 'GRAL. SAN MARTIN', 'Av. San Lorenzo 515 O', 1, '', '421-3503', 2, 53, NULL, 'Facultad Administracion'),
-(231, 'SOLIDARIDAD Y ESPERANZA', '25 de Mayo 21', 1, '', '155-290394', 2, 53, NULL, 'Escuela Ntra. Sra. de Lourdes'),
-(232, 'SALTA / JUAN BLASCO', 'Bolivia 581', 1, '', '422-1276 / 154-170632', 2, 54, '', 'Facultad Administracion'),
-(233, 'JUSTO JOSE DE URQUIZA', 'San Mart', 1, '', '154-021906', 2, 55, 'Pend: Registro de Alumnos', 'Facultad Administracion'),
-(234, 'NTRA SRA DE ITATI', 'Per', 1, '', '422-6876 / 421-3010', 2, 55, NULL, 'Facultad Administracion'),
-(235, 'ANGEL C. BARDELLI', 'Paraje La Rosada', 32, '', '154-173063', 2, 56, 'Recorrido LAURA', 'Facultad Administracion'),
-(236, 'JM. BELGRANO', 'Hip. Irigoyen 1380', 1, '', '421-6206', 2, 57, NULL, 'Facultad Administracion'),
-(237, 'COL. DE LOS INMIGRANTES', 'Colonia Loma Negra', 24, '', '154-110333', 2, 58, 'Recorrido DANIEL no fui\n', 'Facultad Administracion'),
-(239, 'EL RABON', 'Vecinal S/N', 15, '', '155-082448', 2, 58, NULL, 'Facultad Administracion'),
-(240, 'GRAL. MANUEL DE OLAZABAL.', 'Pedernal', 30, '', '154-156679', 2, 59, 'Recorrido LAURA', 'Facultad Administracion'),
-(241, 'MI PATRIA CHICA', 'Colonia San Bonifacio', 24, '', '421-4514 / 155-205024', 2, 61, '\n', 'Escuela Juan Bautista Alberdi.'),
-(242, 'CARLOS VILLAMIL', 'Ruta 4 y Ruta 28, doblar a la izq x Ruta 22', 19, '', '154-118074 / 425-0738 ', 2, 62, 'Recorrido DANIEL no fui\n', 'Facultad Administracion'),
-(243, 'HERNANDO ARIAS DE SAAVEDRA', 'Colonia Urquiza', 25, '', '154-031890', 2, 62, NULL, 'Facultad Administracion'),
-(244, 'JUAN BAUTISTA ALBERDI', 'Lago Salto Grande S/N', 24, '', '490-0010', 2, 64, '', 'Facultad Administracion'),
-(245, 'ALMIRANTE GUILLERMO BROWN', 'Av. Pte. Per', 34, '', '429-0193 / 429-0701', 2, 65, NULL, 'Facultad Administracion'),
-(246, 'RCA. ORIENTAL DEL URUGUAY', 'Pellegrini 136', 1, '', '421-0843 / 421-7892', 2, 66, '1ro "U"', 'Facultad Administracion'),
-(248, 'SIN NOMBRE', 'Pueblo Ferr', 18, '', '156-269682', 2, 68, 'Recorrido LAURA', 'Facultad Administracion'),
-(249, 'MALVINAS ARGENTINAS', 'San Juan y Santa F', 23, '', '425-1463', 2, 68, NULL, 'Facultad Administracion'),
-(250, 'SAN FRANCISCO', 'Dr. Aldas y 2 de Abril', 1, '', '427-2677', 2, 69, NULL, 'Facultad Administracion'),
-(251, 'EVA DUARTE', 'Lieberman y Villaguay', 1, '', '427-0653', 2, 70, 'Pend: Prosane 2012', 'Facultad Administracion'),
-(252, 'INDEPENDENCIA', 'Bv. Yuquer', 1, '', '156-263835', 2, 71, '1roC y 5toC > Excepciones', 'Facultad Administracion'),
-(253, 'TRABAJADOR COMUNITARIO', 'Misiones 1695', 1, '', '427-2677', 2, 72, '4to A/B > Excepciones', 'Facultad Administracion'),
-(254, 'PANCHO RAMIREZ', 'Odiard 1887 (esq. Pte. Illia)', 1, '', '', 2, 73, NULL, 'Facultad Administracion'),
-(255, 'GRAL. JUAN JOSE VALLE', 'Maestra L', 1, '', '427-2709 / 421-9660 / 154-342542', 2, 74, 'faltan datos o no se hizo? NO SE HIZO 2A', 'Facultad Administracion'),
-(256, 'MADRE TERESA DE CALCUTA', 'Lieberman y PA de Sarmiento', 1, '', '427-2428', 2, 76, '', 'Facultad Administracion'),
-(257, 'NESTOR KIRCHNER', 'Ricardo Rojas 1350 y Nieves', 1, '', '154-129928 / 499-5756', 2, 77, 'OJO: 1ro A es Kirch (1, 2 y 3 en el mismo), el resto es 2 de abril', 'Facultad Administracion'),
-(258, 'JESUS DE NAZARENO', 'Pte. Illia 255', 1, '', '427-2611', 2, 81, NULL, 'Facultad Administracion'),
-(261, 'LA VIÑA', 'Diamante 2200', 1, '', '', 2, 152, '', 'Facultad Administracion'),
-(263, 'SAN ROQUE GONZALEZ', 'Benito Leger', 5, '', '499-5194', 2, 193, 'Recorrido LAURA', 'Facultad Administracion'),
-(264, 'RENACER', 'Pellegrini 1014', 1, '', '421-3311', 2, 209, 'Pend: Retirar en escuela', 'Facultad Administracion'),
-(267, 'SAN JOSE', 'Malarin 1092', 3, '', '', 2, 13, 'Esc 113: "San jose" (San Salvador)', 'Escuela San jose, cita en Av. Malarin 1092, San Salvador.'),
-(268, '2 DE ABRIL', 'R. ROJAS 1360', 1, '', '', 2, 75, NULL, 'Facultad Administracion'),
-(269, 'E88 Salto (ROU)', 'Salto (ROU)', 1, 'Menendez, Beatriz', '', 2, 88, NULL, '(A convenir)'),
-(810, 'E92 Salto (ROU)', 'Industrias y D5', 1, 'ELIZABETH DÁVILA INÉS RODRIGUEZ da SILVEIRA AGUIRRE ', '47322261', 2, 92, NULL, '(A Convenir)');
+INSERT INTO `escuelas` (`id`, `nombre`, `direccion`, `ciudad_id`, `director`, `telefono`, `programa_id`, `numero_estab`, `observaciones`, `lugarTransporte`, `notatutores`) VALUES
+(1, 'VELEZ SARSFIELD', 'MITRE 390', 1, 'GRACIELA PEDRAZOLI', '421-1863', 1, 1, NULL, 'Facultad Administracion', 1),
+(2, 'ALMAFUERTE', 'URQUIZA 276', 1, 'MARIA DEL CARMEN FERNANDEZ', '421-6007', 1, 2, NULL, 'Facultad Administracion', 1),
+(3, 'DOMINGO F. SARMIENTO', 'MOULINS 1900', 1, 'MARIA ESTHER INCHAUSPE', '', 1, 3, NULL, 'Facultad Administracion', 1),
+(4, 'LAVARDEN', 'LA PRIDA Y LOS VI', 1, 'ELISA C. DE PEREZ MARIA', '425-1568', 1, 4, NULL, 'Facultad Administracion', 1),
+(5, 'SAN JOSE DE CALASANZ.', 'LOS ANDES', 1, 'NORMA MORELLO', '427-1170', 1, 5, NULL, 'Facultad Administracion', 1),
+(6, 'GRAL. SAN MARTIN', 'MAIPU', 1, 'BLANCA VILLANUEVA DE OTRIZ', '', 1, 6, NULL, 'Facultad Administracion', 1),
+(7, 'CABILDO ABIERTO', 'COLONI ROCA', 1, 'ALBA ZUFIAURRE DE OTERO', '', 1, 7, NULL, 'Facultad Administracion', 1),
+(8, 'MADAME CURIE', 'VILLA ZORRAQUIN', 1, 'ANGELICA SOSA DE MEDRANO', '', 1, 8, NULL, 'Facultad Administracion', 1),
+(9, 'JUAN M. GUTIERREZ', 'SARMIENTO 94', 1, 'ROSA GATTI DE MIGLIORA', '421-6372', 1, 9, NULL, 'Facultad Administracion', 1),
+(10, 'BENITO GARAT', 'URDINARRAIN 752', 1, 'GRACIELA B. DE TAMA', '421-4882', 1, 10, NULL, 'Facultad Administracion', 1),
+(11, 'GRAL. BASAVILBASO', 'LA RIOJA 1819', 1, 'MARIA LEONOR REALI DE MEDINA', '421-3723', 1, 11, NULL, 'Facultad Administracion', 1),
+(12, 'EL SUPREMO ENTRERRIANO', 'ALEM 424', 1, 'ELBA FERRARI DE SCATONE', '421-2597', 1, 12, NULL, 'Facultad Administracion', 1),
+(13, 'PANCHO RAMIREZ', 'PASO GALLO', 1, 'PAOLAZZI JUANA', '427-1426', 1, 13, NULL, 'Facultad Administracion', 1),
+(14, 'CNEL. ANIONIO NAVARRO', 'SAN LORENZO Y VILLAGUAY', 1, 'HILDA F. DE SHAUVINHOLD', '427-0511', 1, 14, NULL, 'Facultad Administracion', 1),
+(15, 'NORMAL D. F. SARMIENTO', 'SARMIENTO 530', 1, 'SILVIA CANALS', '421-2645', 1, 15, NULL, 'Facultad Administracion', 1),
+(16, 'MANUEL P. ANTEQUEDA', 'COLONIA AYUI', 1, 'VIRGINIA VELAZQUEZ DE FLORES', '', 1, 16, NULL, 'Facultad Administracion', 1),
+(17, 'DIOGENES J. DE URQUIZA', 'LAS HERAS 654', 1, 'JOSE MARIANO WASINGER', '421-6166', 1, 17, NULL, 'Facultad Administracion', 1),
+(18, 'EL ACONCAGUA', 'COLONIA YERUA', 1, 'ANA MARIA MIGLIORA', '', 1, 18, NULL, 'Facultad Administracion', 1),
+(19, 'JUAN LAVALLE', 'ESTANCIA GRANDE', 1, 'MARIA ROSA VOLPI', '', 1, 19, NULL, 'Facultad Administracion', 1),
+(20, 'CAETANO SILVA', 'PUEBLO FERRE', 1, 'GRACIELA CHESSINI DE HIDALGO', 'NO', 1, 20, NULL, 'Facultad Administracion', 1),
+(21, 'LUIS RODRIGUEZ', 'PUERTO YERUA', 1, 'MARIA MARTA SANSONI', '499-1045', 1, 21, NULL, 'Facultad Administracion', 1),
+(22, 'MADRE PATRIA', 'CALABACILLA', 1, 'GUTIERREZ SOLEDAD', '', 1, 22, NULL, 'Facultad Administracion', 1),
+(23, 'ANDERSON', 'COLONIA YERUA', 1, 'OLGA SOMMER DE MARINI', '', 1, 23, NULL, 'Facultad Administracion', 1),
+(24, 'EL ESCONDIDO', 'CLOROMIRO LEDESMA', 1, 'ANA GALLO DE CABRERA', '', 1, 24, NULL, 'Facultad Administracion', 1),
+(27, 'NTRA SRA DE LOURDES', 'LEGUIZAM', 1, '', '', 1, 27, NULL, 'Facultad Administracion', 1),
+(28, 'TOMAS EDISON', 'NUEVA ESCOCIA', 1, 'JOSE EDUARDO BERTOCHI', '', 1, 28, NULL, 'Facultad Administracion', 1),
+(30, 'ALINA P. DE MATHERON', 'PUERTO YERUA', 1, 'EVA ACEVEDO MI', '', 1, 30, NULL, 'Facultad Administracion', 1),
+(31, 'SANTA LUCIA', 'Aristobulo del valle 476', 1, '', '421-7928', 1, 31, NULL, 'Facultad Administracion', 1),
+(32, 'NTRA SRA DEL SILENCIO', 'Ruta 4 Km 5.', 1, '', '422-5205', 1, 32, NULL, 'Facultad Administracion', 1),
+(33, 'PASO A PASO', 'COLONIA SAN JUSTO', 1, 'CRISTINA TEJERA', '', 1, 33, NULL, 'Facultad Administracion', 1),
+(34, 'ESTEBAN ECHEVERRIA', 'AVENIDA CASTRO 430', 1, 'LEONOR KAMIN DE ELBERG', '422-9914', 1, 34, NULL, 'Facultad Administracion', 1),
+(35, 'ALMIRANTE BROWN (NOCT.)', 'BELGRANO Y NESTOR GARAT', 1, 'MARIA OLGA GOMEZ OLGA', '', 1, 35, NULL, 'Facultad Administracion', 1),
+(36, 'DAMIAN P. GARAT', 'ESTACION YERUA', 1, 'JORGE FONTANARI', '', 1, 36, NULL, 'Facultad Administracion', 1),
+(38, 'LUIS N. PALMA', 'ESTACION YUQUERI', 1, 'ROSA BOCANEGRA DE TORALE', '', 1, 38, NULL, 'Facultad Administracion', 1),
+(39, 'JOSE N. PAZ', 'COLONIA SAN JUSTO', 1, 'MABEL MIGOYA DE MORINICO', '', 1, 39, NULL, 'Facultad Administracion', 1),
+(41, 'BATALLA DE CHACABUCO', 'OSVALDO MAGNASCO', 1, 'RAQUEL ROSSEAU DE COLOMBO', '', 1, 41, NULL, 'Facultad Administracion', 1),
+(42, 'Gra. M. BELGRANO', 'ENTRE RIOS 1015', 1, 'RAQUEL ORTIZ DE COLOMBO', '421-4710', 1, 42, NULL, 'Facultad Administracion', 1),
+(43, 'BERNARDINO RIVADAVIA', 'LAMADRID 945', 1, 'ESTELA GARCIA DE DI MAIO', '421-2354', 1, 43, NULL, 'Facultad Administracion', 1),
+(44, 'MARIANO MORENO', 'B. DE. HIRIGOYEN 496', 1, 'LUCRECIA E. DE FERNANDEZ', '421-2004', 1, 44, NULL, 'Facultad Administracion', 1),
+(45, 'FRAY LUIS DELTRAN (NOCT.)', 'ENTRE RIOS 1015', 1, 'SARA LORENZO DE VITON', '421-9660', 1, 45, NULL, 'Facultad Administracion', 1),
+(46, 'ELENA L. DE ROFFO', 'LOS CHARRUAS', 1, 'ALICIA MARSILLI DE GALLARDO', '490-7032', 1, 46, NULL, 'Facultad Administracion', 1),
+(47, 'JUSTA GAYOSO', 'BENITO LEGEREN', 1, 'ALICIA V. DE ALBARENQUE', '499-5082', 1, 47, NULL, 'Facultad Administracion', 1),
+(49, 'GREGORIA PEREZ', 'SAN BONIFACIO', 1, 'CRISTINA M. DE LAROCCA', '', 1, 49, NULL, 'Facultad Administracion', 1),
+(50, 'ELIAS ROMERO', 'PUNTAS DE MOREIRA', 1, 'LEIVA OSCAR', '3454421225', 1, 50, NULL, 'Facultad Administracion', 1),
+(51, 'FELIPE GARDEL', 'MOULINS Y VILLAGUAY', 1, 'SILVIA GRIEVE', '427-1046', 1, 51, NULL, 'Facultad Administracion', 1),
+(52, 'DOS NACIONES', 'LA BIANCA', 1, 'ROSA TAMAY DE COUSIDO', '425-1686', 1, 52, NULL, 'Facultad Administracion', 1),
+(53, 'SAN MARTIN', 'SAN LORENZO 0.', 1, 'ELSA NORMA TERAMO', '421-3503', 1, 53, NULL, 'Facultad Administracion', 1),
+(54, 'SALTA', 'BOLIVIA 581', 1, 'TERESA OLIVERA DE BASTAN', '422-1276', 1, 54, NULL, 'Facultad Administracion', 1),
+(55, 'NTRA SRA DE ITAT', 'Per', 1, '', '421-8848', 1, 55, NULL, 'Facultad Administracion', 1),
+(56, 'ANGEL C. BARDELLI', 'PUERTO VERUA', 1, 'GUSTAVO IGLESIAS', '', 1, 56, NULL, 'Facultad Administracion', 1),
+(57, 'BELGRANO', 'H. IRIGOYEN 1380', 1, 'ALGA GAL VARINI', '421-6206', 1, 57, NULL, 'Facultad Administracion', 1),
+(58, 'DE LOS INMIGRANTES', 'COLONIA LOMA NEGRA', 1, 'MATILDE MINAGLIA DE MASETTI', '', 1, 58, NULL, 'Facultad Administracion', 1),
+(59, 'EL RAB', 'COLONIA SANTA ISABEL', 1, 'MEDINA CARLOS', 'NO', 1, 59, NULL, 'Facultad Administracion', 1),
+(60, 'MANUEL DE OLAZABAL.', 'PEDERNAL', 1, 'DORA IGARZA DE BENITEZ', '', 1, 60, NULL, 'Facultad Administracion', 1),
+(61, 'MI PATRIA CHICA', 'COLONIA SAN BONIFACIO', 1, 'EMA MIRTA ALVAREZ', '', 1, 61, NULL, 'Facultad Administracion', 1),
+(62, 'CARLOS VILLAMIL', 'EL REDOMON', 1, 'MARIA GARC', '', 1, 62, NULL, 'Facultad Administracion', 1),
+(63, 'HERNANDO A. SAAVEDRA', 'COLONIA URQUIZA', 1, 'CRISTINA RUBIN', '', 1, 63, NULL, 'Facultad Administracion', 1),
+(64, 'JUAN E. ALBERDI', 'LA CRIOLLA', 1, 'ROSA VALLEJOS DE TISOCCO', '490-0010', 1, 64, NULL, 'Facultad Administracion', 1),
+(65, 'ALMIRANTE BROWN', 'VILLA ADELA', 1, 'YOLANDA CATTANEO DE RAMAT', '429-0193', 1, 65, NULL, 'Facultad Administracion', 1),
+(66, 'RCA. O. DEL URUGUAY', 'PELLEGRINI 136', 1, 'STELLA F. DE AGOSTINI', '421-0843', 1, 66, NULL, 'Facultad Administracion', 1),
+(67, 'ADOLFO GUIDOBONO', 'LA QUERENCIA', 1, 'CRISTINA GALLEGOS DE RAUCH', '', 1, 67, NULL, 'Facultad Administracion', 1),
+(68, 'MALVINAS ARGENTINAS', 'LA BIANCA', 1, 'MARIA SAUCEDO DE RODRIGUEZ', '425-1463', 1, 68, NULL, 'Facultad Administracion', 1),
+(69, 'SAN FRANCISCO', 'DR ALDAS Y 2 DE ABRIL', 1, '', '', 1, 69, NULL, 'Facultad Administracion', 1),
+(70, 'EVA DUARTE', 'LIEBERMAN Y VILLAGUAY', 1, 'SILVIA RUBO DE CEDERMAZ', '', 1, 70, NULL, 'Facultad Administracion', 1),
+(71, 'INDEPENDENCIA', 'BVARD. YUQUERI 141', 1, 'MARIA DEL CARMEN P. DE SIBLEN', '', 1, 71, NULL, 'Facultad Administracion', 1),
+(72, 'TRABAJADOR COMUNITARIO', 'Brio. SAN AGUSTIN', 1, 'ALCIRA SPINELLI DE GIMENEZ', '', 1, 72, NULL, 'Facultad Administracion', 1),
+(73, 'PANCHO RAMIREZ', 'PTE. ILIAS Y YUQUERI', 1, 'LILIANA MARSILLI DE DALZOTO', '', 1, 73, NULL, 'Facultad Administracion', 1),
+(74, 'GRAL. JUAN JOSE VALLE', 'MARIA INES LOPEZ', 1, 'MARIA ELORDI DE VILLARRUEL', '421-9660', 1, 74, NULL, 'Facultad Administracion', 1),
+(81, 'JESUS DE NAZARENO', 'Illia 255', 1, '', '427-2611', 1, 81, NULL, 'Facultad Administracion', 1),
+(115, 'JOSE E. RIVERA', 'COLONIA LOS SAUCES', 1, 'ELIDA LEONOR DIAZ', '', 1, 115, NULL, 'Facultad Administracion', 1),
+(131, 'EL CHIMBORAZO', 'COLONIA URQUIZA', 1, 'ANDRES FRACARO', '', 1, 131, NULL, 'Facultad Administracion', 1),
+(132, 'BENITO JUAREZ', 'ESTACION YUQUERI', 1, 'PATRICIA VAZQUEZ DE ZILONI', '421-6639', 1, 132, NULL, 'Facultad Administracion', 1),
+(155, 'JUSTO JOSE DE URQUIZA', 'SAN MARTIN 36', 1, 'CARMEN GODOY DE MACE', '421-3010', 1, 155, NULL, 'Facultad Administracion', 1),
+(156, 'COL. DE LOS INMIGRANTES', 'LA CRIOLLA', 1, '', '', 1, 156, NULL, 'Facultad Administracion', 1),
+(157, 'ESP 01', 'ESTRADA 553', 1, 'LILIANA SONEYRA DE PAREDES', '421-5562', 1, 157, NULL, 'Facultad Administracion', 1),
+(158, 'ESP 02 AZAHARES', 'SARGENTO CABRAL', 1, 'MERCEDES ORIESER DE TECHERA', '422-4686', 1, 158, NULL, 'Facultad Administracion', 1),
+(159, 'ESP 25 DE SORDOS', 'LA RIOJA', 1, 'ALEJANDRA BOCALANDRO', '421-0762', 1, 159, NULL, 'Facultad Administracion', 1),
+(160, 'ESP 07 GURISITO COSTERO (Maternal)', 'LA BIANCA', 1, 'SILVIA BELLEZA DE PESSOLANI', '', 1, 160, NULL, 'Facultad Administracion', 1),
+(161, 'MAT 03 MATERNAL 3', 'GUEMES Y PERU', 1, 'OLGA SABRE DE BORDOLLI', '', 1, 161, NULL, 'Facultad Administracion', 1),
+(166, 'VELEZ SARSFIELD', 'Mitre 390', 1, '', '421-1863', 2, 1, '', 'Facultad Administracion', 1),
+(167, 'ALMAFUERTE', 'Urquiza 278', 1, '', '421-6007', 2, 2, '6toC > Excepciones', 'Facultad Administracion', 1),
+(168, 'DOMINGO F. SARMIENTO', 'Moulins 1900', 1, '', '421-1283 / 427-2396', 2, 3, NULL, 'Facultad Administracion', 1),
+(169, 'MANUEL J. DE LAVARDEN', 'Laprida 2799 y Los Vi', 1, '', '425-1568', 2, 4, 'Pend: Prosane 2012', 'Facultad Administracion', 1),
+(170, 'SAN JOSE DE CALASANZ.', 'Los Andes 1240', 1, '', '427-1170 / 427-0636', 2, 5, NULL, 'Facultad Administracion', 1),
+(171, 'GRAL. JOSE DE SAN MARTIN', 'Maipu y Nestor Garat', 1, '', '421-8921 / 421-0822', 2, 6, NULL, 'Facultad Administracion', 1),
+(172, 'JOSE MARIA TEXIER', 'Av. Malar', 3, '', '491-0270', 2, 1, 'Pend: Recorrido RAMIRO', 'Escuela Texeira, cita en Av. Malarin 280, San Salvador.', 1),
+(173, 'BARTOLOME MITRE', 'Tulio Gonzalez 222', 3, '', '', 2, 2, NULL, 'Escuela San Jose, cita en Av. Malarin 1092, San Salvador.', 1),
+(174, 'JUAN MARIA GUTIERREZ', 'Sarmiento 94', 1, '', '421-6372 / 422-7085', 2, 9, NULL, 'Facultad Administracion', 1),
+(175, 'BENITO GARAT', 'Urdinarrain 752', 1, '', '421-4882 / 156-027529', 2, 10, '', 'Facultad Administracion', 1),
+(176, 'GRAL. M. BASAVILBASO', 'La Rioja 1819', 1, '', '421-3723', 2, 11, '5to > Excepción', 'Facultad Administracion', 1),
+(178, 'CNEL. ANTONIO NAVARRO', 'San Lorenzo 995', 1, '', '427-0511 / 427-2022', 2, 14, NULL, 'Facultad Administracion', 1),
+(179, 'NORMAL SUP. DF. SARMIENTO', 'Sarmiento 530', 1, '', '421-2645 / 422-9792 / 154-015285 > Griselda Reynoso', 2, 15, NULL, 'Facultad Administracion', 1),
+(180, 'CENTENARIO', '1', 3, '', '427-0636 / 491-0187', 2, 5, NULL, 'Escuela Texeira, cita en Av. Malarin 280, San Salvador.', 1),
+(181, 'CIUDAD DE CORDOBA', 'Colonia Santa Elena', 10, '', '', 2, 7, NULL, 'Facultad Administracion', 1),
+(182, 'DIOGENES J. DE URQUIZA', 'Las Heras 654', 1, '', '421-6166', 2, 17, 'faltan cargar? NO, NO SE HIZO 3RO', 'Facultad Administracion', 1),
+(183, 'CABILDO ABIERTO', 'Ruta 4 Km 9', 11, '', '427-1718 >  casa de la dire / 155-280829', 2, 7, '\n', 'Facultad Administracion', 1),
+(184, 'MADAME CURIE', 'Per', 35, '', '425-1057 / 155-083932', 2, 8, 'claudia tiene los datos', 'Facultad Administracion', 1),
+(185, 'PABLO GOUSSAC', 'Ruta N', 16, '', '', 2, 10, NULL, 'Facultad Administracion', 1),
+(186, 'JUSTO JOSE DE URQUIZA', '25 de Mayo 585', 22, '', '490-1337', 2, 12, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(187, 'PANCHO RAMIREZ', 'Rutas 5 y 128', 29, '', '154-174252 > esc. / 156-256312', 2, 13, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(188, 'JOSE E. RIVERA', 'Colonia Los Sauces ', 26, '', '156-022217', 2, 15, NULL, 'Facultad Administracion', 1),
+(189, 'MANUEL PACIFICO ANTEQUEDA', 'Ruta Prov N', 9, '', '499-2008 > casa de la dire / 156-024157', 2, 16, '', 'Facultad Administracion', 1),
+(190, 'NTRA SRA. DE LA MERCED', 'Estrada 524', 1, '', '421-3464', 2, 25, '', 'Facultad Administracion', 1),
+(192, 'NTRA. SRA. DE LOURDES', 'Leguizam', 1, '', '421-5690', 2, 27, NULL, 'Facultad Administracion', 1),
+(194, 'PROVINCIA DE CORRIENTES', 'Colonia La Armon', 12, '', '', 2, 16, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(196, 'EL ACONCAGUA', 'Ex Ruta Nac. N', 18, '', '422-6102 / 422-3628 / 490-3003 / 154-038519', 2, 18, 'Ver Probl con 1 excepcion\n', 'Facultad Administracion', 1),
+(197, 'JUAN LAVALLE', 'Estancia Grande', 18, '', '421-5119 > llamar x la ma', 2, 19, NULL, 'Facultad Administracion', 1),
+(198, 'CAYETANO SILVA', 'Pueblo Ferr', 31, '', '', 2, 20, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(199, 'SANTA LUCIA', 'A. del Valle 436', 1, '', '421-7928', 2, 31, NULL, 'Facultad Administracion', 1),
+(200, 'LUIS RODRIGUEZ', 'Eduardo Oliver S/N', 32, '', '499-1077 / 156-024985', 2, 21, NULL, 'Facultad Administracion', 1),
+(201, 'MADRE PATRIA', 'Calabacilla ', 6, '', '422-1809 / 154-116432', 2, 22, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(202, 'HANS CHRISTIAN ANDERSEN', 'Colonia Yeru', 18, '', '155-086161', 2, 23, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(203, 'ESTEBAN ECHEVERRIA', 'Av. Castro 430', 1, '', '431-1007 / 154-076387', 2, 34, 'Pend: Ines???', 'Facultad Administracion', 1),
+(205, 'EL ESCONDIDO', 'Clodomiro Ledesma ', 8, '', '422-1077', 2, 24, 'Todo 1er Ciclo en un solo curso.', 'Escuela El Aconcagua', 1),
+(207, 'THOMAS ALVA EDISON', 'Nueva Escocia ', 27, '', '154-052100 > mandar mje si no contesta xq x ah', 2, 28, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(210, 'BERNARDINO RIVADAVIA', 'Lamadrid 945', 1, '', '421-2354 / 154-062332', 2, 43, 'Pend:  Info Prosane 2011.', 'Facultad Administracion', 1),
+(211, 'MARIANO MORENO', 'Bdo. de Hirigoyen 496', 1, '', '421-0742 / 421-2004', 2, 44, NULL, 'Facultad Administracion', 1),
+(213, 'ALINA P. DE MATHERON', 'Colonia Puerto Yeru', 32, '', '422-3624 / 421-7928 / 154-094539', 2, 30, 'modifiqué', 'Escuela Luis Rodriguez (Puerto Yeruá)', 1),
+(215, 'NTRA SRA DEL SILENCIO', 'Ruta 4 Km 5', 7, '', '422-5205 / 422-2895 / 154-066692', 2, 32, '', 'Facultad Administracion', 1),
+(216, 'BENITO JUAREZ', 'Ruta Pcial. 22 y V', 21, '', '431-0562 > casa de la dire / 154-015945', 2, 32, '', 'Facultad Administracion', 1),
+(217, 'PROFESOR FELIPE GARDEL', 'Moulins y Villaguay', 1, '', '427-1046', 2, 51, NULL, 'Facultad Administracion', 1),
+(220, 'DAMIAN P. GARAT', 'Paraje Vecinal', 20, '', '490-9012 / 156-263727 ', 2, 36, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(221, 'LUIS N.C. PALMA', 'Barrio Coelho', 21, '', '154-159838', 2, 38, 'no fui', 'Facultad Administracion', 1),
+(223, 'BATALLA DE CHACABUCO', 'Yolanda Gallo S/N', 28, '', '425-2266 / 154-089469', 2, 41, 'Pend: Claudia', 'Facultad Administracion', 1),
+(224, 'ELENA LARROQUE DE ROFFO', 'Helena L. de Roffo 618', 25, '', '490-7032', 2, 45, 'Recorrido DANIEL\nno fui', 'Facultad Administracion', 1),
+(225, 'JUSTA GAYOSO', 'Av. Juventud Unida', 5, '', '499-5080 / 499-5082', 2, 47, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(226, 'SANTIAGO DE CHILE', '', 22, '', '', 2, 48, 'Recorrido RAMIRO', 'Facultad Administracion', 1),
+(229, 'DOS NACIONES', 'Cabo 1', 23, '', '425-1686 / 4251811 / 498-8077', 2, 52, 'Pend: Ines??', 'Facultad Administracion', 1),
+(230, 'GRAL. SAN MARTIN', 'Av. San Lorenzo 515 O', 1, '', '421-3503', 2, 53, NULL, 'Facultad Administracion', 1),
+(231, 'SOLIDARIDAD Y ESPERANZA', '25 de Mayo 21', 1, '', '155-290394', 2, 53, NULL, 'Escuela Ntra. Sra. de Lourdes', 1),
+(232, 'SALTA / JUAN BLASCO', 'Bolivia 581', 1, '', '422-1276 / 154-170632', 2, 54, '', 'Facultad Administracion', 1),
+(233, 'JUSTO JOSE DE URQUIZA', 'San Mart', 1, '', '154-021906', 2, 55, 'Pend: Registro de Alumnos', 'Facultad Administracion', 1),
+(234, 'NTRA SRA DE ITATI', 'Per', 1, '', '422-6876 / 421-3010', 2, 55, NULL, 'Facultad Administracion', 1),
+(235, 'ANGEL C. BARDELLI', 'Paraje La Rosada', 32, '', '154-173063', 2, 56, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(236, 'JM. BELGRANO', 'Hip. Irigoyen 1380', 1, '', '421-6206', 2, 57, NULL, 'Facultad Administracion', 1),
+(237, 'COL. DE LOS INMIGRANTES', 'Colonia Loma Negra', 24, '', '154-110333', 2, 58, 'Recorrido DANIEL no fui\n', 'Facultad Administracion', 1),
+(239, 'EL RABON', 'Vecinal S/N', 15, '', '155-082448', 2, 58, NULL, 'Facultad Administracion', 1),
+(240, 'GRAL. MANUEL DE OLAZABAL.', 'Pedernal', 30, '', '154-156679', 2, 59, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(241, 'MI PATRIA CHICA', 'Colonia San Bonifacio', 24, '', '421-4514 / 155-205024', 2, 61, '\n', 'Escuela Juan Bautista Alberdi.', 1),
+(242, 'CARLOS VILLAMIL', 'Ruta 4 y Ruta 28, doblar a la izq x Ruta 22', 19, '', '154-118074 / 425-0738 ', 2, 62, 'Recorrido DANIEL no fui\n', 'Facultad Administracion', 1),
+(243, 'HERNANDO ARIAS DE SAAVEDRA', 'Colonia Urquiza', 25, '', '154-031890', 2, 62, NULL, 'Facultad Administracion', 1),
+(244, 'JUAN BAUTISTA ALBERDI', 'Lago Salto Grande S/N', 24, '', '490-0010', 2, 64, '', 'Facultad Administracion', 1),
+(245, 'ALMIRANTE GUILLERMO BROWN', 'Av. Pte. Per', 34, '', '429-0193 / 429-0701', 2, 65, NULL, 'Facultad Administracion', 1),
+(246, 'RCA. ORIENTAL DEL URUGUAY', 'Pellegrini 136', 1, '', '421-0843 / 421-7892', 2, 66, '1ro "U"', 'Facultad Administracion', 1),
+(248, 'SIN NOMBRE', 'Pueblo Ferr', 18, '', '156-269682', 2, 68, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(249, 'MALVINAS ARGENTINAS', 'San Juan y Santa F', 23, '', '425-1463', 2, 68, NULL, 'Facultad Administracion', 1),
+(250, 'SAN FRANCISCO', 'Dr. Aldas y 2 de Abril', 1, '', '427-2677', 2, 69, NULL, 'Facultad Administracion', 1),
+(251, 'EVA DUARTE', 'Lieberman y Villaguay', 1, '', '427-0653', 2, 70, 'Pend: Prosane 2012', 'Facultad Administracion', 1),
+(252, 'INDEPENDENCIA', 'Bv. Yuquer', 1, '', '156-263835', 2, 71, '1roC y 5toC > Excepciones', 'Facultad Administracion', 1),
+(253, 'TRABAJADOR COMUNITARIO', 'Misiones 1695', 1, '', '427-2677', 2, 72, '4to A/B > Excepciones', 'Facultad Administracion', 1),
+(254, 'PANCHO RAMIREZ', 'Odiard 1887 (esq. Pte. Illia)', 1, '', '', 2, 73, NULL, 'Facultad Administracion', 1),
+(255, 'GRAL. JUAN JOSE VALLE', 'Maestra L', 1, '', '427-2709 / 421-9660 / 154-342542', 2, 74, 'faltan datos o no se hizo? NO SE HIZO 2A', 'Facultad Administracion', 1),
+(256, 'MADRE TERESA DE CALCUTA', 'Lieberman y PA de Sarmiento', 1, '', '427-2428', 2, 76, '', 'Facultad Administracion', 1),
+(257, 'NESTOR KIRCHNER', 'Ricardo Rojas 1350 y Nieves', 1, '', '154-129928 / 499-5756', 2, 77, 'OJO: 1ro A es Kirch (1, 2 y 3 en el mismo), el resto es 2 de abril', 'Facultad Administracion', 1),
+(258, 'JESUS DE NAZARENO', 'Pte. Illia 255', 1, '', '427-2611', 2, 81, NULL, 'Facultad Administracion', 1),
+(261, 'LA VIÑA', 'Diamante 2200', 1, '', '', 2, 152, '', 'Facultad Administracion', 1),
+(263, 'SAN ROQUE GONZALEZ', 'Benito Leger', 5, '', '499-5194', 2, 193, 'Recorrido LAURA', 'Facultad Administracion', 1),
+(264, 'RENACER', 'Pellegrini 1014', 1, '', '421-3311', 2, 209, 'Pend: Retirar en escuela', 'Facultad Administracion', 1),
+(267, 'SAN JOSE', 'Malarin 1092', 3, '', '', 2, 13, 'Esc 113: "San jose" (San Salvador)', 'Escuela San jose, cita en Av. Malarin 1092, San Salvador.', 1),
+(268, '2 DE ABRIL', 'R. ROJAS 1360', 1, '', '', 2, 75, NULL, 'Facultad Administracion', 1),
+(269, 'E88 Salto (ROU)', 'Salto (ROU)', 1, 'Menendez, Beatriz', '', 2, 88, NULL, '(A convenir)', 1),
+(810, 'E92 Salto (ROU)', 'Industrias y D5', 1, 'ELIZABETH DÁVILA INÉS RODRIGUEZ da SILVEIRA AGUIRRE ', '47322261', 2, 92, NULL, '(A Convenir)', 1),
+(811, '', '', 1, '', '', 2, 0, NULL, 'Facultad', 1);
 
 -- --------------------------------------------------------
 
@@ -2380,22 +2407,23 @@ CREATE TABLE IF NOT EXISTS `fechas` (
   `programa_id` bigint(20) NOT NULL,
   `tipoevent` int(11) NOT NULL default '1' COMMENT 'tipo de evento 1 - Pesquizas | 2 - Diagnostico | 3 - Entrega ',
   `fecha` date NOT NULL,
+  `sede` varchar(255) default NULL,
   `hora_ini` time NOT NULL default '08:00:00',
   `hora_fin` time NOT NULL default '18:00:00',
   PRIMARY KEY  (`id`),
   KEY `programa_id` (`programa_id`),
   KEY `tipoevent` (`tipoevent`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='fechas y horas de los diagnosticos' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='fechas y horas de los diagnosticos' AUTO_INCREMENT=18 ;
 
 --
 -- Volcado de datos para la tabla `fechas`
 --
 
-INSERT INTO `fechas` (`id`, `programa_id`, `tipoevent`, `fecha`, `hora_ini`, `hora_fin`) VALUES
-(1, 1, 2, '2011-07-02', '08:00:00', '18:00:00'),
-(2, 1, 2, '2011-07-03', '08:00:00', '15:30:00'),
-(3, 2, 2, '2012-06-30', '08:00:00', '18:30:00'),
-(4, 2, 2, '2012-07-01', '08:00:00', '15:00:00');
+INSERT INTO `fechas` (`id`, `programa_id`, `tipoevent`, `fecha`, `sede`, `hora_ini`, `hora_fin`) VALUES
+(1, 1, 2, '2011-07-02', NULL, '08:00:00', '18:00:00'),
+(2, 1, 2, '2011-07-03', NULL, '08:00:00', '15:30:00'),
+(16, 2, 1, '2013-04-03', '0', '08:00:00', '18:00:00'),
+(17, 2, 2, '2013-05-04', 'Facultad', '08:00:00', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -2432,11 +2460,9 @@ CREATE TABLE IF NOT EXISTS `modulos` (
 --
 
 INSERT INTO `modulos` (`id`, `nombre`, `link`, `clase`) VALUES
-(1, 'Config.', 'cfg', 'Configuracion'),
 (2, 'Pesquiza', 'pesquiza', 'Bpesq'),
 (3, 'Diagnostico', 'diagnostico', 'Bdiag'),
 (4, 'Entrega', 'entrega', 'Bentr'),
-(5, 'Administracion', 'admin', 'Badmi'),
 (6, 'Papeleria', 'paper', 'Bpape');
 
 -- --------------------------------------------------------
@@ -3128,11 +3154,10 @@ CREATE TABLE IF NOT EXISTS `programas` (
   `id` bigint(20) NOT NULL auto_increment,
   `nombre` varchar(60) collate utf8_bin NOT NULL,
   `clubrotario` varchar(60) collate utf8_bin NOT NULL,
-  `sede_diag` varchar(255) collate utf8_bin default NULL,
-  `sede_entrega` varchar(255) collate utf8_bin default NULL,
   `responsable` varchar(80) collate utf8_bin NOT NULL,
   `email_responsable` varchar(150) collate utf8_bin default NULL,
   `ciudad_id` bigint(20) NOT NULL default '1',
+  `membrete` varchar(255) collate utf8_bin default NULL,
   `estado` tinyint(4) NOT NULL COMMENT '0 - terminado | 1 - en proceso',
   PRIMARY KEY  (`id`),
   KEY `club_id` (`estado`)
@@ -3142,10 +3167,10 @@ CREATE TABLE IF NOT EXISTS `programas` (
 -- Volcado de datos para la tabla `programas`
 --
 
-INSERT INTO `programas` (`id`, `nombre`, `clubrotario`, `sede_diag`, `sede_entrega`, `responsable`, `email_responsable`, `ciudad_id`, `estado`) VALUES
-(1, 'No juegues con tus ojos 2011', 'Salto Grande Concordia', 'UNER, Paraguay 1468', 'UNER, Paraguay 1468', 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, 0),
-(2, 'No Juegues con tus Ojos 2012', 'Salto Grande Concordia', 'UNER, Paraguay 1468', 'UNER, Paraguay 1468', 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, 0),
-(3, 'Ver Bien para Apender Mejor 2013', 'Salto Grande Concordia', NULL, NULL, 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, 1);
+INSERT INTO `programas` (`id`, `nombre`, `clubrotario`, `responsable`, `email_responsable`, `ciudad_id`, `membrete`, `estado`) VALUES
+(1, 'No juegues con tus ojos 2011', 'Salto Grande Concordia', 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, NULL, 0),
+(2, 'No Juegues con tus Ojos 2012', 'Salto Grande Concordia', 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, NULL, 0),
+(3, 'Ver Bien para Apender Mejor 2013', 'Salto Grande Concordia', 'Laura Slavkyn', 'analauraslakin@gmail.com', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -3214,8 +3239,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(1, 'danielbertoni', '$P$BfisAoR1qCBgZIe5PsExAqBRXla4Qz.', 'daniel.bertoni@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '192.168.1.2', '2013-03-02 20:09:10', '2011-11-09 20:46:20', '2013-03-02 23:09:10'),
-(3, 'AnaLaura', '$P$Bomp4EAKniwA8sHPFsISh0HNLBtxc40', 'analauraslavkin@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '190.31.88.252', '2012-07-02 10:47:59', '2012-04-03 21:00:37', '2012-07-02 13:47:59'),
+(1, 'danielbertoni', '$P$BfisAoR1qCBgZIe5PsExAqBRXla4Qz.', 'daniel.bertoni@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '192.168.1.2', '2013-03-22 00:15:03', '2011-11-09 20:46:20', '2013-03-22 03:15:03'),
+(3, 'AnaLaura', '$P$Bomp4EAKniwA8sHPFsISh0HNLBtxc40', 'analauraslavkin@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '190.30.117.12', '2013-03-21 11:30:30', '2012-04-03 21:00:37', '2013-03-21 14:30:30'),
 (5, 'carlosesquerro', '$P$BYs9z9HC9WIbEoP7UNqwj7xj5ehKEb1', 'carlos.rotary4940@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '190.138.163.233', '2012-06-29 23:01:56', '2012-04-21 16:51:52', '2012-06-30 02:01:56'),
 (6, 'claudialauria', '$P$BuWrrKXnIUf7rjO8Z/fL.04.ZM1WFo1', 'claudialauria71@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '201.252.213.62', '2012-06-02 15:43:46', '2012-06-02 14:57:36', '2012-06-02 18:43:46'),
 (7, 'RamiroLopezTavella', '$P$Bad5i0eln/p7Q4HRtDbtQz3bPc9lzM.', 'ramirolopeztavella@consumax.com.ar', 1, 0, NULL, NULL, NULL, NULL, NULL, '190.220.148.202', '2012-06-12 13:51:26', '2012-06-02 16:21:00', '2012-06-12 16:51:26');
@@ -3312,6 +3337,9 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
   `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `country` varchar(20) collate utf8_bin default NULL,
+  `apellido` varchar(60) collate utf8_bin default NULL,
+  `nombre` varchar(60) collate utf8_bin default NULL,
+  `nivel` int(11) NOT NULL default '9' COMMENT '9 invitado | 0 Master admin',
   `programa_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
@@ -3320,14 +3348,14 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
 -- Volcado de datos para la tabla `user_profiles`
 --
 
-INSERT INTO `user_profiles` (`id`, `user_id`, `country`, `programa_id`) VALUES
-(1, 1, NULL, 1),
-(2, 2, NULL, 0),
-(3, 3, NULL, 0),
-(4, 4, NULL, 0),
-(5, 5, NULL, 0),
-(6, 6, NULL, 0),
-(7, 7, NULL, 0);
+INSERT INTO `user_profiles` (`id`, `user_id`, `country`, `apellido`, `nombre`, `nivel`, `programa_id`) VALUES
+(1, 1, NULL, NULL, NULL, 0, 1),
+(2, 2, NULL, NULL, NULL, 9, 0),
+(3, 3, NULL, NULL, NULL, 9, 0),
+(4, 4, NULL, NULL, NULL, 9, 0),
+(5, 5, NULL, NULL, NULL, 9, 0),
+(6, 6, NULL, NULL, NULL, 9, 0),
+(7, 7, NULL, NULL, NULL, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -3375,6 +3403,7 @@ INSERT INTO `voluntarios` (`id`, `apellido`, `nombre`, `telefono`, `email`, `pro
 (25, 'VICENTIN', 'DANIEL', '3454328627', 'singlarconcordia@gmail.com ', 2),
 (26, 'ARECO', 'VERONICA', '3454011973', 'vrea3@hotmail.com ', 2),
 (27, 'PORTO', 'MARTIN', '', 'mporto1@gmail.com', 2);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

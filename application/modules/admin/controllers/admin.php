@@ -14,6 +14,10 @@ class Admin extends MY_Controller{
   function __construct() {
     parent::__construct();
     Template::set('lateralInfoData',true);
+    $admin = $this->Userprofiles_model->getNivel();
+    if($admin==0){
+      Template::set('admin',true);
+    }
     Template::set_block('lateral', '_lateralAdmin');
     $this->load->helper('date');
   }

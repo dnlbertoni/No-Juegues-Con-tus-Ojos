@@ -7,6 +7,7 @@
 <?php echo form_close();?>
 <script>
   $(document).ready(function(){
+    $("textarea").attr('cols', '70');
     $("#Guardar").button({icons:{primary:'ui-icon-disk'}});
     $("#Guardar").click(function(){
       $("#nota-Form").submit();
