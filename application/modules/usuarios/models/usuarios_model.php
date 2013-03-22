@@ -16,11 +16,12 @@ class Usuarios_model extends MY_Model{
     $this->setTable('user_profiles');
   }
   function getTodos(){
+    $this->db->select('user_modulos.id as modulo_id');
     $this->db->select('username');
     $this->db->select('CONCAT(user_profiles.apellido, ", ", user_profiles.nombre ) as usuario', false);
     $this->db->select('modulos.nombre as modulo_nombre');
     $this->db->select('programas.nombre as programa');
-    $this->db->select('if(user_modulos.permiso=1,"Disponible", "Negado")as modulo_permiso', false);
+    $this->db->select('user_modulos.permiso as modulo_permiso', false);
     $this->db->from('user_modulos');
     $this->db->join('user_profiles', 'user_profiles.user_id=user_modulos.user_id', 'inner');
     $this->db->join('users', 'users.id=user_profiles.user_id', 'inner');
