@@ -36,7 +36,7 @@ Released   : 20110123
 		  <?php if($this->session->userdata('status')==1):?>
 		  <div id="navUser">
 			 <?php echo anchor('admin/','Administracion','id="bAdmin"');?>
-			 <?php echo anchor('auth/profile',$this->session->userdata('username'),'id="bUser"');?>
+			 <?php echo anchor('usuarios/perfil',$this->session->userdata('username'),'id="bUser"');?>
 			 <?php echo anchor('auth/logout','Salir','id="bOut"');?>
 		  </div>
 		  <?php endif;?>

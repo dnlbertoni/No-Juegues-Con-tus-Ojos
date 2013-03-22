@@ -353,3 +353,53 @@ img.aligncenter {
 
 #footer a {
 }
+/* NOTIFICATIONS */
+.notification {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin:  10px 0 20px 0;
+	padding: 5px 20px;
+}
+.notification p, .notification ul {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5;
+	text-indent: none;
+}
+.alert {
+    background: #fffbcc;
+    border-color: #e6db55;
+    color: #666452;
+}
+.info {
+	background: #dbe3f0;
+	border-color: #a2b4ee;
+	color: #383b46;
+}
+.ok {
+	background: #d5f0ce;
+	border-color: #9adf8f;
+	color: #556652;
+}
+.error {
+	background-color: #f0cece;
+	border-color:  #df8f8f;
+	color:  #533232;
+}
+p.error {
+	color: #ff3f3f;
+	background-color: transparent;
+	font-size: 75%;
+}
+.notification h1 {
+	margin: 0;
+}
+.notification.small {
+	margin-top: 7px;
+	padding: 0 20px;
+}
+.notification.small p {
+	margin: 0 !important;
+	font-size: 85%;
+	line-height: 2.5;
+}

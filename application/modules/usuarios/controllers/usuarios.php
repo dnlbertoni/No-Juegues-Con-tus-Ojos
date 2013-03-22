@@ -8,27 +8,34 @@
 class Usuarios extends MY_Controller{
   function __construct() {
     parent::__construct();
-    $this->load->model('Perfil_model');
+    $this->load->model('Usuarios_model');
     $menu[] = array('link' =>'auth/logout', 'nombre'=>'Salir', 'extra'=>'id="Logout"');
     Template::set('linea', $menu);
     Template::set_block('lateral', '_lateral');
   }
+  function index(){
+    $usuarios=$this->Usuarios_model->getTodos();
+    //print_r($usuarios);
+    Template::set('todos', $usuarios);
+    Template::render();
+  }
   function perfil(){
     $idUser = $this->tank_auth->get_user_id();
-    $user = $this->Perfil_model->getbyId($idUser);
+    $user = $this->Usuarios_model->getPerfil($idUser);
     if($user){
       Template::set('user',$user);
       $data['accion']='usuarios/editDo';
     }else{
-      $userAux=array(  'id'=>$idUser, 
+      $userAux=array(  'id'=>$idUser,
                     'apellido'=>'',
-                    'nombre'=>'', 
+                    'nombre'=>'',
                     'telefono'=>''
                   );
       $aux = (object) $userAux;
       $data['accion']='usuarios/addDo';
       Template::set('user',$aux);
     };
+    //Template::set_message('prueba', 'ok');
     Template::set($data);
     Template::render();
   }

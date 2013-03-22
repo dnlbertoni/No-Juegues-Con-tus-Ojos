@@ -93,10 +93,14 @@
               <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="ajax"');?>
           </li>
           <li>
+              <?php echo anchor('usuarios/', 'Admin. usuarios',  'class="botCiu"');?>
+              <?php echo anchor('usuarios/', 'Admin. usuarios');?>
+          </li>
+          <li>
               <?php echo anchor('admin/ciudades', 'Admin. ciudades',  'class="botCiu"');?>
               <?php echo anchor('admin/ciudades', 'Admin. ciudades');?>
           </li>
-		</ul>
+        </ul>
     </div>
   </div>
   <div style="clear:both">&nbsp;</div>
