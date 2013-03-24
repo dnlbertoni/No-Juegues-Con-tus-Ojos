@@ -10,20 +10,39 @@ Version    : 1.0
 Released   : 20110123
 
 -->
+<!--
+Modify By Dnl
+
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Yellowing - boostrap
+Description: agregado el theme de boostrap
+Version    : 1.5
+Released   : 20130323
+
+-->
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php echo $this->config->item('site_name')?></title>
-    <?php echo Assets::css(); ?>
+    <!-- includes css -->
 	<?php echo Assets::css('screen'); ?>
     <?php echo Assets::css( 'css/jquery-ui');?>
     <?php echo Assets::css( 'css/bootstrap.min');?>
-    <?php echo Assets::js(); ?>
-	<?php echo Assets::js('jquery-1.8.3'); ?>
-	<?php echo Assets::js('jquery-ui'); ?>
+    <?php //echo Assets::css( 'css/bootstrap-responsive.min');?>
+    <?php echo Assets::css( 'css/font-awesome.min'); ?>
+    <?php //echo Assets::css( 'css/custom'); ?>
+
+     <!-- includes css -->
+	<?php //echo Assets::js('jquery-ui'); ?>
+	<?php //echo Assets::js('jquery-1.8.3'); ?>
+	<?php echo Assets::js('jquery-1.9.0'); ?>
+	<?php echo Assets::js('jquery-ui-1.10.0.custom.min'); ?>
 	<?php echo Assets::js('bootstrap.min'); ?>
+	<?php //echo Assets::js('custom.js'); ?>
 	<?php echo Assets::js('okulo'); ?>
 	<?php echo Assets::js('forms'); ?>
 

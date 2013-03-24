@@ -55,5 +55,27 @@ class Usuarios extends MY_Controller{
     $id=$this->Perfil_model->update($datos, $this->input->post('id'));
     Template::redirect('home');
   }
+  function setPermiso(){
+    $modulo_id = $this->input->post('modulo');
+    $estado    = $this->input->post('accion');
+    $programa_id   = $this->input->post('programa');
+    $this->Usuarios_model->setPermiso($modulo_id,$estado, $programa_id);
+  }
+  function creoPermiso($user,$programa_id){
+    $usuario=$this->Usuarios_model->getUsuario($user);
+    $programa=$this->Programas_model->getById($programa_id);
+    $data['user_id']        = $usuario->id;
+    $data['usuario_nombre'] = $usuario->username;   
+    $data['programa_id'] = $programa->id;
+    $data['programa_nombre']=$programa->nombre;
+    $data['modulos']     = $this->Modulos_model->toDropDown('id','nombre');
+    $this->load->view('usuarios/creoPermiso',$data);
+  }
+  function creoPermisoDo(){
+    $modulo_id     = $this->input->post('modulo');
+    $usuario_id    = $this->input->post('usuario');
+    $programa_id   = $this->input->post('programa');
+    $this->Usuarios_model->createPermiso($usuario_id,$modulo_id, $programa_id);    
+  }
 }
 

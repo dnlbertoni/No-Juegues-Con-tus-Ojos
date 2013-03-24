@@ -17,8 +17,8 @@ class MY_Controller extends MX_Controller {
       redirect('auth/login');
     }
     $this->load->model('UserModulos_model');
-    $idUser=$this->session->userdata('user_id');
-    $modulos=$this->UserModulos_model->getModulosFromUsers($idUser);
+    $idUser  = $this->session->userdata('user_id');
+    $modulos = $this->UserModulos_model->getModulosFromUsers($idUser);
     Template::set('dataMenu', $modulos);
     Template::set_block('menu', '_menu');
   }
