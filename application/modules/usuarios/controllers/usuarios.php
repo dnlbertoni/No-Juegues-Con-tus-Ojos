@@ -65,7 +65,7 @@ class Usuarios extends MY_Controller{
     $usuario=$this->Usuarios_model->getUsuario($user);
     $programa=$this->Programas_model->getById($programa_id);
     $data['user_id']        = $usuario->id;
-    $data['usuario_nombre'] = $usuario->username;   
+    $data['usuario_nombre'] = $usuario->username;
     $data['programa_id'] = $programa->id;
     $data['programa_nombre']=$programa->nombre;
     $data['modulos']     = $this->Modulos_model->toDropDown('id','nombre');
@@ -75,7 +75,7 @@ class Usuarios extends MY_Controller{
     $modulo_id     = $this->input->post('modulo');
     $usuario_id    = $this->input->post('usuario');
     $programa_id   = $this->input->post('programa');
-    $this->Usuarios_model->createPermiso($usuario_id,$modulo_id, $programa_id);    
+    echo $this->Usuarios_model->createPermiso($usuario_id,$modulo_id, $programa_id);
   }
 }
 

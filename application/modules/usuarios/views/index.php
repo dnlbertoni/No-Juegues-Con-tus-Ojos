@@ -7,24 +7,24 @@
   <?php $progAux=false;?>
   <tr>
     <td colspan="4"><?php echo "$userAux"?></td>
-  </tr>      
+  </tr>
 <?php endif;?>
 <?php if($progAux!=$user->programa):?>
   <?php $progAux=$user->programa;?>
   <tr>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
     <td><?php echo "$user->programa"?></td>
-    <td>
+    <td >
       <?php echo anchor('usuarios/creoPermiso/'.$user->user_id.'/'.$user->programa_id,'Agrega Permiso','class="botAddPermiso ajax"');?>
      </td>
+     <td>&nbsp;</td>
   </tr>
 <?php endif;?>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td ><?php echo $user->modulo_nombre?></td>
-    <td id="<?php echo $user->programa_id,'_',$user->modulo_id?>">
+    <td <?php echo 'id="',$user->programa_id,'_',$user->modulo_id,'"'?>>
       <div class="permisos">
         <?php echo form_label('Disponible', 'd_'.$user->modulo_id)?>
         <?php echo form_radio('p_'. $user->modulo_id,1, ($user->modulo_permiso==1)?true:false, 'id="d_'.$user->modulo_id.'" class="yes"');?>
@@ -32,7 +32,6 @@
         <?php echo form_radio('p_'. $user->modulo_id,0, ($user->modulo_permiso==0)?true:false, 'id="n_'.$user->modulo_id.'" class="no"');?>
       </div>
     </td>
-    <td></td>
   </tr>
 <?php endforeach; ?>
 </table>
