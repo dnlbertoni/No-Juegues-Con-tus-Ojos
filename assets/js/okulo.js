@@ -69,7 +69,10 @@
      autoOpen : false,
      modal:true,
      width:600,
-     title: nombre
+     title: nombre,
+     close: function(){
+       location.reload();
+     }
    };
    $("#ventanaAjax").dialog(options);
    $("#ventanaAjax").load(url, [],function (){$("#ventanaAjax").dialog("open")});

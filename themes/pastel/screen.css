@@ -403,3 +403,9 @@ p.error {
 	font-size: 85%;
 	line-height: 2.5;
 }
+.claro{
+  background-color: #FDB848;
+}
+.oscuro{
+  background-color: #F79700;
+}

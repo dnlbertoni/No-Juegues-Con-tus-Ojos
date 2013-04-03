@@ -15,8 +15,10 @@ class Usuarios extends MY_Controller{
   }
   function index(){
     $usuarios=$this->Usuarios_model->getTodos();
+    $programas=$this->Programas_model->toDropDown('id','nombre');
     //print_r($usuarios);
     Template::set('todos', $usuarios);
+    Template::set('selProgramas', $programas);
     Template::render();
   }
   function perfil(){
