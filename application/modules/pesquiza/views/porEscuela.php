@@ -1,10 +1,13 @@
-<table>
+<table width="100%">
  <tbody>
     <?php foreach($pesqui as $pesq):?>
     <tr>
       <td><?php echo $pesq->fecha?></td>
       <td><?php echo $pesq->curso?></td>
-      <td><?php echo $pesq->voluntario?></td>
+      <td>
+          <?php echo $pesq->voluntario?>
+          <?php echo anchor('pesquiza/asignarVol/'.$pesq->id,'Asignar Vooluntario',' class="botVol"');?>
+      </td>
       <td><?php echo $pesq->cant_alum?></td>
       <td><?php echo $pesq->cant_pres?></td>
       <td><?php echo $pesq->cant_prob?></td>
@@ -31,7 +34,20 @@ $('.botEdit').button({icons:{primary:'ui-icon-pencil'}, text:false});
 $('.botFin').button({icons:{primary:'ui-icon-contact'}, text:false});
 $('.botCarta').button({icons:{primary:'ui-icon-document'}, text:false});
 $('.botReal').button({icons:{primary:'ui-icon-circle-check'}, text:false});
+$('.botVol').button({icons:{primary:'ui-icon-person'}, text:false});
 $('.botDel').button({icons:{primary:'ui-icon-trash'}, text:false});  
+$(".botVol").click(function(e){
+    e.preventDefault();
+    url = $(this).attr('href');
+    var options = {
+        autoOpen : false,
+        modal:true,
+        height:500,
+        width:800        
+    };
+    $("#ventanaAjax").dialog(options);
+    $("#ventanaAjax").load(url, [],function (){$("#ventanaAjax").dialog("open")});
+});
 $(".botReal").click(function(e){
   e.preventDefault();
   url=$(this).attr('href');

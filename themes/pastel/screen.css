@@ -198,11 +198,16 @@ img.aligncenter {
 /* Content */
 
 #content {
-	float: left;
-	width: 640px;
-	padding: 30px 20px 0px 0px;
+    float: left;
+    padding: 30px 20px 0px 0px;
     clear: left;
     margin: auto;
+}
+#content .big {
+    width: 1000px;
+}
+#content .mini {
+    width: 640px;
 }
 
 .post {

@@ -65,6 +65,8 @@ Released   : 20110123
 	<!-- end #page -->
     <div id="ventanaAjax"></div>
 </div>
+<br/>
+<br/>
 <div id="footer-wrapper">
 	<div id="footer">
       <p id="copyright">© 2011-2013. All Rights Reserved. <br/>

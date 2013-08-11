@@ -25,7 +25,6 @@
 <?php endforeach?>
 </table>
 </div>
-<div id="ventanaAjax"></div>
 <script>
 $(document).ready(function(){
    $(".botTransporte").button({icons:{primary:'ui-icon-transferthick-e-w'}, text:true});

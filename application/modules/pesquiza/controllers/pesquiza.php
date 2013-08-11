@@ -11,6 +11,7 @@ class Pesquiza extends MY_Controller{
     $this->load->model('Voluntarios_model', '', true);
     $this->load->model('Pesquizas_model', '', true);
     $this->load->model('Casos_model');
+    $this->load->model('Fechas_model');
 
     $menu[] = array('link' =>'admin/escuelas/add', 'nombre'=>'Nueva Escuela', 'extra'=>'id="botEscuela"');
     $menu[] = array('link' =>'admin/voluntarios/add', 'nombre'=>'Nuevo Volun.', 'extra'=>'id="botVol"');
@@ -23,10 +24,26 @@ class Pesquiza extends MY_Controller{
     Template::render();
   }
   function porEscuela($idEscuela){
+    //$this->output->enable_profiler(true);      
     $pesquizas=$this->Pesquizas_model->getPorEscuela($idEscuela);
     $data['pesqui']=$pesquizas;
     $this->load->view('pesquiza/porEscuela',$data);
   }
+  function asignarVol($idPesquiza){
+      $data['ocultos']=array('idPesquiza'=>$idPesquiza);
+      $data['optVoluntarios']=$this->Voluntarios_model->toDropDown();
+      $this->load->view('pesquiza/asignarVol', $data);
+  }
+  function asignaVolDo(){
+      $datos = array('voluntario_id'=>$this->input->post('voluntario_id'));
+      $this->Pesquizas_Model->update($datos, $this->input->post('idPesquiza'));
+  }
+  function listadoPorVoluntarios(){
+    //$this->output->enable_profiler(true);      
+    $data['pesquizas']=$this->Pesquizas_model->getAgrupadosVoluntarios();
+    Template::set($data);
+    Template::render();
+  }  
   function observ($idEsc){
     $data['ocultos']=array('id'=>$idEsc);
     $escuela=$this->Escuelas_model->getById($idEsc);
@@ -133,10 +150,10 @@ class Pesquiza extends MY_Controller{
     $fecini = new DateTime();
     $fecfin = new DateTime();
     $data['fecha']=$fecha;
-    $f=explode('-', $programa->fecini_pesq);
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, true, false) );
     $fecini->setDate($f[0],$f[1],$f[2]);
     $data['fechini']=$fecini;
-    $f=explode('-', $programa->fecfin_pesq);
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, false, true));
     $fecfin->setDate($f[0],$f[1],$f[2]);
     $data['fechfin']=$fecfin;
     $data['escuelasSel'] = $this->Escuelas_model->toDropdownEspecial('id', 'nombre');
@@ -145,20 +162,34 @@ class Pesquiza extends MY_Controller{
     $this->load->view('pesquiza/generarAuto', $data);
   }
   function generarAutoDo(){
-    $cursos = array('A', 'B', 'C', 'D', 'E', 'F', 'G');
-    for($i=0;$i<$this->input->post('cantidad')&&$i<6;$i++){
-      $datos = array( 'fecha'=>$this->_formatFechaSave($this->input->post('fecha')),
-                      'programa_id' => $this->session->userdata('programa_id'),
-                      'escuela_id'  => $this->input->post('escuela'),
-                      'grado'       => $this->input->post('grado'),
-                      'turno'       => 'M',
-                      'tipo'        => 1,
-                      'division'    => $cursos[$i],
-                      'estado'      => PESQUIZA_PENDIENTE
-                    );
-      $this->Pesquizas_model->add($datos);
+      $cursos=array();
+      $division=array();
+      foreach($_POST as $key=>$value){
+          if(preg_match('/^g_/', $key)){
+              $cursos[]=$value;
+          }else{
+            if(preg_match('/^d_/', $key)){
+                $division[]=$value;
+            }else{
+                continue;
+            }
+          }
+      }
+      foreach($cursos as $curso){
+        foreach($division as $divi){
+          $datos = array( 'fecha'=>$this->_formatFechaSave($this->input->post('fecha')),
+                          'programa_id' => $this->session->userdata('programa_id'),
+                          'escuela_id'  => $this->input->post('escuela'),
+                          'grado'       => $curso,
+                          'turno'       => 'M',
+                          'tipo'        => 1,
+                          'division'    => $divi,
+                          'estado'      => PESQUIZA_PENDIENTE
+                        );
+          $this->Pesquizas_model->add($datos);
+        }
     }
-    Template::redirect('pesquiza');
+   Template::redirect('pesquiza');
   }
   function finalizar($id){
     $pesquiza=$this->Pesquizas_model->getById($id);
@@ -210,11 +241,11 @@ class Pesquiza extends MY_Controller{
     $this->Pesquizas_model->setEstado($idPesq,PESQUIZA_CARTAS);
   }
   function imprimirCartas(){
-  	$data['finalizadas']=$this->Pesquizas_model->getByEstado(PESQUIZA_FINALIZADA);
-  	$data['cartas']=$this->Pesquizas_model->getByEstado(PESQUIZA_CARTAS);
-    $data['titulo']='Impresion de Cartas';
-    $data['texto']='Imrpimir Cartas';
-    $data['accion']='paper/pdf/cartaDiagnostico';
+        $data['finalizadas']=$this->Pesquizas_model->getByEstado(PESQUIZA_FINALIZADA);
+        $data['cartas']=$this->Pesquizas_model->getByEstado(PESQUIZA_CARTAS);
+        $data['titulo']='Impresion de Cartas';
+        $data['texto']='Imrpimir Cartas';
+        $data['accion']='paper/pdf/cartaDiagnostico';
   	Template::set($data);
   	Template::render();
   }

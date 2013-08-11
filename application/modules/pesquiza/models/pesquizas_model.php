@@ -60,6 +60,32 @@ class Pesquizas_model extends MY_Model{
     $this->db->order_by('pesquizas.tipo', 'ASC');
     return $this->db->get()->result();
   }
+  function getAgrupadosVoluntarios(){
+    $this->db->select('pesquizas.escuela_id     as escuela_id');
+    $this->db->select('CONCAT(escuelas.numero_estab," - ",escuelas.nombre)  as escuela', false);
+    $this->db->select('CONCAT(pesquizas.grado," ",pesquizas.division) as curso', FALSE);
+    $this->db->select('escuelas.director        as responsable');
+    $this->db->select('escuelas.telefono        as telefono');
+    $this->db->select('pesquizas.voluntario_id as voluntario_id');
+    $this->db->select('IF(pesquizas.voluntario_id IS NULL,"Sin Asignar",CONCAT(voluntarios.apellido,", ",voluntarios.nombre)) as voluntario');
+    $this->db->select('pesquizas.cant_alum      as cant_alum');
+    $this->db->select('pesquizas.cant_pres      as cant_pres');
+    $this->db->select('pesquizas.cant_prob      as cant_prob');
+    $this->db->select('escuelas.observaciones   as observaciones');
+    $this->db->select('escuelas.direccion       as direccion');
+    $this->db->select('ciudades.nombre          as ciudad');
+    $this->db->from($this->getTable());
+    $this->db->join('escuelas', 'escuelas.id=escuela_id', 'inner');
+    $this->db->join('voluntarios', 'voluntarios.id=voluntario_id', 'left');
+    $this->db->join('ciudades', 'ciudades.id=escuelas.ciudad_id', 'inner');
+    $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
+    $this->db->order_by('voluntario_id', 'ASC');   
+    $this->db->order_by('estado', 'ASC');   
+    $this->db->order_by('cant_prob', 'Desc');
+    $this->db->order_by('escuela', 'ASC');
+    $this->db->order_by('pesquizas.tipo', 'ASC');
+    return $this->db->get()->result();
+  }
   function getPorEscuela($idEscuela){
     $this->db->select('pesquizas.id            as id');
     $this->db->select('pesquizas.fecha         as fecha');

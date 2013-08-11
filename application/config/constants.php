@@ -49,7 +49,7 @@ define('DEVELOP', 0 ); // 0- nadie, 1 - por ip, ALL - todos
 /*
  * ESTADOS DE PESQUIZAS
  */
-define('PESQUIZA_PENDINETE',  0);
+define('PESQUIZA_PENDIENTE',  0);
 define('PESQUIZA_REALIZADA',  1);
 define('PESQUIZA_FINALIZADA', 2);
 define('PESQUIZA_CARTAS',     3);

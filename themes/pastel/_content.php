@@ -1,4 +1,10 @@
-<div id="content">
+<?php
+if(isset($linea) || isset($lateralInfoData)){
+    $clase='big';
+}else{
+    $clase='mini';    
+}?>
+<div id="content" class="<?php echo $clase?>">
     <?php echo Template::message();?>
     <?php echo Template::yield(); ?>
 </div>
