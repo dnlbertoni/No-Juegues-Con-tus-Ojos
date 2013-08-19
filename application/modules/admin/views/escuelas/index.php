@@ -28,5 +28,6 @@
 <script>
 $(document).ready(function(){
    $(".botTransporte").button({icons:{primary:'ui-icon-transferthick-e-w'}, text:true});
+   $("#botEscuela").button({icons:{primary:'ui-icon-home'}, text:true});
 });
 </script>

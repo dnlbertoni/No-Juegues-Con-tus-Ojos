@@ -35,8 +35,9 @@ class Pesquiza extends MY_Controller{
       $this->load->view('pesquiza/asignarVol', $data);
   }
   function asignaVolDo(){
-      $datos = array('voluntario_id'=>$this->input->post('voluntario_id'));
-      $this->Pesquizas_Model->update($datos, $this->input->post('idPesquiza'));
+      $valor = ($this->input->post('voluntario_id')=='NULL')?NULL:$this->input->post('voluntario_id');
+      $datos = array('voluntario_id'=>$valor);
+      $this->Pesquizas_model->update($datos, $this->input->post('idPesquiza'));
   }
   function listadoPorVoluntarios(){
     //$this->output->enable_profiler(true);      
@@ -68,6 +69,16 @@ class Pesquiza extends MY_Controller{
                       'cant_prob'=>''
                      );
     $data['pesq'] = (object) $pesquiz;
+
+    $fecini = new DateTime();
+    $fecfin = new DateTime();
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, true, false) );
+    $fecini->setDate($f[0],$f[1],$f[2]);
+    $data['fecini']=$fecini;
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, false, true));
+    $fecfin->setDate($f[0],$f[1],$f[2]);
+    $data['fecfin']=$fecfin;
+    
     if($method=="ajax"){
       $this->output->enable_profiler(false);
       $data['accion'] = 'pesquiza/addDo';

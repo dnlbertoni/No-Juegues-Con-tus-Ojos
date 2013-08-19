@@ -27,7 +27,7 @@ class Voluntarios extends MY_Controller{
                             'email'    => ''
                           );
     $data['vol'] = (object) $voluntarios;
-    $data['botGuardar'] = "Agragar";
+    $data['botGuardar'] = "Agregar";
     if($method=="ajax"){
       $this->output->enable_profiler(false);
       $data['accion'] = 'admin/voluntarios/addDo';

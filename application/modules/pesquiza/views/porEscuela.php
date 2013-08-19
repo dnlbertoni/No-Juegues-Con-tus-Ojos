@@ -43,7 +43,10 @@ $(".botVol").click(function(e){
         autoOpen : false,
         modal:true,
         height:500,
-        width:800        
+        width:800, 
+        close: function(){
+           location.reload();
+        }
     };
     $("#ventanaAjax").dialog(options);
     $("#ventanaAjax").load(url, [],function (){$("#ventanaAjax").dialog("open")});

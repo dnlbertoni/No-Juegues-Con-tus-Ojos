@@ -24,7 +24,7 @@ class Voluntarios_model extends MY_Model{
       $this->db->where('programa_id', $this->session->userdata('programa_id'));
     };          
     $query = $this->db->get();
-    $datos = array();
+    $datos = array('NULL'=>'Sin Asignar');
     foreach($query->result() as $item){
             $datos[$item->id] = $item->nombre;
     }

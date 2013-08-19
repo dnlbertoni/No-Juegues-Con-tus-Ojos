@@ -1,4 +1,5 @@
 <h2>Listado de Voluntarios</h2>
+<?php echo anchor('admin/voluntarios/add','Nuevo Voluntario', 'id="botVoluntario" class="ajax"')?>
 <table>
   <thead>
     <tr>
@@ -19,4 +20,9 @@
   </tr>
 <?php endforeach?>
 </table>
-<div id="ventanaAjax"></div>
+
+<script>
+$(document).ready(function(){
+  $("#botVoluntario").button({icons:{primary:'ui-icon-person'}});
+});
+</script>

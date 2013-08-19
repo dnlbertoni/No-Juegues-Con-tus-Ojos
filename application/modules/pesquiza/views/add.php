@@ -75,10 +75,10 @@ $(document).ready(function(){
   $("form").addClass('ui-widget');
   $(".date").datepicker({
     autoSize : true,
-    altFormat: 'dd-mm-yy',
-    dateFormat: 'dd-mm-yy',
-    minDate: new Date(2012, 4 - 1, 1),
-    maxDate: new Date(2012, 5 - 1, 30),
+    altFormat: 'yy-mm-dd',
+    dateFormat: 'yy-mm-dd',
+    minDate: new Date(<?php echo $fecini->format('Y')?>,<?php echo $fecini->format('m')-1?>,<?php echo $fecini->format('d')?> ),
+    maxDate: new Date(<?php echo $fecfin->format('Y')?>,<?php echo $fecfin->format('m')-1?>,<?php echo $fecfin->format('d')?> ),
     changeYear: false,
     numberOfMonths: [1,2],
     dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
@@ -111,10 +111,12 @@ $(document).ready(function(){
     var nombre = "#" + $(this).parent().attr('id');
     $(nombre).dialog("close");
   });
+  /*
   $("#botAlumno").click(function(e){
     e.preventDefault();
     agregoAlumno();
   });
+  */
   $("#buscarVol").button({icons:{primary:'ui-icon-search'}, text:false});
   $("#buscarVol").click(function(e){
     e.preventDefault();
