@@ -172,4 +172,7 @@ class Admin extends MY_Controller{
     fclose($archivo);
     redirect('paper/', 'location', 301);
   }
+  function creoPrograma(){
+    
+  }
 }
