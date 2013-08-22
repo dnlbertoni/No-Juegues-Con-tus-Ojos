@@ -18,8 +18,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'desarrollo');
-	//define('ENVIRONMENT', 'final');
+	//define('ENVIRONMENT', 'desarrollo');
+	define('ENVIRONMENT', 'final');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -40,6 +40,9 @@
 		case 'final':
 			error_reporting(0);
 		break;
+        case 'offline':
+          error_reporting(0);
+          break;
 
 		default:
 			exit('El entorno de la aplicacion no esta definido');

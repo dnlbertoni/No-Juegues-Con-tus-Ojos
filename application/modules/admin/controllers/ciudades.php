@@ -32,9 +32,8 @@ class Ciudades extends MY_Controller{
                         'nombre'=>'',
                         'cpostal'=>'',
                         'provincia'=>'Entre Rios',
-                         'pais'=>'Argentina',
-                         'programa_id'=>$this->session->userdata('programa_id')
-                          );
+                         'pais'=>'Argentina'
+        );
         $data['esc'] = (object) $escuela;
         $this->load->view('admin/ciudades/add', $data);
     }
@@ -45,7 +44,7 @@ class Ciudades extends MY_Controller{
                 'provincia'=>$this->input->post('provincia'),
                 'pais'=>$this->input->post('pais')
                 );
-        $id=$this->Ciudades_model->add($datos);
+        $id=$this->Ciudades_model->add($datos,false,false);
     }
     function edit($id){
         $data['accion']='admin/ciudades/editDo';

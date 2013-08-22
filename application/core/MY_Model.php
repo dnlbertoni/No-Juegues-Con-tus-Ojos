@@ -76,8 +76,9 @@ class MY_Model extends CI_Model{
    * @param Array $data
    * @return Int Insert ID
    */
-  public function add($data, $field_control=FALSE) {
-    $data['programa_id']=$this->session->userdata('programa_id');
+  public function add($data, $field_control=FALSE,$programa=true) {
+    if($programa)
+      $data['programa_id']=$this->session->userdata('programa_id');
     if(is_array($data)) {
       if($field_control){
         $duplicado = $this->is_duplicate($field_control,$data[$field_control]);
