@@ -86,7 +86,39 @@ class Escuelas extends MY_Controller{
   function delDo(){
       $this->Escuelas_model->borrar($this->input->post('id'));
   }
-  function ToExcel(){
+  function fromExcel(){
+    $this->load->library('PHPExcel');
+    $this->phpexcel->getProperties()
+            ->setTitle("Esto es una prueba")
+            ->setDescription("Descripcion del excel bla bla blaaa");
+    
+    $objPHPExcel = PHPExcel_IOFactory::load($path);
+    foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+        $tituloHoja = $worksheet->getTitle();
+        $filaMaxima = $worksheet->getHighestRow(); // e.g. 10
+        $columnaMaxima = $worksheet->getHighestColumn(); // e.g 'F'
+        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($columnaMaxima);
+    }    
+    $nroColumnas = ord($columnaMaxima) - 64;
+    echo "El Archivo ".$tituloHoja." tiene  ";
+    echo $nroColumnas . ' columnas';
+    echo ' y ' . $filaMaxima . ' filas.';
+    echo 'Datos: <table width="100%" cellpadding="3" cellspacing="0"><tr>';
+    for ($row = 1; $row <= $filaMaxima; ++ $row) {
+       echo '<tr>';
+       for ($col = 0; $col < $highestColumnIndex; ++ $col) {
+           $cell = $worksheet->getCellByColumnAndRow($col, $row);
+           $val = $cell->getValue();
+           if($row === 1)
+                echo '<td style="background:#000; color:#fff;">' . $val . '</td>';
+           else
+               echo '<td>' . $val . '</td>';
+       }
+    echo '</tr>';
+    }
+    echo '</table>';    
+  }
+    function ToExcel(){
     $this->load->library('PHPExcel');
     $this->phpexcel->getProperties()
             ->setTitle("Esto es una prueba")
