@@ -43,6 +43,7 @@ define('NOMBRE_PROYECTO',		'No Juegues con tus Ojos');
 define('CLUB_ROTARIO',		'Rotary Club Salto Grande Concordia');
 define('TXTFILES', BASEPATH .'../assets/txt/');
 define('IMGFILES', BASEPATH .'../assets/img/');
+define('TMP', BASEPATH .'../assets/txt/');
 define('PROGRAMA', 1);
 define('COPIAS', 1);
 define('DEVELOP', 0 ); // 0- nadie, 1 - por ip, ALL - todos

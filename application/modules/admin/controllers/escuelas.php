@@ -87,36 +87,53 @@ class Escuelas extends MY_Controller{
       $this->Escuelas_model->borrar($this->input->post('id'));
   }
   function fromExcel(){
-    $this->load->library('PHPExcel');
-    $this->phpexcel->getProperties()
-            ->setTitle("Esto es una prueba")
-            ->setDescription("Descripcion del excel bla bla blaaa");
-    
-    $objPHPExcel = PHPExcel_IOFactory::load($path);
-    foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-        $tituloHoja = $worksheet->getTitle();
-        $filaMaxima = $worksheet->getHighestRow(); // e.g. 10
-        $columnaMaxima = $worksheet->getHighestColumn(); // e.g 'F'
-        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($columnaMaxima);
-    }    
-    $nroColumnas = ord($columnaMaxima) - 64;
-    echo "El Archivo ".$tituloHoja." tiene  ";
-    echo $nroColumnas . ' columnas';
-    echo ' y ' . $filaMaxima . ' filas.';
-    echo 'Datos: <table width="100%" cellpadding="3" cellspacing="0"><tr>';
-    for ($row = 1; $row <= $filaMaxima; ++ $row) {
-       echo '<tr>';
-       for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-           $cell = $worksheet->getCellByColumnAndRow($col, $row);
-           $val = $cell->getValue();
-           if($row === 1)
-                echo '<td style="background:#000; color:#fff;">' . $val . '</td>';
-           else
-               echo '<td>' . $val . '</td>';
-       }
-    echo '</tr>';
+    if(!$this->input->post('enviado')){
+      $error = array('error' => '');
+      Template::set($error);
+      Template::render();        
+    }else{
+      $config['upload_path'] = TMP;
+      $config['allowed_types'] = 'xls|xlsx';
+      $config['max_size']	= '20480';
+      $this->load->library('upload', $config);
+      if ( ! $this->upload->do_upload()){
+          $error = array('error' => $this->upload->display_errors());
+          Template::set($error);
+          Template::render();        
+      }      
+      $archivo =  $this->upload->data();
+
+      $this->load->library('PHPExcel');
+      $this->phpexcel->getProperties()
+              ->setTitle("Esto es una prueba")
+              ->setDescription("Descripcion del excel bla bla blaaa");
+
+      $objPHPExcel = PHPExcel_IOFactory::load($archivo['full_path']);
+      foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+          $tituloHoja = $worksheet->getTitle();
+          $filaMaxima = $worksheet->getHighestRow(); // e.g. 10
+          $columnaMaxima = $worksheet->getHighestColumn(); // e.g 'F'
+          $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($columnaMaxima);
+      }    
+      $nroColumnas = ord($columnaMaxima) - 64;
+      echo "El Archivo ".$tituloHoja." tiene  ";
+      echo $nroColumnas . ' columnas';
+      echo ' y ' . $filaMaxima . ' filas.';
+      echo 'Datos: <table width="100%" cellpadding="3" cellspacing="0"><tr>';
+      for ($row = 1; $row <= $filaMaxima; ++ $row) {
+         echo '<tr>';
+         for ($col = 0; $col < $highestColumnIndex; ++ $col) {
+             $cell = $worksheet->getCellByColumnAndRow($col, $row);
+             $val = $cell->getValue();
+             if($row === 1)
+                  echo '<td style="background:#000; color:#fff;">' . $val . '</td>';
+             else
+                 echo '<td>' . $val . '</td>';
+         }
+      echo '</tr>';
+      }
+      echo '</table>';    
     }
-    echo '</table>';    
   }
     function ToExcel(){
     $this->load->library('PHPExcel');
@@ -143,7 +160,7 @@ class Escuelas extends MY_Controller{
     // Salida
     header("Content-Type: application/vnd.ms-excel");
     $nombreArchivo = 'export_lisatdo_'.date('YmdHis');
-    header("Content-Disposition: attachment; filename=\"$nombreArchivo.xls\"");
+    header("Content-Disposition: attachment; filename=\"$nombreTabla.xls\"");
     header("Cache-Control: max-age=0");
     // Genera Excel
     $writer = PHPExcel_IOFactory::createWriter($this->phpexcel, "Excel5");
