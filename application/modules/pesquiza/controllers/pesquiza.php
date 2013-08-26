@@ -40,7 +40,7 @@ class Pesquiza extends MY_Controller{
       $this->Pesquizas_model->update($datos, $this->input->post('idPesquiza'));
   }
   function listadoPorVoluntarios(){
-    //$this->output->enable_profiler(true);      
+    $this->output->enable_profiler(true);      
     $data['pesquizas']=$this->Pesquizas_model->getAgrupadosVoluntarios();
     Template::set($data);
     Template::render();
