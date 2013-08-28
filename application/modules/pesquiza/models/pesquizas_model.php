@@ -21,7 +21,7 @@ class Pesquizas_model extends MY_Model{
     $this->db->select('pesquizas.voluntario_id as voluntario_id');
     $this->db->select('responsables.nombre     as responsable');
     $this->db->select('IF(pesquizas.voluntario_id IS NULL,"Sin Asignar",CONCAT(voluntarios.apellido,", ",voluntarios.nombre)) as voluntario');
-    $this->db->select('pesquizas.escuela_id    as escuela_id');
+    $this->db->select('FORMAT(pesquizas.escuela_id, 2) as escuela_id', FALSE);
     $this->db->select('escuelas.nombre         as escuela');
     $this->db->select('CONCAT(pesquizas.grado," ",pesquizas.division) as curso', FALSE);
     $this->db->select('pesquizas.cant_alum     as cant_alum');
@@ -39,7 +39,7 @@ class Pesquizas_model extends MY_Model{
   function getIndexAgrupados(){
     $this->db->select('COUNT(pesquizas.id)      as cantidad');
     $this->db->select('pesquizas.escuela_id     as escuela_id');
-    $this->db->select('CONCAT(escuelas.numero_estab," - ",escuelas.nombre)  as escuela', false);
+    $this->db->select('CONCAT(LPAD(escuelas.numero_estab,2,"0")," - ",escuelas.nombre)  as escuela', false);
     $this->db->select('SUM(pesquizas.cant_alum) as cant_alum');
     $this->db->select('SUM(pesquizas.cant_pres) as cant_pres');
     $this->db->select('SUM(pesquizas.cant_prob) as cant_prob');
