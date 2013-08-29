@@ -20,6 +20,7 @@ class Casos_model extends MY_Model{
     $this->db->select('casos.apellido           as apellido');
     $this->db->select('casos.nombre             as nombre');
     $this->db->select('casos.numdoc             as numdoc');
+    $this->db->select('casos.sexo               as sexo');
     $this->db->select('casos.fecnac             as fecnac');
     $this->db->select('casos.pesquiza_id        as pesquiza_id');
     $this->db->select('casos.izq                as izq');

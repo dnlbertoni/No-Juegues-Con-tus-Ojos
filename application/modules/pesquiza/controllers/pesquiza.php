@@ -140,6 +140,7 @@ class Pesquiza extends MY_Controller{
     $datos = array( 'apellido' => $this->input->post('apellido'),
                     'nombre'   => $this->input->post('nombre'),
                     'numdoc'   => $this->input->post('dni'),
+                    'sexo'   => $this->input->post('sexo'),
                     'izq'      => $this->input->post('izq'),
                     'der'      => $this->input->post('der'),
                     'pesquiza_id' => $this->input->post('pesquiza_id')
@@ -205,6 +206,16 @@ class Pesquiza extends MY_Controller{
   function finalizar($id){
     $pesquiza=$this->Pesquizas_model->getById($id);
     $data['pesq']=$pesquiza;
+    
+    $fecini = new DateTime();
+    $fecfin = new DateTime();
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, true, false) );
+    $fecini->setDate($f[0],$f[1],$f[2]);
+    $data['fecini']=$fecini;
+    $f=explode('-', $this->Fechas_model->getPesquizas(false, false, true));
+    $fecfin->setDate($f[0],$f[1],$f[2]);
+    $data['fecfin']=$fecfin;    
+    
     $this->load->model('Escuelas_model');
     $escuela=$this->Escuelas_model->getById($pesquiza->escuela_id);
     $data['escuelaNombre']=$escuela->nombre;

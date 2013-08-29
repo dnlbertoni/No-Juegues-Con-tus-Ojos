@@ -6,6 +6,7 @@
           <th>Apellido</th>
           <th>Nombre</th>
           <th>Documento</th>
+          <th>Sexo</th>
           <th>Ojo Izq</th>
           <th>Ojo Der</th>
           <th>&nbsp;</th>
@@ -19,6 +20,7 @@
               <td><?php echo $alu->apellido?></td>
               <td><?php echo $alu->nombre?></td>
               <td><?php echo $alu->numdoc?></td>
+              <td><?php echo $alu->sexo?></td>
               <td><?php echo $alu->izq?></td>
               <td><?php echo $alu->der?></td>
               <td><?php echo anchor('pesquiza/borroAlumno/'.$alu->id,'Quitar','class="delAlu"')?></td>
@@ -27,9 +29,19 @@
         <?php endif;?>
     </tbody>
 </table>
+<style>
+.ui-button.M {
+    background-color: blue;
+}
+.ui-button.F {
+    background-color: pink;
+}
+</style>
 
 <script>
   $(document).ready(function(){
+    //colores del sexo
+
     valor = $("#derivadosAux").text();
     $("#derivados").val(valor);
     $(".delAlu").button({icons:{primary:'ui-icon-trash'},text:false});
