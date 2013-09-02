@@ -373,14 +373,15 @@ class Pdf extends MY_Controller{
         $this->fpdf->Cell(15,12,"10",1,1,'R');
       };
       $this->fpdf->SetFont('Arial','','10');
-      $nota[] = "Complete con datos de los niños del curso correspondiente";
-      $nota[] = "Solo ingresar los niños, que en al menos en 1 (un) ojo las mediciones sean INFERIORES a 8/10 ";
-      $nota[] = "Completar TODOS los datos del Niño derivado";
-      $nota[] = "Adjuntar fotocopia del Registro de Alumnos";
-      $this->fpdf->Cell(20,5,"Nota:","B",1,'L');
+      $nota[] = "Registrar solo 1 curso por planilla";
+      $nota[] = "Solo registrar los niños que, en al menos en 1 (un) ojo, obtengan una medicion INFERIOR a 7/10 ";
+      $nota[] = "Si el niño usa lentes, realizar la medicion sin los Lentes";
+      $nota[] = "Solicite la Lista de Alumnos y adjuntar fotocopia del Registro de Alumnos";
+      $this->fpdf->Cell(180,5,"Nota:","B",1,'L');
       foreach($nota as $n){
-      $this->fpdf->Cell(20,5," * ". utf8_decode($n),0,1,'L');
+        $this->fpdf->Cell(180,5," * ". utf8_decode($n),'LR',1,'L');
       };
+      $this->fpdf->Cell(180,5,"Muchas Gracias por su Colaboracion","LRB",0,'R');
     }
     //termino planilla
     $this->fpdf->Output('planilla.pdf','I');

@@ -30,10 +30,11 @@ class Pesquizas_model extends MY_Model{
     $this->db->select('escuelas.direccion as direccion');
     $this->db->select('pesquizas.grado as curso');
     $this->db->select('pesquizas.division as division');
-    $this->db->select('pesquizas.voluntario_id as voluntario');
+    $this->db->select('CONCAT(voluntarios.apellido, ", ",voluntarios.nombre) as voluntario');
     $this->db->select('pesquizas.fecha as fecha');    
     $this->db->from($this->getTable());
     $this->db->join('escuelas', 'escuelas.id = pesquizas.escuela_id', 'inner');
+    $this->db->join('voluntarios', 'pesquizas.voluntario_id=voluntarios.id', 'inner');
     $this->db->where('pesquizas.programa_id', $this->session->userdata('programa_id'));
     $this->db->where('escuelas.programa_id', $this->session->userdata('programa_id'));
     $this->db->where('pesquizas.id', $id);
