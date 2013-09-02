@@ -62,4 +62,27 @@ class Programas_model extends MY_Model{
     }
     return $datos;
   }
+  function getDisponibles($user=false){
+    if($user){
+      $consulta = sprintf(" SELECT  programas.id      as id,
+                                    programas.nombre  as nombre,
+                                    ciudades.nombre   as ciudad
+                            FROM programas 
+                            INNER JOIN ciudades ON ciudades.id=programas.ciudad_id 
+                            WHERE NOT EXISTS (  SELECT DISTINCT programa_id
+                                                FROM user_modulos 
+                                                WHERE programa_id=programas.id and user_id = %s 
+                                              )",$user);
+     return  $this->db->query($consulta)->result();
+    }else{
+      $this->db->select('programas.id as id');
+      $this->db->select('programas.nombre as nombre');
+      $this->db->select('programas.ciudad_id as city');
+      $this->db->select('ciudades.nombre as ciudadNombre');
+      $this->db->from($this->getTable());
+      $this->db->join('ciudades', 'ciudades.id=ciudad_id', 'inner');
+      $this->db->where('estado',1);
+      return $this->db->get()->result();
+    }
+  }  
 }

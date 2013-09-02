@@ -79,5 +79,10 @@ class Usuarios extends MY_Controller{
     $programa_id   = $this->input->post('programa');
     echo $this->Usuarios_model->createPermiso($usuario_id,$modulo_id, $programa_id);
   }
+  function agregoPrograma($user){
+    $data['programas']= $this->Programas_model->getDisponibles($user);
+    $data['usuario']=$user;
+    $this->load->view('usuarios/muestroProgramas', $data);
+  }
 }
 

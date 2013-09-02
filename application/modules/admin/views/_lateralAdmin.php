@@ -89,16 +89,12 @@
     <div class="ui-widget-content">
 		<ul>
           <li>
-              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="botAdd"');?>
-              <?php echo anchor('admin/ciudades/add', 'Nueva Ciudad', 'class="ajax"');?>
+              <?php echo anchor('admin/usuarios/add', 'Nuevo Usuario', 'class="botAdd ajax"');?>
+              <?php echo anchor('admin/usuarios/add', 'Nuevo Usuario', 'class="ajax"');?>
           </li>
           <li>
               <?php echo anchor('usuarios/', 'Admin. usuarios',  'class="botCiu"');?>
               <?php echo anchor('usuarios/', 'Admin. usuarios');?>
-          </li>
-          <li>
-              <?php echo anchor('admin/ciudades', 'Admin. ciudades',  'class="botCiu"');?>
-              <?php echo anchor('admin/ciudades', 'Admin. ciudades');?>
           </li>
         </ul>
     </div>
