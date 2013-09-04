@@ -13,7 +13,7 @@
     <tr id="E<?php echo $pesq->escuela_id?>">
       <td>
         <?php echo anchor('pesquiza/porEscuela/'.$pesq->escuela_id,'Expandir',' id="'.$pesq->escuela_id.'" class="botMas"');?>
-        <?php echo $pesq->escuela?>
+        <?php echo $pesq->voluntario?>
       </td>
       <td style="background-color:lightblue;"><b><?php echo $pesq->cantidad?></b></td>
       <td><b>Alumnos: </b><?php echo ($pesq->cant_alum>0)?$pesq->cant_alum:0;?></td>

@@ -71,8 +71,8 @@ class Pesquizas_model extends MY_Model{
                   INNER JOIN ciudades ON ciudades.id=escuelas.ciudad_id
                   GROUP BY p.voluntario_id
                   ORDER BY voluntario ASC";
-    $this->db->query($consulta, FALSE);
-    return $this->db->get()->result();
+    return $this->db->query($consulta); 
+    //return $this->db->get()->result();
   }
   function getPorEscuela($idEscuela){
     $this->db->select('pesquizas.id            as id');
