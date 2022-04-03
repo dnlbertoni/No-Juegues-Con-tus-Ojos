@@ -47,7 +47,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'sistemas';
-$db['default']['password'] = 'kaltidus';
+$db['default']['password'] = '';
 $db['default']['database'] = 'okulo';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -64,7 +64,7 @@ $db['default']['stricton'] = FALSE;
 
 $db['debug']['hostname'] = 'localhost';
 $db['debug']['username'] = 'sistemas';
-$db['debug']['password'] = 'kaltidus';
+$db['debug']['password'] = '';
 $db['debug']['database'] = 'okulo_2012';
 $db['debug']['dbdriver'] = 'mysql';
 $db['debug']['dbprefix'] = '';
